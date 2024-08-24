@@ -1,0 +1,90 @@
+
+@mixin flex_center_center(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin flex_right_colum(){
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    flex-direction: column;
+}
+@mixin flex_around_center(){
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+@mixin flex_between_center(){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@mixin flex(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin flex_gap(){
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+@mixin flex_right(){
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+@mixin border_radius($variable){
+    border-radius: $variable;
+    -webkit-border-radius: $variable;
+    -moz-border-radius: $variable;
+    -ms-border-radius: $variable;
+    -o-border-radius: $variable;
+}
+@mixin transition($variable){
+    transition: $variable;
+    -webkit-transition: $variable;
+    -moz-transition: $variable;
+    -ms-transition: $variable;
+    -o-transition: $variable;
+}
+@mixin transform_translate_center($x , $y){
+    transform: translate(-$x , -$y);
+    -webkit-transform: translate(-$x , -$y);
+    -moz-transform: translate(-$x , -$y);
+    -ms-transform: translate(-$x , -$y);
+    -o-transform: translate(-$x , -$y);
+}
+@mixin transform_translate_y($y){
+    transform: translateY(-$y);
+    -webkit-transform: translateY(-$y);
+    -moz-transform: translateY(-$y);
+    -ms-transform: translateY(-$y);
+    -o-transform: translateY(-$y);
+}
+@mixin transform_translate_x($x){
+    transform: translateX(-$x);
+    -webkit-transform: translateX(-$x);
+    -moz-transform: translateX(-$x);
+    -ms-transform: translateX(-$x);
+    -o-transform: translateX(-$x);
+}
+@mixin fixed_right_notification(){
+    position: fixed;
+    top: 0;
+    right: -80%;
+
+    
+}
+@mixin transform_translate($x){
+    transform: translateX($x);
+    -webkit-transform: translateX($x);
+    -moz-transform: translateX($x);
+    -ms-transform: translateX($x);
+    -o-transform: translateX($x);
+}
+@mixin padding(){
+    
+}
