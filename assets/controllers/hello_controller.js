@@ -41,6 +41,19 @@ export default class extends Controller {
             })
             
         }
+
+        var inputs =document.querySelectorAll("input");
+        if (inputs) {
+            inputs.forEach(element => {
+                element.addEventListener("focus" , ()=> {
+                    element.classList.add("active");
+                })
+                element.addEventListener("blur" , ()=> {
+                    element.classList.remove("active");
+                })
+            })
+           
+        }
         
     }
 }

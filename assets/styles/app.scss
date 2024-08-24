@@ -12,7 +12,8 @@ $rem: 10px;
     --color_primary:rgb(236 ,90 ,19);
     --color_secondary:rgb(21 ,34 ,51);
     --color_primary_overed:rgb(240 ,123 ,66);
-    --color_form : rgb(211, 208, 203);
+    --color_form : rgb(239, 239, 239);
+    --color_form_bold : rgb(225, 225, 225);
     --color_smoke : rgb(248, 248, 248);
     --color_form_opacity : rgb(249, 249, 249);
     --color_smoke_opacity : rgb(253, 253, 253);
@@ -34,13 +35,13 @@ $rem: 10px;
     height: 100vh;
     z-index: 99;
     visibility: hidden;
-    transition: 0.4s;
+    transition: 0.6s;
     
 
     &.active{
         opacity: 0.8;
         visibility: visible;
-        transition: 0.4s;
+        transition: 0.6s;
     }
 }
 nav{
@@ -75,7 +76,7 @@ nav{
             .publish_service{
                 text-decoration: none;
                 color: var(--color_white);
-                padding: $rem 2*$rem;
+                padding: 1.1*$rem 2*$rem;
                 font-weight: 600;
                 @include border_radius(0.8*$rem);
                 background: var(--color_primary);
@@ -106,6 +107,12 @@ nav{
                         border: none;
                         width: 100%;
                         font-size: 1.6*$rem;
+                        transition: 0.6s;
+
+                        &.active{
+                            border: 1px solid var(--color_primary);
+                            transition: 0.6s;
+                        }
 
 
                     }
@@ -159,7 +166,6 @@ nav{
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        gap: $rem;
                         cursor: pointer;
 
                         span{
@@ -254,21 +260,19 @@ nav{
     background: var(--color_white);
     z-index: 999;
     margin-left: -100%;
-    transition: 0.4s;
+    transition: 2s;
+    
 
     &.show{
         margin-left: 0%;
         transition: 0.4s;
 
-        .container_all_sub_items{
-            width: 800px;
-            
-        }
+        
     }
 
     .container_left_navigation{
         position: relative;
-        overflow: hidden;
+        // overflow: hidden;
         .exit{
             position: absolute;
             top: 0.5*$rem;
@@ -288,7 +292,9 @@ nav{
 
        
     }
-
+    .container_parent_all_sub_items{
+        overflow: hidden;
+    }
     
     .container_sub_items{
         height: 100vh;
@@ -321,24 +327,14 @@ nav{
                             
 
                             &:hover{
-                                background: var(--color_smoke);
+                                background: var(--color_form);
+                                font-weight: 700;
+                                transition: 0.3s;
                             }
                         }
 
                     }
                     .special_list{
-                        // display: flex;
-                        // justify-content: space-between;
-                        // align-items: center;
-                        // padding: $rem 2*$rem;
-                        // cursor: pointer;
-                        // color: var(--color_black);
-                        // opacity: 0.8;
-                        // font-weight: 600;
-
-                        // &:hover{
-                        //     background: var(--color_smoke);
-                        // }
                         button{
                             display: flex;
                             justify-content: space-between;
@@ -353,12 +349,10 @@ nav{
                             font-size: 1.6*$rem;
                             color: var(--color_black_secondary);
 
-                            
-
-
-
                         &:hover{
-                            background: var(--color_smoke);
+                            background: var(--color_form_bold);
+                            font-weight: 700;
+                            transition: 0.3s;
                         }
                         }
 
@@ -374,10 +368,11 @@ nav{
         }
     }
     .container_all_sub_items{
-       
+        
         display: flex;
         flex-wrap: nowrap;
         overflow: hidden;
+        width: 80*$rem;
     }
     
     .container_sub_items_main {
@@ -405,8 +400,81 @@ nav{
             border: none;
             width: 100%;
             cursor: pointer;
+
+           
+        }
+        button{
+            &:hover{
+                background: var(--color_form_bold);
+            }
         }
        }
     }
     
+}
+
+
+.container_sections_home_page{
+    .pubs_section{
+        width: 80%;
+        margin: auto;
+        display: flex;
+        border: 1px solid var(--color_black);
+        margin: 5*$rem auto;
+
+
+        .image_pub_section{
+            width: 50%;
+            height: 25*$rem;
+            border-right: 1px solid var(--color_black_secondary);
+            padding: 2*$rem $rem;
+
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .description_pub_section{
+            padding: 2*$rem 0rem;
+            h2{
+                padding: $rem $rem 3*$rem;
+                font-size: 3*$rem;
+                color: var(--color_black_secondary);
+                opacity: 0.7;
+            }
+            h4{
+                font-size: 2*$rem;
+                color: var(--color_black_secondary);
+                opacity: 0.9;
+                padding: $rem ;
+                border-bottom: 1px solid var(--color_black_secondary);
+            }
+            .web_site_link{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 1.5*$rem $rem;
+
+                .name_web_site{
+                    a{
+                        text-decoration: underline;
+                        color: var(--color_black_secondary);
+                        font-weight: 600;
+                    }
+                }
+
+                .link_web_site{
+                    a{
+                        text-decoration: none;
+                        color: var(--color_black_secondary);
+                        padding: 0.5*$rem $rem;
+                        color: var(--color_white);
+                        background: var(--color_primary_overed);
+                        @include border_radius($rem);
+                    }
+                }
+            }
+        }
+    }
 }
