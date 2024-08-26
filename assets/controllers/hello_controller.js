@@ -1,5 +1,13 @@
 import { Controller } from '@hotwired/stimulus';
 
+// core version + navigation, pagination modules:
+import Swiper from 'swiper';
+import { Navigation, Pagination } from 'swiper/modules';
+// import Swiper and modules styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/bundle';
 /*
  * This is an example Stimulus controller!
  *
@@ -54,6 +62,46 @@ export default class extends Controller {
             })
            
         }
+
+        // init Swiper:
+    const swiper = new Swiper('.swiper', {
+    // configure Swiper to use modules
+    modules: [Navigation, Pagination],
+    // Default parameters
+    slidesPerView: 1,
+    spaceBetween: 10,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+  },
+    // Responsive breakpoints
+    breakpoints: {
+      
+      // when window width is >= 600px
+      300: {
+        slidesPerView: 2.5,
+        spaceBetween: 30
+      },
+      500: {
+        slidesPerView: 2.5,
+        spaceBetween: 30
+      },
+      600: {
+        slidesPerView: 3.5,
+        spaceBetween: 30
+      },
+      // when window width is >= 850px
+      850: {
+        slidesPerView: 3.5,
+        spaceBetween: 40
+      },
+      // when window width is >= 1000px
+      1000: {
+        slidesPerView: 4.5,
+        spaceBetween: 40
+      },
+  }
+  });
         
     }
 }

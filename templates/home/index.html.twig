@@ -1,25 +1,151 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pakadan | Page d'accueil{% endblock %}
+{% block title %}Pakadan | Page d'accueil
+{% endblock %}
 
 {% block body %}
-    <div class="container_sections_home_page">
-        <section class="pubs_section">
-            <div class="image_pub_section">
-                <img src="/images/shoes3.jpg" alt="image pub">
+	<div class="container_sections_home_page">
+
+		<section class="pubs_section">
+			<div class="image_pub_section">
+				<img src="/images/shoes3o.jpg" alt="image pub">
+			</div>
+			<div class="description_pub_section">
+				<h2>Chaussures de qualité</h2>
+				<h4>Trouvez votre parfaite paire de chaussures pour hommes</h4>
+				<div class="web_site_link">
+					<div class="name_web_site">
+						<a href="">Joemeri</a>
+					</div>
+					<div class="link_web_site">
+						<a href="">Ouvrir</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="top_factories_section">
+			<div class="title">
+				<h2>Top entreprises</h2>
+				<div class="line"></div>
+			</div>
+			<div class="container_top_factories swiper">
+				<div class="swiper-wrapper">
+					{% for item in range(1,22,1) %}
+						{% if item == 9 or item == 13 %}
+							{% else %}
+								<div class="image swiper-slide">
+									<img src="/images/factory{{item}}.jpg" alt="factory image">
+									<span>Factory</span>
+								</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+
+		<section class="first_section">
+			<div class="left_part">
+				<div class="image">
+					<img src="/images/imageSection.jpg" alt="">
+				</div>
+			</div>
+			<div class="right_part">
+				<div class="title">
+					<h2>Qu'est-ce qu'un site vitrine</h2>
+					<div class="line"></div>
+				</div>
+				<div class="description">
+					<p class="paragraph1">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit delectus numquam magnam eos, molestiae nihil dolores tenetur quam quo voluptatum laboriosam? Reprehenderit impedit laudantium aperiam magnam veritatis error, reiciendis fuga.
+					</p>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit delectus numquam magnam eos, molestiae nihil dolores tenetur quam quo voluptatum laboriosam? Reprehenderit impedit laudantium aperiam magnam veritatis error, reiciendis fuga.
+					</p>
+				</div>
+                <div class="btn_action">
+                    <a href="#">Nous contacter</a>
+                </div>
+			</div>
+		</section>
+
+		<section class="first_section">
+			<div class="right_part">
+				<div class="title">
+					<h2>Pourquoi créer un site vitrine</h2>
+					<div class="line"></div>
+				</div>
+				<div class="description">
+					<p class="paragraph1">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit delectus numquam magnam eos, molestiae nihil dolores tenetur quam quo voluptatum laboriosam? Reprehenderit impedit laudantium aperiam magnam veritatis error, reiciendis fuga.
+					</p>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit delectus numquam magnam eos, molestiae nihil dolores tenetur quam quo voluptatum laboriosam? Reprehenderit impedit laudantium aperiam magnam veritatis error, reiciendis fuga.
+					</p>
+				</div>
+                <div class="btn_action">
+                    <a href="#">Nous contacter</a>
+                </div>
+			</div>
+			<div class="left_part">
+				<div class="image">
+					<img src="/images/imageSection5.jpg" alt="">
+				</div>
+			</div>
+
+		</section>
+
+        <section class="second_section">
+            <div class="title">
+                <h2>Nos engagements pour la création de votre site vitrine</h2>
+                <div class="line"></div>
+                <p class="title_description">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste explicabo enim ad nulla modi, provident corrupti mollitia, in excepturi deserunt impedit fugit perferendis aspernatur at. Quo sunt officia ipsa id.
+                </p>
             </div>
-            <div class="description_pub_section">
-                <h2>Chaussures de qualité</h2>
-                <h4>Trouvez votre parfaite paire de chaussures pour hommes</h4>
-                <div class="web_site_link">
-                    <div class="name_web_site">
-                        <a href="">Joemeri</a>
+            <div class="container_items">
+            {% for item in range(1,8,1) %}
+                <div class="item">
+                    <div class="left_part">
+                        <svg width="80px" height="80px" version="1.1" baseProfile="tiny" id="svg-6601c1145e9fc" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 164.5 167.5" overflow="visible" xml:space="preserve"> <g> <path fill="#1D2646" d="M108.6,23.8c2.4,0,4.4,2,4.4,4.4v113.5c0,2.4-2,4.4-4.4,4.4H55.9c-2.5,0-4.4-2-4.4-4.4V28.2 c0-2.5,2-4.4,4.4-4.4H108.6 M108.6,19.8H55.9c-4.7,0-8.4,3.8-8.4,8.4v113.5c0,4.7,3.8,8.4,8.4,8.4h52.7c4.7,0,8.4-3.8,8.4-8.4V28.2 C117.1,23.6,113.3,19.8,108.6,19.8L108.6,19.8z"></path> </g> <path fill="#F95265" d="M58.3,82.2v-3.1l14.8-9.5V74l-10.7,6.8l10.7,6.8v4.3L58.3,82.2z M85.3,64h3.3l-9.3,30.5H76L85.3,64z M91.5,87.5l10.7-6.8l-10.7-6.8v-4.3l14.8,9.5v3.1l-14.8,9.5V87.5z"></path> <g> <path fill="#1D2646" d="M82.3,142.9c-2.8,0-5.1-2.3-5.1-5.1s2.3-5.1,5.1-5.1s5.1,2.3,5.1,5.1S85.2,142.9,82.3,142.9z M82.3,134.7 c-1.7,0-3.1,1.4-3.1,3.1c0,1.7,1.4,3.1,3.1,3.1s3.1-1.4,3.1-3.1S84.1,134.7,82.3,134.7z"></path> </g> <g> <rect x="50.9" y="32.7" fill="#1D2646" width="63.6" height="4"></rect> </g> <g> <rect x="50.9" y="126.2" fill="#1D2646" width="62.6" height="4"></rect> </g> </svg>
                     </div>
-                    <div class="link_web_site">
-                        <a href="">Ouvrir</a>
+                    <div class="right_part">
+                        <h5>Site vitrine 100% responsive (adaptatif mobile/tablette)</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, aperiam facilis molestiae ab accusamus quo tempore neque consequatur? At omnis deserunt quaerat esse dolorum, tempora corporis quia molestias similique sunt.</p>
                     </div>
                 </div>
+            {% endfor %}
             </div>
         </section>
-    </div>
+
+        <section class="first_section">
+			<div class="right_part">
+				<div class="title">
+					<h2>Pourquoi choisir Pakadan pour la reservation d'un espace vitrine</h2>
+					<div class="line"></div>
+				</div>
+				<div class="description">
+					<p class="paragraph1">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit delectus numquam magnam eos, molestiae nihil dolores tenetur quam quo voluptatum laboriosam? Reprehenderit impedit laudantium aperiam magnam veritatis error, reiciendis fuga.
+					</p>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit delectus numquam magnam eos, molestiae nihil dolores tenetur quam quo voluptatum laboriosam? Reprehenderit impedit laudantium aperiam magnam veritatis error, reiciendis fuga.
+					</p>
+				</div>
+                <div class="btn_action">
+                    <a href="#">Nous contacter</a>
+                </div>
+			</div>
+			<div class="left_part">
+				<div class="image">
+					<img src="/images/imageSection8.jpg" alt="">
+				</div>
+			</div>
+
+		</section>
+
+        <section class="third_section">
+            
+        </section>
+	</div>
 {% endblock %}
