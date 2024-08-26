@@ -651,4 +651,222 @@ nav{
             }
         }
     }
+
+    .third_section{
+        width: 100%;
+        .title{
+            padding-bottom: 2*$rem;
+            h2{
+                font-size: 3.2*$rem;
+                padding-bottom: 2*$rem;
+            }
+            .line{
+                width: 20%;
+                height: 2px;
+                background: var(--color_primary);
+                margin: 0rem 0rem 3*$rem;
+            }
+            .title_description , p{
+                line-height: 3.2*$rem;
+                color: var(--color_secondary);
+                margin-bottom: $rem;
+            }
+        }
+        .title_pos_right{
+            h2{
+                text-align: right;
+            }
+            .line{
+                float: right;
+            }
+            .title_description{
+                padding-top: 3*$rem;
+            }
+        }
+        .process_list{
+            li{
+                list-style-type: none;
+                display: flex;
+                align-items: center;
+                gap: $rem;
+                padding: $rem 0rem;
+            }
+        }
+    }
+    .fourth_section{
+        .title{
+            padding-bottom: 2*$rem;
+            h2{
+                font-size: 3.2*$rem;
+                padding-bottom: 2*$rem;
+                text-align: center;
+            }
+            .line{
+                width: 20%;
+                height: 2px;
+                background: var(--color_primary);
+                margin: 0rem auto 3*$rem;
+            }
+            .title_description , p{
+                line-height: 3.2*$rem;
+                color: var(--color_secondary);
+                margin-bottom: $rem;
+            }
+            ul{
+                margin: 2*$rem 0rem;
+                li{
+                    list-style-type: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 2*$rem;
+                    padding: $rem 0rem;
+
+                    span{
+                        line-height: 3.2*$rem;
+                        color: var(--color_black_secondary);
+                    }
+                }
+            }
+        }
+        .container_page_content{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(20*$rem ,1fr));
+            gap: 2*$rem;
+            .page_content{
+                margin-bottom: 2*$rem;
+                .left{
+                    h4{
+                        margin-bottom: 2*$rem;
+                    }
+                    .content{
+                        line-height: 3.2*$rem;
+                    }
+                }
+                .right{
+                    .image{
+                        width: 100%;
+                        height: 100%;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .fifth_section{
+        .title{
+            padding-bottom: 2*$rem;
+            h2{
+                font-size: 3.2*$rem;
+                padding-bottom: 2*$rem;
+            }
+            .line{
+                width: 20%;
+                height: 2px;
+                background: var(--color_primary);
+                margin: 0rem 0rem 3*$rem;
+            }
+            .title_description , p{
+                line-height: 3.2*$rem;
+                color: var(--color_secondary);
+                margin-bottom: $rem;
+            }
+        }
+        .container_showcase{
+            .showcase{
+                .title_show_case{
+                    font-size: 1.8*$rem;
+                    margin-bottom: $rem;
+                }
+            }
+        }
+    }
+
+    .sixth_section{
+        margin: 0rem 0rem 8*$rem;
+        .title{
+            padding-bottom: 2*$rem;
+            h2{
+                font-size: 3.2*$rem;
+                padding-bottom: 2*$rem;
+            }
+            .line{
+                width: 20%;
+                height: 2px;
+                background: var(--color_primary);
+                margin: 0rem 0rem 3*$rem;
+            }
+            .title_description , p{
+                line-height: 3.2*$rem;
+                color: var(--color_secondary);
+                margin-bottom: $rem;
+            }
+        }
+
+        .container_card_subscription{
+            display: grid;
+            grid-template-columns: repeat(auto-fit , minmax(27*$rem , 1fr));
+            gap: 2*$rem;
+            
+            .card_subscription{
+              .content_card_subscription{
+                padding: 4*$rem 0rem 3*$rem;
+                box-shadow: var(--color_box_shadow);
+                border: 2px solid var(--color_primary);
+                position: relative;
+
+                .top_card{
+                    position: absolute;
+                    top: -2.8*$rem;
+                    left: 0;
+                    width: 100%;
+                    padding: 0.5*$rem;
+                    background: var(--color_secondary);
+                    color: var(--color_white);
+                    text-align: center;
+                    display: block;
+                }
+                h3{
+                    text-align: center;
+                    padding: $rem 0rem;
+                }
+                .short_description{
+                    text-align: center;
+                    line-height: 2.8*$rem;
+                }
+                .price_level{
+                    padding: $rem 0rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: 700;
+                    span{
+                        font-size: 3.5*$rem;
+
+                        .active{
+                            color: var(--color_primary);
+                        }
+                    }
+                }
+                .container_advantage{
+                    .advantage{
+                        svg{
+                            color: var(--color_primary);
+                        }
+                        display: flex;
+                        align-items: normal;
+                        gap: 3*$rem;
+                        padding: $rem 1.5*$rem;
+                        border-bottom: 1px solid var(--color_form_bold);
+                    }
+                }
+              }
+            }
+            .first_card_subscription{
+                margin-bottom: 3*$rem;
+            }
+        }
+    }
 }
