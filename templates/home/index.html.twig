@@ -5,9 +5,8 @@
 
 {% block body %}
 	<div class="container_sections_home_page">
-
 		<section class="pubs_section">
-			<div class="image_pub_section">
+			{# <div class="image_pub_section">
 				<img src="/images/shoes3o.jpg" alt="image pub">
 			</div>
 			<div class="description_pub_section">
@@ -21,6 +20,22 @@
 						<a href="">Ouvrir</a>
 					</div>
 				</div>
+			</div> #}
+			<div class="left_part">
+				<h1>Pakadan</h1>
+				<h3>Une plateforme de reservation d'espace vitrine pour les entreprises et les particuliers</h3>
+
+				<div class="description">
+					<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt consectetur perferendis quaerat accusamus rerum. Possimus unde impedit error at ratione ducimus iure hic, asperiores corporis provident quasi accusamus, placeat mollitia.</p>
+				</div>
+				<div class="contact_us">
+					<a href="">Contactez-nous</a>
+				</div>
+			</div>
+			<div class="right_part">
+				<div class="image">
+					<img src="/images/imageSection.jpg" alt="">
+				</div>
 			</div>
 		</section>
 
@@ -29,19 +44,38 @@
 				<h2>Top entreprises</h2>
 				<div class="line"></div>
 			</div>
-			<div class="container_top_factories swiper">
-				<div class="swiper-wrapper">
-					{% for item in range(1,22,1) %}
-						{% if item == 9 or item == 13 %}
-							{% else %}
-								<div class="image swiper-slide">
-									<img src="/images/factory{{item}}.jpg" alt="factory image">
-									<span>Factory</span>
-								</div>
-						{% endif %}
-					{% endfor %}
-				</div>
+			<div class="container_top_factories">
+				{% for item in range(1,7,1) %}
+					<div class="top_factory">
+						<div class="header">
+							<div class="image">
+								<img src="/images/factory{{item}}.jpg" alt="factory image">
+							</div>
+							<h3>Factory</h3>
+						</div>
+						<div class="description">
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus repellat aspernatur ea accusamus</p>
+						</div>
+                        <div class="btn_visit">
+                            <a href="">Visiter</a>
+                        </div>
+					</div>
+				{% endfor %}
 			</div>
+			{# <div class="container_top_factories swiper">
+							<div class="swiper-wrapper">
+								{% for item in range(1,22,1) %}
+									{% if item == 9 or item == 13 %}
+										{% else %}
+			                            
+											<div class="image swiper-slide">
+												<img src="/images/factory{{item}}.jpg" alt="factory image">
+												<span>Factory</span>
+											</div>
+									{% endif %}
+								{% endfor %}
+							</div>
+						</div> #}
 		</section>
 
 		<section class="first_section">
@@ -97,7 +131,7 @@
 
 		<section class="second_section">
 			<div class="title">
-				<h2>Nos engagements pour la création de votre site vitrine</h2>
+				<h2>Nos engagements pour la reservation de votre espace vitrine</h2>
 				<div class="line"></div>
 				<p class="title_description">
 					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste explicabo enim ad nulla modi, provident corrupti mollitia, in excepturi deserunt impedit fugit perferendis aspernatur at. Quo sunt officia ipsa id.
@@ -427,5 +461,38 @@
 				</div>
 			</div>
 		</section>
+
+        <section class="current_questions">
+            <div class="title">
+				<h2>Questions fréquemment posées</h2>
+				<div class="line"></div>
+			</div>
+            <div class="container_current_questions">
+               {% for item in range(1,5,1) %}
+                 <div class="item_question" x-data="{open:false}">
+                    <div class="header" @click="open = !open" :class="open ? 'active': ''">
+                        <span>Comment vous contacter pour reserver un espace vitrine</span>
+                        <svg :class="open ? 'rotate_open': ''" width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </div>
+                    <div class="response_content" x-show="open" style="display:none;" :class="open ? 'open_content': ''" @click.outside="open=false">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem officiis rerum odio libero aliquid dolores, est sint commodi hic ut neque magni, ea, velit dignissimos maiores. Consequatur voluptate doloremque recusandae.</p>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem officiis rerum odio libero aliquid dolores, est sint commodi hic ut neque magni, ea, velit dignissimos maiores. Consequatur voluptate doloremque recusandae.</p>
+                    </div>
+                </div>
+               {% endfor %}
+            </div>
+        </section>
+
 	</div>
+		<section class="make_reservation">
+			<div class="rerservation_item">
+				<h2 class="first_title">Faites la reservation d'une reservation de votre choix</h2>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto laudantium facilis magnam officia laborum aliquid fuga nulla magni est dolorum error aperiam, sed, non quasi, veritatis ducimus inventore consequuntur accusamus.</p>
+				<div class="link_reserve">
+					<a href="">Reserver un espace vitrine</a>
+				</div>
+			</div>
+		</section>
 {% endblock %}
