@@ -5,13 +5,6 @@
     let goLeft = false;
     export let list
 
-    if (list) {
-        console.log(list)
-
-    }
-
-
-
 
     let specialList1 = [
         { title: "Entreprises", num: setFactories },

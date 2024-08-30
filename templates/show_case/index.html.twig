@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entreprise - Vitrine
+{% endblock %}
+
+{% block body %}
+	<div class="container_showcases">
+		<div class="container_homepage_show_case">
+			<div class="navigation_show_case">
+				<div class="title">
+					<h2>OFOGAMIR</h2>
+				</div>
+				<div class="content_navigation">
+					<div class="left_part">
+						<div class="image">
+							<img src="/images/factory4.jpg" alt="factory image">
+						</div>
+					</div>
+					<div class="right_part">
+						<div class="links">
+							<a href="">Accueil</a>
+							<a href="">A propos</a>
+							<a href="">Services</a>
+							<a href="">Réalisations</a>
+							<a href="">Contact</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<section class="container_showcase_main_section">
+				<div class="content_main_section">
+					<div class="background_image">
+						<img src="/images/hydro3.jpg" alt="showcase image">
+					</div>
+					<div class="titles_main">
+						<div class="title1">
+							<h1>OFOGAMIR</h1>
+						</div>
+						<div class="title2">
+							<h2>Une opportunité d'apprendre et avoir des bonnes base dans les Hydrocarbures</h2>
+						</div>
+						<div class="title3">
+							<h3>Avec OFOGAMIR , ayez des bonnes bases dans le domaine des hydrocarbures</h3>
+						</div>
+						<div class="contact_us">
+							<a href="Nous contacter">Prendre contact</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="container_showcase_first_section">
+				<div class="title">
+					<h2>Quid ?
+					</h2>
+					<div class="line"></div>
+				</div>
+
+				<div class="content_section">
+					<div class="left_content_section">
+						<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur soluta deleniti quas suscipit, quo in delectus. Corporis ipsum inventore illo nulla, dignissimos aliquam atque odit. Deserunt velit iusto in tempora!</p>
+						<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur soluta deleniti quas suscipit, quo in delectus. Corporis ipsum inventore illo nulla, dignissimos aliquam atque odit. Deserunt velit iusto in tempora!</p>
+						<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur soluta deleniti quas suscipit, quo in delectus. Corporis ipsum inventore illo nulla, dignissimos aliquam atque odit. Deserunt velit iusto in tempora!</p>
+					</div>
+					<div class="right_content_section">
+						<div class="image">
+							<img src="/images/hydro2.jpg" alt="showcase image">
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="container_showcase_second_section">
+				<div
+					class="container_images">
+					{# <div class=" swiper-wrapper"> #}
+					{% for item in range(1,4,1) %}
+						<div class="image swiper-slide">
+							<img src="/images/hydro.jpg" alt="showcase image">
+						</div>
+					{% endfor %}
+				</div>
+				{# </div> #}
+				{# <div class="swiper-button-prev"></div>
+								<div class="swiper-button-next"></div> #}
+			</section>
+
+			<section class="top_news_section">
+				<div class="title">
+					<h2>Du nouveau
+					</h2>
+					<div class="line"></div>
+				</div>
+				<div class="container_news_section">
+					{% for item in range(1,5,1) %}
+						<div class="news_section">
+							<div class="image">
+								<img src="/images/hydro3.jpg" alt="showcase image">
+							</div>
+							<div class="description">
+								<div class="header">
+									<h4>Formation en hydrocarbures</h4>
+								</div>
+								<div class="content">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci veniam, ab aliquam nihil, voluptas exercitationem quae esse atque quis placeat iure iste, debitis est. Neque eos eaque similique porro quisquam.</p>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+
+			</section>
+
+			<section class="container_services_section">
+				<div class="title">
+					<h2>Profitez de nos services
+					</h2>
+					<div class="line"></div>
+				</div>
+				<div class="services_section">
+					{% for item in range(1,5,1) %}
+						<div class="services">
+							<div class="left_part">
+								<h3>Transformation et approvisionnement en carburant</h3>
+								<div class="content">
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, dolor veritatis sit, error unde aliquam perferendis inventore, optio id quis iure impedit. Aliquid, aut consequuntur. Porro enim quam quas quidem.</p>
+								</div>
+							</div>
+							<div class="right_part">
+								<div class="image">
+									<img src="/images/service.jpg" alt="">
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</section>
+			<section class="container_services_section">
+				<div class="title">
+					<h2>Nos produits
+					</h2>
+					<div class="line"></div>
+				</div>
+				<div class="products_section">
+					{% for item in range(1,7,1) %}
+						<div class="products">
+							<div class="image">
+								<img src="/images/product{{item}}.jpg" alt="">
+							</div>
+							<div class="description">
+								<h3>Product {{item}}</h3>
+								<span>USD 12.3</span>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</section>
+
+		</div>
+	</div>
+{% endblock %}
