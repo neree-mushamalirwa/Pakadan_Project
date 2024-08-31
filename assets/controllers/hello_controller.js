@@ -63,6 +63,18 @@ export default class extends Controller {
       })
 
     }
+    var areas = document.querySelectorAll("textarea");
+    if (areas) {
+      areas.forEach(element => {
+        element.addEventListener("focus", () => {
+          element.classList.add("active");
+        })
+        element.addEventListener("blur", () => {
+          element.classList.remove("active");
+        })
+      })
+
+    }
 
     document.addEventListener('DOMContentLoaded', function() {
       
