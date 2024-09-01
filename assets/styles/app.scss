@@ -1750,6 +1750,31 @@ nav{
                     background: var(--color_primary);
                 }
             }
+            .product_category{
+                display: grid;
+                grid-template-columns: repeat(auto-fit , minmax(20*$rem , 1fr));
+                flex-wrap: wrap;
+                gap: $rem;
+                margin: $rem 0rem 2*$rem;;
+
+                button{
+                    text-decoration: none;
+                    color: var(--color_primary);
+                    @include border_radius(2*$rem);
+                    border: 1px solid var(--color_primary);
+                    font-weight: 600;
+                    padding: 0.8*$rem $rem;
+                    transition: 0.5s;
+                    font-size: 1.2*$rem;
+                    cursor: pointer;
+
+                    &:hover{
+                        background: var(--color_primary);
+                        color: var(--color_white);
+                        transition: 0.5s;
+                    }
+                }
+            }
             .services_section{
                 display: grid;
                 grid-template-columns: repeat(auto-fit , minmax(35*$rem , 1fr));
