@@ -121,7 +121,6 @@ export default class extends Controller {
   }
    });
 
-   console.log(swiper_exploration)
     })
 
 

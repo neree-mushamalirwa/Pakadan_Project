@@ -128,32 +128,28 @@
 					<b>Hello , Créer votre compte</b>
 				</div>
 			</div>
-			{% set list = [
-				{ "title": "Entreprises", 
-				
-				  "num": 
-				  {
-					"item":{
-						"currentTitle": "Entreprises",
-						"arrayLinks": {
-							"link":{
-								"key": "/2", "value": "Entreprises commerciales"
-							},
-							"link":{
-								"key": "/2", "value": "PME"
-							},
-							"link":{
-								"key": "/2", "value": "Entreprises entrepreneuriales"
-							},
-						},
-					},
-				}, 
-				
-				
-				
-				},
-			] %}
-			<div {{svelte_component("Hello" , {list: list[0].num})}}></div>
+			{% set table = [] %}
+
+			{% for item in categories %}
+
+				{% set items = [] %}
+    
+				{% for categoryItem in item.categoryItems %}
+					{% set items = items|merge([{
+						"name":categoryItem.name
+					}]) %}
+				{% endfor %}
+
+				{% set table = table|merge(
+					[{ 
+						"name" : item.name , 
+						"items" : items, 
+					}]
+				)
+						
+				 %}
+			{% endfor %}
+			<div {{svelte_component("Hello" , {category: table})}}></div>
 			{# <div class="container_all_sub_items">
 						
 										<div class="container_sub_items container_sub_items_main">

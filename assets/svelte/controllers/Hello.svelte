@@ -1,94 +1,36 @@
 <script>
     let currentTitle;
     let arrayLinks = [];
-    let special_list;
     let goLeft = false;
-    export let list
+    export let category;
 
-
-    let specialList1 = [
-        { title: "Entreprises", num: setFactories },
-        { title: "Sociétés", num: setSocieties },
-        { title: "Asbl", num: setAsbl },
-        { title: "Boutiques", num: setSpecialList4 },
-        { title: "Magasins", num: setSpecialList5 },
-        { title: "Hôtels", num: setSpecialList6 },
-        { title: "Alimentations", num: setSpecialList6 },
-        { title: "Restaurants", num: setSpecialList6 },
-        { title: "Supermarchés", num: setSpecialList6 },
-        { title: "Autres", num: setSpecialList6 },
-    ];
     let specialList2 = [
         { title: "Vitrines Portfolio", num: setSpecialInnovations1 },
         { title: "Vitrines Landing Page", num: setSpecialInnovations2 },
         { title: "Vitrines spécifiques", num: setSpecialInnovations3 },
     ];
 
+    let list = [];
+
+    category.forEach((element) => {
+        list.push({ title: element.name, num: () => setCategory(element.name, element.items) });
+    });
+
+    function setCategory(name, items) {
+        goLeft = !goLeft;
+        currentTitle = name;
+        arrayLinks = [];
+
+        items.forEach((element) => {
+            arrayLinks.push({ key: "/1", value: element.name });
+        });
+
+    }
     let specialListSubItems = [
-        { header_title: "Catégories", list: specialList1 },
+        { header_title: "Catégories", list: list },
         { header_title: "Vitrines", list: specialList2 },
     ];
 
-    function setFactories() {
-        goLeft = !goLeft;
-        currentTitle = "Entreprises";
-        arrayLinks = [];
-        arrayLinks = [
-            { key: "/1", value: "Entreprises commerciales" },
-            { key: "/2", value: "PME" },
-            { key: "/3", value: "Nouvelles entreprises" },
-        ];
-    }
-    function setSocieties() {
-        goLeft = !goLeft;
-        currentTitle = "Sociétés";
-        arrayLinks = [];
-        arrayLinks = [
-            { key: "/4", value: "Sociétés 1" },
-            { key: "/5", value: "Sociétés 2" },
-            { key: "/6", value: "Sociétés 3" },
-        ];
-    }
-    function setAsbl() {
-        goLeft = !goLeft;
-        currentTitle = "Asbl";
-        arrayLinks = [];
-        arrayLinks = [
-            { key: "/7", value: "Asbl 1" },
-            { key: "/8", value: "Asbl 2" },
-            { key: "/9", value: "Asbl 3" },
-        ];
-    }
-    function setSpecialList4() {
-        goLeft = !goLeft;
-        currentTitle = "Titre 3";
-        arrayLinks = [];
-        arrayLinks = [
-            { key: "/7", value: "Numérique 1 Titre 4" },
-            { key: "/8", value: "Numérique 2 Titre 4" },
-            { key: "/9", value: "Numérique 3 Titre 4" },
-        ];
-    }
-    function setSpecialList5() {
-        goLeft = !goLeft;
-        currentTitle = "Titre 3";
-        arrayLinks = [];
-        arrayLinks = [
-            { key: "/7", value: "Numérique 1 Titre 5" },
-            { key: "/8", value: "Numérique 2 Titre 5" },
-            { key: "/9", value: "Numérique 3 Titre 5" },
-        ];
-    }
-    function setSpecialList6() {
-        goLeft = !goLeft;
-        currentTitle = "Titre 3";
-        arrayLinks = [];
-        arrayLinks = [
-            { key: "/7", value: "Numérique 1 Titre 6" },
-            { key: "/8", value: "Numérique 2 Titre 6" },
-            { key: "/9", value: "Numérique 3 Titre 6" },
-        ];
-    }
     function setSpecialInnovations1() {
         goLeft = !goLeft;
         currentTitle = "Titre Innovation 1";
@@ -125,7 +67,6 @@
     }
 
     import Side from "./Side.svelte";
-
 </script>
 
 <div class="container_parent_all_sub_items">
@@ -141,7 +82,7 @@
                             <li>Accueil</li>
                         </a>
                         <a href="/">
-                            <li> A propos</li>
+                            <li>A propos</li>
                         </a>
                         <a href="/">
                             <li>Services</li>
@@ -187,10 +128,6 @@
                     </div>
                 </div>
             {/each}
-
-
-
-            
         </div>
         <Side
             goSide={goLeft}

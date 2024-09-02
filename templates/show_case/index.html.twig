@@ -5,7 +5,7 @@
 
 {% block body %}
 	<div class="container_showcases">
-		<div class="container_homepage_show_case">
+		<div class="container_homepage_show_case" id="initial">
 			<div class="navigation_show_case">
 				<div class="title">
 					<h2>OFOGAMIR</h2>
@@ -250,7 +250,7 @@
 				</div>
 			</section>
 
-			<section class="container_footer_showcases">
+			<section class="container_footer_showcases" id="footer">
 				<div class="container_item_footer">
 					<div class="item_particular">
 						<div class="logo">
@@ -331,6 +331,21 @@
 				</div>
 			</section>
 
+		</div>
+
+		<div class="goTop">
+			<a href="#initial">
+				<svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+					<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5"/>
+				</svg>
+			</a>
+		</div>
+		<div class="goBotom">
+			<a href="#footer">
+				<svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+					<path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
+				</svg>
+			</a>
 		</div>
 	</div>
 {% endblock %}
