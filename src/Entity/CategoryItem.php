@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryItemRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryItemRepository::class)]
@@ -18,6 +20,17 @@ class CategoryItem
 
     #[ORM\ManyToOne(inversedBy: 'categoryItems')]
     private ?Category $category = null;
+
+    /**
+     * @var Collection<int, Factory>
+     */
+    #[ORM\OneToMany(targetEntity: Factory::class, mappedBy: 'categoryItem')]
+    private Collection $factories;
+
+    public function __construct()
+    {
+        $this->factories = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -44,6 +57,36 @@ class CategoryItem
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Factory>
+     */
+    public function getFactories(): Collection
+    {
+        return $this->factories;
+    }
+
+    public function addFactory(Factory $factory): static
+    {
+        if (!$this->factories->contains($factory)) {
+            $this->factories->add($factory);
+            $factory->setCategoryItem($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFactory(Factory $factory): static
+    {
+        if ($this->factories->removeElement($factory)) {
+            // set the owning side to null (unless already changed)
+            if ($factory->getCategoryItem() === $this) {
+                $factory->setCategoryItem(null);
+            }
+        }
 
         return $this;
     }

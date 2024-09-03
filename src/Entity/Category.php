@@ -30,9 +30,16 @@ class Category
     #[ORM\OneToMany(targetEntity: CategoryItem::class, mappedBy: 'category')]
     private Collection $categoryItems;
 
+    /**
+     * @var Collection<int, Factory>
+     */
+    #[ORM\OneToMany(targetEntity: Factory::class, mappedBy: 'category')]
+    private Collection $factories;
+
     public function __construct()
     {
         $this->categoryItems = new ArrayCollection();
+        $this->factories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -100,6 +107,36 @@ class Category
             // set the owning side to null (unless already changed)
             if ($categoryItem->getCategory() === $this) {
                 $categoryItem->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Factory>
+     */
+    public function getFactories(): Collection
+    {
+        return $this->factories;
+    }
+
+    public function addFactory(Factory $factory): static
+    {
+        if (!$this->factories->contains($factory)) {
+            $this->factories->add($factory);
+            $factory->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFactory(Factory $factory): static
+    {
+        if ($this->factories->removeElement($factory)) {
+            // set the owning side to null (unless already changed)
+            if ($factory->getCategory() === $this) {
+                $factory->setCategory(null);
             }
         }
 

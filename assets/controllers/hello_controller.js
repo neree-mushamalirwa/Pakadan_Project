@@ -63,6 +63,18 @@ export default class extends Controller {
       })
 
     }
+    var select = document.querySelectorAll("select");
+    if (select) {
+      select.forEach(element => {
+        element.addEventListener("focus", () => {
+          element.classList.add("active");
+        })
+        element.addEventListener("blur", () => {
+          element.classList.remove("active");
+        })
+      })
+
+    }
     var areas = document.querySelectorAll("textarea");
     if (areas) {
       areas.forEach(element => {
@@ -122,6 +134,25 @@ export default class extends Controller {
    });
 
     })
+
+
+    var bar_admin = document.querySelector(".bar_admin");
+    var left_nav_bar_admin = document.querySelector(".left_nav_bar_admin");
+    var top_nav_bar_admin = document.querySelector(".top_nav_bar_admin");
+    var body = document.querySelector("body");
+    if (bar_admin) {
+      bar_admin.addEventListener("click" , ()=>{
+        left_nav_bar_admin.classList.toggle("hide")
+        top_nav_bar_admin.classList.toggle("hide")
+        body.classList.toggle("hide")
+        body.classList.add("add_transition")
+      })
+    }
+
+
+
+    var spinner = document.querySelector(".spinner");
+    
 
 
   }

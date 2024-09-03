@@ -15,10 +15,21 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+         {% if "admin" in app.request.get("_route")|split("_") or app.request.get("_route")|split("_")[1] == "admin" %}
+            <style>
+                body{
+                    
+                    padding: 4% 1% 0% 21%;
+                }
+            </style>
+       {%  endif %}
     </head>
+
     <body data-controller="hello">
        {% if "admin" in app.request.get("_route")|split("_") or app.request.get("_route")|split("_")[1] == "admin" %}
             {% include "./partials/app.html.twig" %}
+            
        {% else %}
             {% include "./partials/header.html.twig" %}
        {% endif %}
