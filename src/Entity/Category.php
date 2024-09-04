@@ -21,9 +21,6 @@ class Category
     #[ORM\Column(length: 100000000000)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $route = null;
-
     /**
      * @var Collection<int, CategoryItem>
      */
@@ -67,18 +64,6 @@ class Category
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getRoute(): ?string
-    {
-        return $this->route;
-    }
-
-    public function setRoute(string $route): static
-    {
-        $this->route = $route;
 
         return $this;
     }

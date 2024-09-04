@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pakadan | Admin | Categories | detail
+{% endblock %}
+
+{% block body %}
+	{% if category %}
+		<div class="container_admin_factory_detail">
+			<div class="container_factory_detail_information">
+				<div class="content_factory_detail_information">
+					<h3>Informations sur la catégorie</h3>
+					<div class="container_item">
+						<div class="item">
+							<strong>Nom de la catégorie</strong>
+							<span>{{category.name}}</span>
+						</div>
+						<div class="item factory_description">
+							<strong>Description</strong>
+							<span>{{category.description|nl2br}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container_factory_right_part">
+				<div class="container_new_item container_new_item_detail">
+					<h3>Modifier les informations</h3>
+					<div class="container_form">
+						{{ form_start(form, {'method': 'POST' , 'enctype': 'multipart/form-data'}) }}
+						{{ form_widget(form) }}
+						<div class="input_submit">
+							<button type="submit">Modifier</button>
+						</div>
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

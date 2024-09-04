@@ -1,19 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pakadan | Admin | Factory | New
+{% block title %}Pakadan | Admin | Category | Edit
 {% endblock %}
 {% block description %}
 
 {% endblock %}
 {% block body %}
     <div class="container_new_item">
-        <h3>Modifier l'actualité</h3>
+        <h3>Modifier la catégorie</h3>
         <div class="container_form">
-            {{ form_start(form, {'method': 'POST' , 'enctype': 'multipart/form-data'}) }}
+            {{ form_start(form, {'method': 'POST'}) }}
                 {{ form_widget(form) }}
-                {# {{ dump(files|json_encode) }} #}
-                <div {{svelte_component("Edit" , {file: files|json_encode })}}></div>
-            
                 <div class="input_submit">
 				    <button type="submit">Modifier</button>
 			    </div>

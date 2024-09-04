@@ -1,0 +1,26 @@
+<div class="container_modal_delete">
+    <div class="icone_exit">
+		<button data-action="live#action" data-live-action-param="Exit">
+			<svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+			</svg>
+		</button>
+	</div>
+    <div class="content_message">
+        <div class="message">
+            <span>Voulez-vous supprimer cet élément ? Cette action est irreversible</span>
+        </div>
+        <div class="actions_message">
+            <button class="item_action exit"
+            data-action="live#action"
+            data-live-action-param="Exit"
+            >Quitter</button>
+            <button class="item_action delete"
+            data-action="live#action"
+            data-live-action-param="deleteItem"
+            data-live-id-param="{{id}}"
+            >Supprimer</button>
+
+        </div>
+    </div>
+</div>

@@ -26,10 +26,9 @@
 							</g>
 						</svg>
 					{% endif %}
-
 				</div>
 				<div class="add_product">
-					<a href="{{path('app_admin_factory_new')}}">Ajouter une entreprise
+					<a href="{{path('app_admin_category_factory_new')}}">Ajouter une catégorie
 					</a>
 				</div>
 			</div>
@@ -38,10 +37,7 @@
 				<table>
 					<thead>
 						<th>N°</th>
-						<th>Entreprise</th>
-						<th>Catégorie</th>
-						<th>Sous-Catégorie</th>
-						<th>Adresse</th>
+						<th>Nom catégorie</th>
 						<th>Actions</th>
 					</thead>
 					<tbody>
@@ -61,9 +57,6 @@
 								<tr>
 									<td>{{key + 1}}</td>
 									<td>{{item.name}}</td>
-									<td>{{item.category.name}}</td>
-									<td>{{item.categoryItem.name}}</td>
-									<td>{{item.adresse}}</td>
 									<td>
 										<div class="icone_links" x-data="{open:false}">
 											<div class="icone">
@@ -78,7 +71,7 @@
 												</svg>
 											</div>
 											<div class="links" x-show="open" style="display:none;" @click.outside="open=false">
-												<a href="{{path('app_admin_factory_detail' , {id: item.id})}}" class="update">
+												<a href="{{path('app_admin_category_factory_detail' , {id: item.id})}}" class="update">
 													<div class="item">
 														<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" width="10px" height="10px" viewbox="0 0 16 16" version="1.1" id="svg3049">
 
@@ -150,7 +143,7 @@
 														<span>Detail</span>
 													</div>
 												</a>
-												<a href="{{path('app_admin_factory_edit' , {id: item.id})}}" class="update">
+												<a href="{{path('app_admin_category_factory_edit' , {id: item.id})}}" class="update">
 													<div class="item">
 														<svg xmlns="http://www.w3.org/2000/svg" width="10px" height="10px" viewbox="0 0 24 24" id="Layer_1" data-name="Layer 1">
 															<defs>

@@ -2,6 +2,7 @@
 
 namespace App\Components;
 
+use App\Repository\CategoryRepository;
 use App\Repository\FactoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -13,8 +14,8 @@ use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
-#[AsLiveComponent("category")]
-class Category extends AbstractController{
+#[AsLiveComponent("categoryFactory")]
+class CategoryFactory extends AbstractController{
 
     use DefaultActionTrait;
 
@@ -35,7 +36,7 @@ class Category extends AbstractController{
 
 
     public function __construct(
-        private FactoryRepository $factoryRepository,
+        private CategoryRepository $categoryRepository,
         private PaginatorInterface $paginator,
         private EntityManagerInterface $manager,
     )
@@ -63,7 +64,7 @@ class Category extends AbstractController{
 
     #[LiveAction]
     public function deleteItem(#[LiveArg()] int $id){
-        $product = $this -> factoryRepository -> findOneBy(["id" => $id]);
+        $product = $this -> categoryRepository -> findOneBy(["id" => $id]);
 
         $chemin = $this -> getParameter("file_directory");
 
@@ -71,17 +72,13 @@ class Category extends AbstractController{
             $this -> manager -> remove($product);
             $this -> manager -> flush();
 
-            foreach ($product -> getImageName() as $key => $value) {
-                unlink($chemin."/".$value);
-           }
-
             return $this -> redirectToRoute("app_admin_factory");
 
         }
     }
 
     public function filteredData(){
-        $data=  $this -> factoryRepository -> createQueryBuilder("q")    
+        $data=  $this -> categoryRepository -> createQueryBuilder("q")    
                                           -> where("q.name LIKE :name")
                                           -> setParameter("name" , "%".$this -> query."%")
                                           -> getQuery()
