@@ -1,0 +1,61 @@
+<div{{attributes}}>
+	{% if id %}
+		{{component("Overlay")}}
+		{{component("ModalDelete" , {id: id})}}
+	{% endif %}
+	<div class="container_items_show_cases_images">
+		{% set data = this.filteredData() %}
+		{% if data.getTotalItemCount == 0 %}
+			<div class="container_table">
+				<div class="table">
+					<table>
+						<tbody>
+							<tr class="no_data">
+								<td colspan="2">
+									<span>Aucun élément trouvé</span>
+									<div class="content">
+										<svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+										</svg>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		{% else %}
+			{% for item in data %}
+				<div class="show_cases_images">
+					<div class="image">
+						<img src="/images/{{item.imageName[0]}}" alt="">
+					</div>
+					<div class="item">
+                        <strong>Titre</strong>
+						<p>{{item.title|nl2br}}</p>
+					</div>
+					<div class="description">
+                        <strong>Description</strong>
+						<p>{{item.description|nl2br}}</p>
+					</div>
+					<div class="action_image">
+						<button class="delete" data-action="live#action" data-live-action-param="setDelete" data-live-id-param="{{item.id}}">Supprimer</button>
+						<a class="update" href="{{path('app_admin_show_case_news_edit' , {id: item.id})}}">Modifier</a>
+					</div>
+				</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+	<div class="container_pagination">
+		<div class="navigation"></div>
+		<div class="input_select">
+			<select name="" id="" data-model="query_select">
+                <option value="5">5</option>
+				{% for item in range(10,100, 10) %}
+					<option value="{{item}}">{{item}}</option>
+				{% endfor %}
+			</select>
+		</div>
+
+	</div>
+</div>

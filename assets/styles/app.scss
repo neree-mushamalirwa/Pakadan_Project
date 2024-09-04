@@ -2760,7 +2760,14 @@ form{
     .container_form{
         width: 100%;
         form{
-            #factory , #category , #category_item {
+            #factory , 
+            #category , 
+            #category_item , 
+            #show_case_home_page , 
+            #show_case_about,
+            #show_case_images,
+            #show_case_news
+             {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: $rem;
@@ -2803,12 +2810,20 @@ form{
                     } 
                 }
             }
-            #category{
+            #category,
+            #show_case_about
+            {
                 div:nth-of-type(1){
                     grid-column: 1/span 2 ;
                     
                 }
                 div:nth-of-type(2){
+                    grid-column: 1/span 2 ;
+                    
+                }
+            }
+            #show_case_news{
+                div:nth-of-type(3){
                     grid-column: 1/span 2 ;
                     
                 }
@@ -2887,6 +2902,16 @@ form{
                 grid-column:  1 / span 2;
                 width: 100%;
 
+                span{
+                    line-height: 3.2*$rem;
+                }
+            }
+        }
+        .about_section_item{
+            display: grid;
+            grid-template-columns: 1fr;
+
+            .item{
                 span{
                     line-height: 3.2*$rem;
                 }
@@ -3031,8 +3056,156 @@ form{
     }
 }
 
+.container_connection{
+    width: 100%;
+    height: 100%;
+    background: var(--color_smoke_opacity);
+    // background: linear-gradient(150deg ,#fff 0% ,#ddf3f8 15%, #a7ecfa  20% , #d5f8ff 50% , #a7ecfa 80% , #fff 90%);
+    position: relative;
+    z-index: 999;
+    
+    .container_form_connection{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        @include transform_translate_center(50% ,50%);
+        max-width: 50*$rem;
+        width: 90%;
+        z-index: 999;
+
+        h3{
+            font-size: 3.5*$rem;
+            text-align: center;
+            padding: 2*$rem 0rem;
+            font-weight: 800;
+            color: var(--color_primary);
+        }
+
+        form{
+            width: 100%;
+
+            .input{
+                    width: 100%;
+                    
+                    input{
+                        padding: $rem 5*$rem $rem $rem;
+                        width: 100%;
+                        @include border_radius($rem);
+                        overflow: hidden;
+                        border: 1px solid var(--color_secondary_opacity);
+                        font-size: 1.6*$rem;
+                        outline: none;
+                        margin: $rem 0rem;
+    
+                        &.active{
+                            border: 1px solid var(--color_primary);
+                        }
+    
+                    }
+                   .input_icone{
+                    position: relative;
+                        svg{
+                            position: absolute;
+                            top: 50%;
+                            right: $rem;
+                            @include transform_translate_center(50%, 50%)
+                        }
+                   }
+            }
+            .input_submit{
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+                padding: $rem 0rem 4*$rem;
+                button{
+                    padding: 0.8*$rem;
+                    border: none;
+                    background: var(--color_secondary);
+                    font-size: 1.5*$rem;
+                    @include border_radius($rem);
+                    color: var(--color_white);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
 
 
+.container_items_show_cases_images{
+    display: grid;
+    grid-template-columns: repeat(auto-fit ,minmax(20*$rem , 1fr));
+    gap: $rem;
+    padding: 0rem 0rem 4*$rem;
+    .show_cases_images{
+        @include border_radius($rem);
+        border: 1px solid var(--color_smoke_bold);
+
+        .image{
+            width: 100%;
+            height: 25*$rem;
+            padding: 0.5*$rem;
+            cursor: pointer;
+            position: relative;
+            @include border_radius($rem);
+            overflow: hidden;
+
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                @include border_radius($rem);
+            }
+        }
+        .item{
+            padding: $rem;
+
+            strong{
+                padding-bottom: $rem;
+                color: var(--color_secondary);
+            }
+        }
+        .description{
+            padding: $rem;
+            background: var(--color_smoke_bold);
+            @include border_radius($rem);
+            overflow: hidden;
+            margin: 0.5*$rem;
+
+            p{
+                color: var(--color_secondary);
+                line-height: 3 *$rem;
+            }
+        }
+        .action_image{
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: $rem;
+            gap: $rem;
+
+            button{
+                font-size: 1.2*$rem;
+                @include border_radius($rem);
+                padding: 0.4*$rem 0.6*$rem;
+                border: 2px solid var(--color_delete);
+                color: var(--color_delete);
+                cursor: pointer;
+            }
+
+            .update{
+                font-size: 1.2*$rem;
+                text-decoration: none;
+                @include border_radius($rem);
+                padding: 0.4*$rem 0.6*$rem;
+                border: 2px solid var(--color_tertiary);
+                color: var(--color_tertiary);
+                cursor: pointer;
+            }
+        }
+
+    }
+}
 
 
 

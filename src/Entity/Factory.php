@@ -40,9 +40,44 @@ class Factory
     #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'factory')]
     private Collection $users;
 
+    /**
+     * @var Collection<int, ShowCaseHomePage>
+     */
+    #[ORM\OneToMany(targetEntity: ShowCaseHomePage::class, mappedBy: 'factory')]
+    private Collection $showCaseHomePages;
+
+    /**
+     * @var Collection<int, ShowCaseAbout>
+     */
+    #[ORM\OneToMany(targetEntity: ShowCaseAbout::class, mappedBy: 'factory')]
+    private Collection $showCaseAbouts;
+
+    /**
+     * @var Collection<int, ShowCaseImages>
+     */
+    #[ORM\OneToMany(targetEntity: ShowCaseImages::class, mappedBy: 'factory')]
+    private Collection $showCaseImages;
+
+    /**
+     * @var Collection<int, ShowCaseNews>
+     */
+    #[ORM\OneToMany(targetEntity: ShowCaseNews::class, mappedBy: 'factory')]
+    private Collection $showCaseNews;
+
+    /**
+     * @var Collection<int, ShowCaseServices>
+     */
+    #[ORM\OneToMany(targetEntity: ShowCaseServices::class, mappedBy: 'factory')]
+    private Collection $showCaseServices;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->showCaseHomePages = new ArrayCollection();
+        $this->showCaseAbouts = new ArrayCollection();
+        $this->showCaseImages = new ArrayCollection();
+        $this->showCaseNews = new ArrayCollection();
+        $this->showCaseServices = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -146,6 +181,156 @@ class Factory
             // set the owning side to null (unless already changed)
             if ($user->getFactory() === $this) {
                 $user->setFactory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ShowCaseHomePage>
+     */
+    public function getShowCaseHomePages(): Collection
+    {
+        return $this->showCaseHomePages;
+    }
+
+    public function addShowCaseHomePage(ShowCaseHomePage $showCaseHomePage): static
+    {
+        if (!$this->showCaseHomePages->contains($showCaseHomePage)) {
+            $this->showCaseHomePages->add($showCaseHomePage);
+            $showCaseHomePage->setFactory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShowCaseHomePage(ShowCaseHomePage $showCaseHomePage): static
+    {
+        if ($this->showCaseHomePages->removeElement($showCaseHomePage)) {
+            // set the owning side to null (unless already changed)
+            if ($showCaseHomePage->getFactory() === $this) {
+                $showCaseHomePage->setFactory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ShowCaseAbout>
+     */
+    public function getShowCaseAbouts(): Collection
+    {
+        return $this->showCaseAbouts;
+    }
+
+    public function addShowCaseAbout(ShowCaseAbout $showCaseAbout): static
+    {
+        if (!$this->showCaseAbouts->contains($showCaseAbout)) {
+            $this->showCaseAbouts->add($showCaseAbout);
+            $showCaseAbout->setFactory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShowCaseAbout(ShowCaseAbout $showCaseAbout): static
+    {
+        if ($this->showCaseAbouts->removeElement($showCaseAbout)) {
+            // set the owning side to null (unless already changed)
+            if ($showCaseAbout->getFactory() === $this) {
+                $showCaseAbout->setFactory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ShowCaseImages>
+     */
+    public function getShowCaseImages(): Collection
+    {
+        return $this->showCaseImages;
+    }
+
+    public function addShowCaseImage(ShowCaseImages $showCaseImage): static
+    {
+        if (!$this->showCaseImages->contains($showCaseImage)) {
+            $this->showCaseImages->add($showCaseImage);
+            $showCaseImage->setFactory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShowCaseImage(ShowCaseImages $showCaseImage): static
+    {
+        if ($this->showCaseImages->removeElement($showCaseImage)) {
+            // set the owning side to null (unless already changed)
+            if ($showCaseImage->getFactory() === $this) {
+                $showCaseImage->setFactory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ShowCaseNews>
+     */
+    public function getShowCaseNews(): Collection
+    {
+        return $this->showCaseNews;
+    }
+
+    public function addShowCaseNews(ShowCaseNews $showCaseNews): static
+    {
+        if (!$this->showCaseNews->contains($showCaseNews)) {
+            $this->showCaseNews->add($showCaseNews);
+            $showCaseNews->setFactory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShowCaseNews(ShowCaseNews $showCaseNews): static
+    {
+        if ($this->showCaseNews->removeElement($showCaseNews)) {
+            // set the owning side to null (unless already changed)
+            if ($showCaseNews->getFactory() === $this) {
+                $showCaseNews->setFactory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ShowCaseServices>
+     */
+    public function getShowCaseServices(): Collection
+    {
+        return $this->showCaseServices;
+    }
+
+    public function addShowCaseService(ShowCaseServices $showCaseService): static
+    {
+        if (!$this->showCaseServices->contains($showCaseService)) {
+            $this->showCaseServices->add($showCaseService);
+            $showCaseService->setFactory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShowCaseService(ShowCaseServices $showCaseService): static
+    {
+        if ($this->showCaseServices->removeElement($showCaseService)) {
+            // set the owning side to null (unless already changed)
+            if ($showCaseService->getFactory() === $this) {
+                $showCaseService->setFactory(null);
             }
         }
 

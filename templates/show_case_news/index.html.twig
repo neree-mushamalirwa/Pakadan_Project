@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vitrine | News
+{% endblock %}
+
+{% block body %}
+	{% if app.user %}
+			<div class="container_new_item">
+				<h3>Section Actualité</h3>
+				<div class="container_form">
+					{{ form_start(form, {'method': 'POST' , 'enctype': 'multipart/form-data'}) }}
+					{{ form_widget(form) }}
+					{# {{ dump(files|json_encode) }} #}
+					<div {{svelte_component("New")}}></div>
+
+					<div class="input_submit">
+						<button type="submit">Sauvegarder</button>
+					</div>
+					{{ form_end(form) }}
+				</div>
+			</div>
+
+			{{component("tableShowCaseNews")}}
+	{% else %}
+		<div class="container_table">
+			<div class="table">
+				<table>
+					<tbody>
+						<tr class="no_data">
+							<td colspan="2">
+								<span>Vous avez été déconnecté</span>
+								<div class="content">
+									<svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+									</svg>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	{% endif %}
+
+
+
+{% endblock %}
+

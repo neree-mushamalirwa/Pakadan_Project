@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vitrine | Accueil
+{% endblock %}
+
+{% block body %}
+	{% if app.user %}
+		{% if homePageSection %}
+			<div class="container_admin_factory_detail">
+				<div class="container_factory_detail_information">
+					<div class="content_factory_detail_information">
+						<h3>Informations sur la section Accueil</h3>
+						<div class="container_item">
+							<div class="item">
+								<strong>Titre 1</strong>
+								<span>{{homePageSection.titre1}}</span>
+							</div>
+							<div class="item">
+								<strong>Titre 2</strong>
+								<span>{{homePageSection.titre2}}</span>
+							</div>
+						</div>
+						<div class="container_image">
+							<div class="image">
+								<img src="/images/{{homePageSection.imageName[0]}}" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="container_factory_right_part">
+				<div class="container_new_item container_new_item_detail">
+					<h3>Modifier les informations de la section</h3>
+					<div class="container_form">
+						{{ form_start(form, {'method': 'POST' , 'enctype': 'multipart/form-data'}) }}
+						{{ form_widget(form) }}
+						{# {{ dump(files|json_encode) }} #}
+						<div {{svelte_component("Edit" , {file: files|json_encode } )}}></div>
+
+						<div class="input_submit">
+							<button type="submit">Modifier</button>
+						</div>
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>
+
+			</div>
+		{% else %}
+			<div class="container_factory_right_part">
+				<div class="container_new_item container_new_item_detail">
+					<h3>Section accueil</h3>
+					<div class="container_form">
+						{{ form_start(form, {'method': 'POST' , 'enctype': 'multipart/form-data'}) }}
+						{{ form_widget(form) }}
+						{# {{ dump(files|json_encode) }} #}
+						<div {{svelte_component("New")}}></div>
+
+						<div class="input_submit">
+							<button type="submit">Sauvegarder</button>
+						</div>
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>
+		{% endif %}
+	{% else %}
+		<div class="container_table">
+			<div class="table">
+				<table>
+					<tbody>
+						<tr class="no_data">
+							<td colspan="2">
+								<span>Vous avez été déconnecté</span>
+								<div class="content">
+									<svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+									</svg>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	{% endif %}
+
+
+{% endblock %}

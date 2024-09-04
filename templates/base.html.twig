@@ -30,6 +30,8 @@
        {% if "admin" in app.request.get("_route")|split("_") or app.request.get("_route")|split("_")[1] == "admin" %}
             {% include "./partials/app.html.twig" %}
             
+       {% elseif app.request.get("_route") == "app_connection" %}
+
        {% else %}
             {% include "./partials/header.html.twig" %}
        {% endif %}
@@ -37,7 +39,7 @@
        {% block body %}{% endblock %}
 
 
-        {% if "admin" in app.request.get("_route")|split("_") or app.request.get("_route")|split("_")[1] == "admin" %}
+        {% if "admin" in app.request.get("_route")|split("_") or app.request.get("_route")|split("_")[1] == "admin" or app.request.get("_route") == "app_connection" %}
        
        {% else %}
             {% include "./partials/footer.html.twig" %}
