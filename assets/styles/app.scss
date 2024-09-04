@@ -2766,7 +2766,10 @@ form{
             #show_case_home_page , 
             #show_case_about,
             #show_case_images,
-            #show_case_news
+            #show_case_news,
+            #show_case_services,
+            #product_category,
+            #product
              {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
@@ -2822,7 +2825,7 @@ form{
                     
                 }
             }
-            #show_case_news{
+            #show_case_news , #show_case_services{
                 div:nth-of-type(3){
                     grid-column: 1/span 2 ;
                     

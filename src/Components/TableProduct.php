@@ -2,10 +2,9 @@
 
 namespace App\Components;
 
-use App\Repository\CategoryItemRepository;
-use App\Repository\CategoryRepository;
-use App\Repository\FactoryRepository;
-use App\Repository\ShowCaseImagesRepository;
+
+use App\Repository\ProductCategoryRepository;
+use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,8 +16,8 @@ use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
-#[AsLiveComponent("tableShowCaseImages")]
-class TableShowCaseImages extends AbstractController{
+#[AsLiveComponent("tableProduct")]
+class TableProduct extends AbstractController{
 
     use DefaultActionTrait;
 
@@ -26,7 +25,7 @@ class TableShowCaseImages extends AbstractController{
     public ?string $query = "";
 
     #[LiveProp(writable:true)]
-    public ?int $query_select = 4;
+    public ?int $query_select = 5;
 
     #[LiveProp(writable:true)]
     public ?int $id = null;
@@ -39,7 +38,7 @@ class TableShowCaseImages extends AbstractController{
 
 
     public function __construct(
-        private ShowCaseImagesRepository $showCaseImagesRepository,
+        private ProductRepository $productRepository,
         private PaginatorInterface $paginator,
         private EntityManagerInterface $manager,
         private Security $security,
@@ -68,7 +67,7 @@ class TableShowCaseImages extends AbstractController{
 
     #[LiveAction]
     public function deleteItem(#[LiveArg()] int $id){
-        $product = $this -> showCaseImagesRepository -> findOneBy(["id" => $id]);
+        $product = $this -> productRepository -> findOneBy(["id" => $id]);
 
         $chemin = $this -> getParameter("file_directory");
 
@@ -76,18 +75,14 @@ class TableShowCaseImages extends AbstractController{
             $this -> manager -> remove($product);
             $this -> manager -> flush();
 
-            foreach ($product -> getImageName() as $key => $value) {
-                unlink($chemin."/".$value);
-           }
-
-            return $this -> redirectToRoute("app_admin_show_case_images");
+            return $this -> redirectToRoute("app_admin_product");
 
         }
     }
 
     public function filteredData(){
-        $data=  $this -> showCaseImagesRepository -> createQueryBuilder("q")    
-                                          -> where("q.description LIKE :name")
+        $data=  $this -> productRepository -> createQueryBuilder("q")    
+                                          -> where("q.name LIKE :name")
                                           -> setParameter("name" , "%".$this -> query."%")
                                           -> andWhere("q.factory = :fact")
                                           -> setParameter("fact" , $this -> security -> getUser() -> getFactory())
@@ -100,11 +95,6 @@ class TableShowCaseImages extends AbstractController{
             (new Request()) -> query -> getInt("page" , 1),
             $this -> query_select
         );
-    }
-
-    public function hello(){
-
-        return "Hello word";
     }
 }
 

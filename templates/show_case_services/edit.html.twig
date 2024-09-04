@@ -6,21 +6,20 @@
 {% block body %}
 	{% if app.user %}
 			<div class="container_new_item">
-				<h3>Section Services</h3>
+				<h3>Modifier le service</h3>
 				<div class="container_form">
 					{{ form_start(form, {'method': 'POST' , 'enctype': 'multipart/form-data'}) }}
 					{{ form_widget(form) }}
 					{# {{ dump(files|json_encode) }} #}
-					<div {{svelte_component("New")}}></div>
+					<div {{svelte_component("Edit" , {file: files|json_encode } )}}></div>
 
 					<div class="input_submit">
-						<button type="submit">Sauvegarder</button>
+						<button type="submit">Modifier</button>
 					</div>
 					{{ form_end(form) }}
 				</div>
 			</div>
 
-			{{component("tableShowCaseServices")}}
 	{% else %}
 		<div class="container_table">
 			<div class="table">
@@ -41,6 +40,7 @@
 			</div>
 		</div>
 	{% endif %}
+
 
 
 {% endblock %}

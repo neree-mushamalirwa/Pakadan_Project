@@ -2,10 +2,7 @@
 
 namespace App\Components;
 
-use App\Repository\CategoryItemRepository;
-use App\Repository\CategoryRepository;
-use App\Repository\FactoryRepository;
-use App\Repository\ShowCaseImagesRepository;
+use App\Repository\ShowCaseServicesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,8 +14,8 @@ use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
-#[AsLiveComponent("tableShowCaseImages")]
-class TableShowCaseImages extends AbstractController{
+#[AsLiveComponent("tableShowCaseServices")]
+class TableShowCaseServices extends AbstractController{
 
     use DefaultActionTrait;
 
@@ -39,7 +36,7 @@ class TableShowCaseImages extends AbstractController{
 
 
     public function __construct(
-        private ShowCaseImagesRepository $showCaseImagesRepository,
+        private ShowCaseServicesRepository $showCaseServicesRepository,
         private PaginatorInterface $paginator,
         private EntityManagerInterface $manager,
         private Security $security,
@@ -68,7 +65,7 @@ class TableShowCaseImages extends AbstractController{
 
     #[LiveAction]
     public function deleteItem(#[LiveArg()] int $id){
-        $product = $this -> showCaseImagesRepository -> findOneBy(["id" => $id]);
+        $product = $this -> showCaseServicesRepository -> findOneBy(["id" => $id]);
 
         $chemin = $this -> getParameter("file_directory");
 
@@ -86,7 +83,7 @@ class TableShowCaseImages extends AbstractController{
     }
 
     public function filteredData(){
-        $data=  $this -> showCaseImagesRepository -> createQueryBuilder("q")    
+        $data=  $this -> showCaseServicesRepository -> createQueryBuilder("q")    
                                           -> where("q.description LIKE :name")
                                           -> setParameter("name" , "%".$this -> query."%")
                                           -> andWhere("q.factory = :fact")

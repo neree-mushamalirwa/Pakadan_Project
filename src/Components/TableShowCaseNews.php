@@ -10,6 +10,7 @@ use App\Repository\ShowCaseNewsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
@@ -42,6 +43,7 @@ class TableShowCaseNews extends AbstractController{
         private ShowCaseNewsRepository $showCaseNewsRepository,
         private PaginatorInterface $paginator,
         private EntityManagerInterface $manager,
+        private Security $security,
     )
     {
         
@@ -88,6 +90,8 @@ class TableShowCaseNews extends AbstractController{
         $data=  $this -> showCaseNewsRepository -> createQueryBuilder("q")    
                                           -> where("q.description LIKE :name")
                                           -> setParameter("name" , "%".$this -> query."%")
+                                          -> andWhere("q.factory = :fact")
+                                          -> setParameter("fact" , $this -> security -> getUser() -> getFactory())
                                           -> getQuery()
                                           -> getResult()
         

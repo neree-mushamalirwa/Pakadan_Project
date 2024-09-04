@@ -2,31 +2,38 @@
 
 namespace App\Controller;
 
-use App\Entity\ShowCaseServices;
-use App\Form\ShowCaseServicesType;
-use App\Repository\ShowCaseServicesRepository;
-use DirectoryIterator;
+use App\Entity\Product;
+use App\Form\ProductType;
+use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class ShowCaseServicesController extends AbstractController
+class ProductController extends AbstractController
 {
-    #[Route('/show/case/services', name: 'app_admin_show_case_services')]
-    public function index(Request $request, EntityManagerInterface $manager, ShowCaseServicesRepository $showCaseServicesRepository): Response
+    #[Route('/product', name: 'app_admin_product')]
+    public function index(Request $request , EntityManagerInterface $manager ,ProductRepository $productRepository): Response
+    {
+        return $this->render('product/index.html.twig', [
+            'controller_name' => 'ProductController',
+        ]);
+       
+    }
+    #[Route('admin/product/new', name: 'app_admin_product_new')]
+    public function new(Request $request , EntityManagerInterface $manager ,ProductRepository $productRepository): Response
     {
         $error = null;
         $images = null;
         $tab_server = null;
         if ($this->getUser() && $this->getUser()->getRoles()[0] == "ROLE_ADMIN") {
             $id = $this->getUser();
-            $homePageSection = $showCaseServicesRepository->findOneBy(["factory" => $id->getFactory()]);
+            $homePageSection = $productRepository->findOneBy(["factory" => $id->getFactory()]);
 
-            $homeSection = new ShowCaseServices();
+            $homeSection = new Product();
 
-            $form = $this->createForm(ShowCaseServicesType::class, $homeSection);
+            $form = $this->createForm(ProductType::class, $homeSection);
 
             $form->handleRequest($request);
 
@@ -102,7 +109,7 @@ class ShowCaseServicesController extends AbstractController
                     return $this->redirectToRoute("app_admin_show_case_services");
                 }
             }
-            return $this->render('show_case_services/index.html.twig', [
+            return $this->render('product/new.html.twig', [
                 'controller_name' => 'ShowCaseHomePageController',
                 'error' => $error,
                 'homePageSection' => $homePageSection,
@@ -113,9 +120,10 @@ class ShowCaseServicesController extends AbstractController
         } else {
             $error = "Apparemment vous avez été déconnecté !!!!";
         }
+
     }
-    #[Route('/show/case/services/edit-{id}', name: 'app_admin_show_case_services_edit')]
-    public function edit(int $id,Request $request, EntityManagerInterface $manager, ShowCaseServicesRepository $showCaseServicesRepository): Response
+    #[Route('admin/product/edit-{}', name: 'app_admin_product_edit')]
+    public function edit(int $id,Request $request , EntityManagerInterface $manager ,ProductRepository $productRepository): Response
     {
 
         $error = null;
@@ -269,7 +277,7 @@ class ShowCaseServicesController extends AbstractController
 
 
 
-            return $this->render('show_case_services/edit.html.twig', [
+            return $this->render('product/edit.html.twig', [
                 'controller_name' => 'AdminFactoryController',
                 'form' => $form,
                 'chemin' => $chemin,

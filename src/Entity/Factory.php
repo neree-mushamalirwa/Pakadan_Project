@@ -70,6 +70,18 @@ class Factory
     #[ORM\OneToMany(targetEntity: ShowCaseServices::class, mappedBy: 'factory')]
     private Collection $showCaseServices;
 
+    /**
+     * @var Collection<int, Product>
+     */
+    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'factory')]
+    private Collection $products;
+
+    /**
+     * @var Collection<int, ProductCategory>
+     */
+    #[ORM\OneToMany(targetEntity: ProductCategory::class, mappedBy: 'factory')]
+    private Collection $productCategories;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -78,6 +90,8 @@ class Factory
         $this->showCaseImages = new ArrayCollection();
         $this->showCaseNews = new ArrayCollection();
         $this->showCaseServices = new ArrayCollection();
+        $this->products = new ArrayCollection();
+        $this->productCategories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -331,6 +345,66 @@ class Factory
             // set the owning side to null (unless already changed)
             if ($showCaseService->getFactory() === $this) {
                 $showCaseService->setFactory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): static
+    {
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+            $product->setFactory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): static
+    {
+        if ($this->products->removeElement($product)) {
+            // set the owning side to null (unless already changed)
+            if ($product->getFactory() === $this) {
+                $product->setFactory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProductCategory>
+     */
+    public function getProductCategories(): Collection
+    {
+        return $this->productCategories;
+    }
+
+    public function addProductCategory(ProductCategory $productCategory): static
+    {
+        if (!$this->productCategories->contains($productCategory)) {
+            $this->productCategories->add($productCategory);
+            $productCategory->setFactory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductCategory(ProductCategory $productCategory): static
+    {
+        if ($this->productCategories->removeElement($productCategory)) {
+            // set the owning side to null (unless already changed)
+            if ($productCategory->getFactory() === $this) {
+                $productCategory->setFactory(null);
             }
         }
 

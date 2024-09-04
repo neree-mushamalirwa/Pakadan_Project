@@ -449,8 +449,8 @@
 				<a href="{{path('app_admin_news_letter')}}">
 					<div class="item_link">
 						<svg width="20px" height"20px" viewbox="0 0 24 24" data-title="AccountOutline" fill="currentColor" stroke="none" data-test-id="icon" class="fill-current shrink-0 text-current w-sz-24 h-sz-24" data-spark-component="icon" aria-hidden="true" focusable="false">
-								<path fill-rule="evenodd" d="m12,4.19c-1.6,0-2.93,1.26-2.93,2.84s1.33,2.84,2.93,2.84,2.93-1.26,2.93-2.84-1.33-2.84-2.93-2.84Zm-5.23,2.84c0-2.77,2.32-5.03,5.23-5.03s5.23,2.27,5.23,5.03-2.32,5.03-5.23,5.03-5.23-2.27-5.23-5.03Zm5.23,8.54c-1.85,0-3.63.71-4.95,1.98-1.01.97-1.68,2.21-1.94,3.55-.12.6-.72.99-1.34.88-.63-.11-1.04-.68-.92-1.28.34-1.76,1.23-3.4,2.56-4.69,1.74-1.68,4.11-2.63,6.59-2.63s4.84.95,6.59,2.63c1.34,1.29,2.22,2.93,2.56,4.69.12.6-.3,1.17-.92,1.28-.63.11-1.23-.28-1.34-.88-.26-1.34-.93-2.58-1.94-3.55-1.31-1.27-3.09-1.98-4.95-1.98Z"></path>
-							</svg>
+							<path fill-rule="evenodd" d="m12,4.19c-1.6,0-2.93,1.26-2.93,2.84s1.33,2.84,2.93,2.84,2.93-1.26,2.93-2.84-1.33-2.84-2.93-2.84Zm-5.23,2.84c0-2.77,2.32-5.03,5.23-5.03s5.23,2.27,5.23,5.03-2.32,5.03-5.23,5.03-5.23-2.27-5.23-5.03Zm5.23,8.54c-1.85,0-3.63.71-4.95,1.98-1.01.97-1.68,2.21-1.94,3.55-.12.6-.72.99-1.34.88-.63-.11-1.04-.68-.92-1.28.34-1.76,1.23-3.4,2.56-4.69,1.74-1.68,4.11-2.63,6.59-2.63s4.84.95,6.59,2.63c1.34,1.29,2.22,2.93,2.56,4.69.12.6-.3,1.17-.92,1.28-.63.11-1.23-.28-1.34-.88-.26-1.34-.93-2.58-1.94-3.55-1.31-1.27-3.09-1.98-4.95-1.98Z"></path>
+						</svg>
 						<span>Gestion utilisateurs</span>
 					</div>
 				</a>
@@ -527,7 +527,7 @@
 								<span>Section actualité</span>
 							</div>
 						</a>
-						<a href="" {% set linkDetailPurchase = "" %} {% if app.request.get("_route") == "app_purchases_detail" %} {% set linkDetailPurchase = "currentLink" %} {% endif %}>
+						<a href="{{path('app_admin_show_case_services')}}" {% set linkDetailPurchase = "" %} {% if app.request.get("_route") == "app_admin_show_case_services" %} {% set linkDetailPurchase = "currentLink" %} {% endif %}>
 							<div class="item_link {{linkDetailPurchase}}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewbox="0 0 48 48" id="b">
 									<defs>
@@ -565,20 +565,57 @@
 								<span>Section services</span>
 							</div>
 						</a>
-						<a href="" {% set linkDetailPurchase = "" %} {% if app.request.get("_route") == "app_purchases_detail" %} {% set linkDetailPurchase = "currentLink" %} {% endif %}>
-							<div class="item_link {{linkDetailPurchase}}">
-								<svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="15px" height="15px" viewbox="0 0 52 52" data-name="Layer 1">
-									<g>
-										<path d="M31.9,39.5h6A1.42,1.42,0,0,0,39.4,38V14a1.42,1.42,0,0,0-1.5-1.5h-6A1.42,1.42,0,0,0,30.4,14V38A1.42,1.42,0,0,0,31.9,39.5Z"/>
-										<path d="M45.4,39.5h3A1.42,1.42,0,0,0,49.9,38V14a1.42,1.42,0,0,0-1.5-1.5h-3A1.42,1.42,0,0,0,43.9,14V38A1.42,1.42,0,0,0,45.4,39.5Z"/>
-										<path d="M25,39.5h0A1.37,1.37,0,0,0,26.5,38V14A1.42,1.42,0,0,0,25,12.5h0A1.42,1.42,0,0,0,23.5,14V38A1.37,1.37,0,0,0,25,39.5Z"/>
-										<path d="M16.6,39.5H18A1.42,1.42,0,0,0,19.5,38V14A1.42,1.42,0,0,0,18,12.5H16.5A1.42,1.42,0,0,0,15,14V38A1.45,1.45,0,0,0,16.6,39.5Z"/>
-										<path d="M3.6,39.5h6A1.42,1.42,0,0,0,11.1,38V14a1.42,1.42,0,0,0-1.5-1.5h-6A1.42,1.42,0,0,0,2.1,14V38A1.47,1.47,0,0,0,3.6,39.5Z"/>
-									</g>
+						<div class="item_parent" x-data="{open:false}">
+							<div class="header_item_parent" @click="open= !open">
+								<div class="left">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="20px" height="20px" viewbox="0 0 52 52" data-name="Layer 1">
+										<g>
+											<path d="M31.9,39.5h6A1.42,1.42,0,0,0,39.4,38V14a1.42,1.42,0,0,0-1.5-1.5h-6A1.42,1.42,0,0,0,30.4,14V38A1.42,1.42,0,0,0,31.9,39.5Z"/>
+											<path d="M45.4,39.5h3A1.42,1.42,0,0,0,49.9,38V14a1.42,1.42,0,0,0-1.5-1.5h-3A1.42,1.42,0,0,0,43.9,14V38A1.42,1.42,0,0,0,45.4,39.5Z"/>
+											<path d="M25,39.5h0A1.37,1.37,0,0,0,26.5,38V14A1.42,1.42,0,0,0,25,12.5h0A1.42,1.42,0,0,0,23.5,14V38A1.37,1.37,0,0,0,25,39.5Z"/>
+											<path d="M16.6,39.5H18A1.42,1.42,0,0,0,19.5,38V14A1.42,1.42,0,0,0,18,12.5H16.5A1.42,1.42,0,0,0,15,14V38A1.45,1.45,0,0,0,16.6,39.5Z"/>
+											<path d="M3.6,39.5h6A1.42,1.42,0,0,0,11.1,38V14a1.42,1.42,0,0,0-1.5-1.5h-6A1.42,1.42,0,0,0,2.1,14V38A1.47,1.47,0,0,0,3.6,39.5Z"/>
+										</g>
+									</svg>
+									<span>Section Produits</span>
+								</div>
+								<svg class="chevron" x-transition:enter.duration.500ms x-transition:leave.duration.400ms :class="open ? 'rotate_open': ''" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+									<path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
 								</svg>
-								<span>Section produits</span>
 							</div>
-						</a>
+							<div class="content_sub_item" x-show="open" style="display:none;">
+								<a href="{{path('app_admin_product_category')}}" {% set linkDetailPurchase = "" %} {% if app.request.get("_route") == "app_admin_product_category" %} {% set linkDetailPurchase = "currentLink" %} {% endif %}>
+									<div class="item_link {{linkDetailPurchase}}">
+										<svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="15px" height="15px" viewbox="0 0 52 52" data-name="Layer 1">
+											<g>
+												<path d="M31.9,39.5h6A1.42,1.42,0,0,0,39.4,38V14a1.42,1.42,0,0,0-1.5-1.5h-6A1.42,1.42,0,0,0,30.4,14V38A1.42,1.42,0,0,0,31.9,39.5Z"/>
+												<path d="M45.4,39.5h3A1.42,1.42,0,0,0,49.9,38V14a1.42,1.42,0,0,0-1.5-1.5h-3A1.42,1.42,0,0,0,43.9,14V38A1.42,1.42,0,0,0,45.4,39.5Z"/>
+												<path d="M25,39.5h0A1.37,1.37,0,0,0,26.5,38V14A1.42,1.42,0,0,0,25,12.5h0A1.42,1.42,0,0,0,23.5,14V38A1.37,1.37,0,0,0,25,39.5Z"/>
+												<path d="M16.6,39.5H18A1.42,1.42,0,0,0,19.5,38V14A1.42,1.42,0,0,0,18,12.5H16.5A1.42,1.42,0,0,0,15,14V38A1.45,1.45,0,0,0,16.6,39.5Z"/>
+												<path d="M3.6,39.5h6A1.42,1.42,0,0,0,11.1,38V14a1.42,1.42,0,0,0-1.5-1.5h-6A1.42,1.42,0,0,0,2.1,14V38A1.47,1.47,0,0,0,3.6,39.5Z"/>
+											</g>
+										</svg>
+										<span>Catégories</span>
+									</div>
+								</a>
+								<a href="" {% set linkDetailPurchase = "" %} {% if app.request.get("_route") == "app_purchases_detail" %} {% set linkDetailPurchase = "currentLink" %} {% endif %}>
+									<div class="item_link {{linkDetailPurchase}}">
+										<svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="15px" height="15px" viewbox="0 0 52 52" data-name="Layer 1">
+											<g>
+												<path d="M31.9,39.5h6A1.42,1.42,0,0,0,39.4,38V14a1.42,1.42,0,0,0-1.5-1.5h-6A1.42,1.42,0,0,0,30.4,14V38A1.42,1.42,0,0,0,31.9,39.5Z"/>
+												<path d="M45.4,39.5h3A1.42,1.42,0,0,0,49.9,38V14a1.42,1.42,0,0,0-1.5-1.5h-3A1.42,1.42,0,0,0,43.9,14V38A1.42,1.42,0,0,0,45.4,39.5Z"/>
+												<path d="M25,39.5h0A1.37,1.37,0,0,0,26.5,38V14A1.42,1.42,0,0,0,25,12.5h0A1.42,1.42,0,0,0,23.5,14V38A1.37,1.37,0,0,0,25,39.5Z"/>
+												<path d="M16.6,39.5H18A1.42,1.42,0,0,0,19.5,38V14A1.42,1.42,0,0,0,18,12.5H16.5A1.42,1.42,0,0,0,15,14V38A1.45,1.45,0,0,0,16.6,39.5Z"/>
+												<path d="M3.6,39.5h6A1.42,1.42,0,0,0,11.1,38V14a1.42,1.42,0,0,0-1.5-1.5h-6A1.42,1.42,0,0,0,2.1,14V38A1.47,1.47,0,0,0,3.6,39.5Z"/>
+											</g>
+										</svg>
+										<span>Produits</span>
+									</div>
+								</a>
+							</div>
+						</div>
+
+
 					</div>
 				</div>
 

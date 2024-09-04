@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vitrine | Product | New
+{% endblock %}
+
+{% block body %}
+	{% if app.user %}
+			<div class="container_new_item">
+				<h3>Section Produit</h3>
+				<div class="container_form">
+					{{ form_start(form, {'method': 'POST' , 'enctype': 'multipart/form-data'}) }}
+					{{ form_widget(form) }}
+					{# {{ dump(files|json_encode) }} #}
+					<div {{svelte_component("New")}}></div>
+
+					<div class="input_submit">
+						<button type="submit">Sauvegarder</button>
+					</div>
+					{{ form_end(form) }}
+				</div>
+			</div>
+	{% endif %}
+
+
+{% endblock %}
+
