@@ -188,6 +188,22 @@ export default class extends Controller {
 
 
     
+    var factory_category = document.querySelectorAll(".factory_category button");
+
+
+    if (factory_category) {
+      factory_category.forEach(element => {
+          element.addEventListener("click" , () => {
+            factory_category.forEach(element => {
+              element.classList.remove("active")
+            });
+            element.classList.add("active")
+          })
+      });
+    }
+
+
+    
 
 
   }

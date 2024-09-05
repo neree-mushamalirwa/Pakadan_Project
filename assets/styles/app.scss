@@ -1363,23 +1363,27 @@ nav{
                     }
                 }
                 .factory_category{
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
+                    // display: flex;
+                    // justify-content: space-between;
+                    // align-items: center;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit , minmax(20*$rem , 1fr));
                     flex-wrap: wrap;
                     gap: $rem;
 
-                    a{
+                    a , button{
                         text-decoration: none;
                         color: var(--color_primary);
                         @include border_radius(2*$rem);
                         border: 1px solid var(--color_primary);
                         font-weight: 600;
-                        padding: 0.5*$rem $rem;
+                        // padding: 0.5*$rem $rem;
+                        padding: 0.8*$rem $rem;
                         transition: 0.5s;
                         font-size: 1.2*$rem;
+                        cursor: pointer;
 
-                        &:hover{
+                        &:hover , &.active{
                             background: var(--color_primary);
                             color: var(--color_white);
                             transition: 0.5s;
@@ -2233,7 +2237,39 @@ form{
 }
 
 
+.see_more{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3*$rem 0rem;
 
+    button{
+        border: none;
+        background: var(--color_primary);
+        padding: $rem 2*$rem;
+        color: var(--color_white);
+        font-weight: 600;
+        @include border_radius($rem);
+        font-size: 1.6*$rem;
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex;
+        gap: $rem;
+        align-items: center;
+
+        svg{
+            fill: var(--color_white);
+            path{
+                fill: var(--color_white);
+            }
+        }
+
+        &:hover{
+            background: var(--color_primary_overed);
+            transition: 0.3s;
+        }
+    }
+}
 
 // Styles for Administration page
 

@@ -69,8 +69,9 @@
 								<p>{{item.message|nl2br}}</p>
 							</div>
                             <div class="give_response">
-                                <a href="">Envoyer un email</a>
-                                <a href="">Repondre sur whatsapp</a>
+                                <a href="mailto:{{item.email}}">Envoyer un email</a>
+								{% set phoneNumber = item.telephone %}
+                                <a href="https://api.whatsapp.com/send?phone={{phoneNumber}}&text=Pakadan">Repondre sur whatsapp</a>
                             </div>
 						</div>
 					{% endfor %}

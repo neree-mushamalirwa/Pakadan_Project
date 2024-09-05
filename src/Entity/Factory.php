@@ -98,6 +98,12 @@ class Factory
     #[ORM\OneToMany(targetEntity: Contact::class, mappedBy: 'factory')]
     private Collection $contacts;
 
+    /**
+     * @var Collection<int, NewsLetter>
+     */
+    #[ORM\OneToMany(targetEntity: NewsLetter::class, mappedBy: 'factory')]
+    private Collection $newsLetters;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -110,6 +116,7 @@ class Factory
         $this->productCategories = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
         $this->contacts = new ArrayCollection();
+        $this->newsLetters = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -489,6 +496,36 @@ class Factory
             // set the owning side to null (unless already changed)
             if ($contact->getFactory() === $this) {
                 $contact->setFactory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, NewsLetter>
+     */
+    public function getNewsLetters(): Collection
+    {
+        return $this->newsLetters;
+    }
+
+    public function addNewsLetter(NewsLetter $newsLetter): static
+    {
+        if (!$this->newsLetters->contains($newsLetter)) {
+            $this->newsLetters->add($newsLetter);
+            $newsLetter->setFactory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNewsLetter(NewsLetter $newsLetter): static
+    {
+        if ($this->newsLetters->removeElement($newsLetter)) {
+            // set the owning side to null (unless already changed)
+            if ($newsLetter->getFactory() === $this) {
+                $newsLetter->setFactory(null);
             }
         }
 

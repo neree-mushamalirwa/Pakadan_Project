@@ -34,7 +34,11 @@ class TableNewsLetter{
     }
 
     public function getDataContact(){
-        $data = $this -> contactRepository -> findAll();
+        $data = $this -> contactRepository -> createQueryBuilder("q")
+                                           -> orderBy("q.createdAt" , "DESC")
+                                           -> getQuery()
+                                           -> getResult()
+        ;
 
         return $this -> paginator -> paginate(
             $data,
@@ -43,7 +47,11 @@ class TableNewsLetter{
         );
     }
     public function getDataNewsLetter(){
-        $data = $this -> newsLetterRepository -> findAll();
+        $data = $this -> newsLetterRepository -> createQueryBuilder("q")
+                                                -> orderBy("q.createdAt" , "DESC")
+                                                -> getQuery()
+                                                -> getResult()
+                                        ;
 
         return $this -> paginator -> paginate(
             $data,

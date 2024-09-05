@@ -54,7 +54,7 @@
 		</div>
 		<div class="container_admin_contact">
 			<h3>Contact</h3>
-			{% set dataContact = this.getDataNewsLetter() %}
+			{% set dataContact = this.getDataContact() %}
 			<div class="container_items_contact">
 				{% if dataContact.getTotalItemCount == 0 %}
 					<div class="container_table">
@@ -100,7 +100,7 @@
 								</div>
 							</div>
 							<div class="body_item">
-								<p>{{message|nl2br}}</p>
+								<p>{{item.message|nl2br}}</p>
 							</div>
 						</div>
 					{% endfor %}
