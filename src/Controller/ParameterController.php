@@ -88,7 +88,7 @@ class ParameterController extends AbstractController
                     unlink($chemin.'/'.$t);
                 }
             }
-            return $this -> redirectToRoute("app_admin_factory");
+            return $this -> redirectToRoute("app_admin_parameter");
             }
 
             // Check if the file of the database exists in the form files , if it exists we continue , else we add it in the drop_files table
@@ -177,7 +177,7 @@ class ParameterController extends AbstractController
                 $manager -> persist($product);
                 $manager -> flush();
 
-                return $this -> redirectToRoute("app_admin_factory");
+                return $this -> redirectToRoute("app_admin_parameter");
          
         }
 

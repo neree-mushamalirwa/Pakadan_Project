@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\FactoryRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -82,6 +83,15 @@ class Factory
     #[ORM\OneToMany(targetEntity: ProductCategory::class, mappedBy: 'factory')]
     private Collection $productCategories;
 
+    #[ORM\Column(nullable:true)]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $telephone = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -92,6 +102,7 @@ class Factory
         $this->showCaseServices = new ArrayCollection();
         $this->products = new ArrayCollection();
         $this->productCategories = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -407,6 +418,42 @@ class Factory
                 $productCategory->setFactory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(string $telephone): static
+    {
+        $this->telephone = $telephone;
 
         return $this;
     }

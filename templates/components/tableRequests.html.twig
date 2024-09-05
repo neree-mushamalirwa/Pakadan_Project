@@ -1,0 +1,94 @@
+<div{{attributes}}>
+	<div class="container_admin_newsletter_contact">
+		<div class="container_admin_contact">
+			<h3>Demandes de reservation</h3>
+			{% set data = this.getDataRequests() %}
+			<div class="container_items_contact">
+				{% if data.getTotalItemCount == 0 %}
+					<div class="container_table">
+						<div class="table">
+							<table>
+								<tbody>
+									<tr class="no_data">
+										<td colspan="2">
+											<span>Aucun élément trouvé</span>
+											<div class="content">
+												<svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+													<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+												</svg>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				{% else %}
+
+					{% for item in data %}
+                    {% set today = date() %}
+						<div class="item_contact">
+                            {% if item.createdAt|date("Y-m-d") == today|date("Y-m-d") %}
+                                <div class="day_request">
+                                    <span>Aujourd'hui</span>
+                                </div>
+                            {% endif %}
+							<div class="header_item">
+								<div class="left">
+									<div class="item">
+										<strong>Noms :</strong>
+										<span>{{item.noms}}</span>
+									</div>
+									<div class="item">
+										<strong>Email :</strong>
+										<span>{{item.email}}</span>
+									</div>
+									<div class="item">
+										<strong>Nom de l'entreprise :</strong>
+										<span>{{item.factoryName}}</span>
+									</div>
+									<div class="item">
+										<strong>Adresse :</strong>
+										<span>{{item.adresse}}</span>
+									</div>
+									<div class="item">
+										<strong>Téléphone :</strong>
+										<span>{{item.telephone}}</span>
+									</div>
+								</div>
+								<div class="right">
+									<div class="item">
+										<strong>{{item.email}}</strong>
+									</div>
+									<div class="item">
+										<small>{{item.createdAt|date("d/m/Y")}}</small>
+									</div>
+								</div>
+							</div>
+							<div class="body_item">
+								<p>{{item.message|nl2br}}</p>
+							</div>
+                            <div class="give_response">
+                                <a href="">Envoyer un email</a>
+                                <a href="">Repondre sur whatsapp</a>
+                            </div>
+						</div>
+					{% endfor %}
+				{% endif %}
+			</div>
+			<div class="container_pagination">
+				<div class="navigation"></div>
+				<div class="input_select">
+					<select name="" id="" data-model="query_select_contact">
+						{% for item in range(10,100, 10) %}
+							<option value="{{item}}">{{item}}</option>
+						{% endfor %}
+					</select>
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>
+</div>

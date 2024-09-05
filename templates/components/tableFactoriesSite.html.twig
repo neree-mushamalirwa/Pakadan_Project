@@ -1,0 +1,20 @@
+<div{{attributes}}>
+	<div class="container_top_factories">
+		{% for item in this.getData() %}
+			<div class="top_factory">
+				<div class="header">
+					<div class="image">
+						<img src="/images/{{item.imageName[0]}}" alt="factory image">
+					</div>
+					<h3>{{item.name}}</h3>
+				</div>
+				<div class="description">
+					<p>{{item.description|nl2br}}</p>
+				</div>
+				<div class="btn_visit">
+					<a href="{{path('app_show_case' , {id: item.id , factory: item.name})}}">Vitrine</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
