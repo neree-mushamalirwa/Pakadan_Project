@@ -92,6 +92,12 @@ class Factory
     #[ORM\Column(length: 255)]
     private ?string $telephone = null;
 
+    /**
+     * @var Collection<int, Contact>
+     */
+    #[ORM\OneToMany(targetEntity: Contact::class, mappedBy: 'factory')]
+    private Collection $contacts;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -103,6 +109,7 @@ class Factory
         $this->products = new ArrayCollection();
         $this->productCategories = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
+        $this->contacts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -454,6 +461,36 @@ class Factory
     public function setTelephone(string $telephone): static
     {
         $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contact>
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): static
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts->add($contact);
+            $contact->setFactory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): static
+    {
+        if ($this->contacts->removeElement($contact)) {
+            // set the owning side to null (unless already changed)
+            if ($contact->getFactory() === $this) {
+                $contact->setFactory(null);
+            }
+        }
 
         return $this;
     }

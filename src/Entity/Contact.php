@@ -32,6 +32,9 @@ class Contact
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'contacts')]
+    private ?Factory $factory = null;
+
     public function __construct()
     {
         $this -> createdAt = new DateTimeImmutable();
@@ -110,6 +113,18 @@ class Contact
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getFactory(): ?Factory
+    {
+        return $this->factory;
+    }
+
+    public function setFactory(?Factory $factory): static
+    {
+        $this->factory = $factory;
 
         return $this;
     }

@@ -1816,7 +1816,7 @@ nav{
                     font-size: 1.2*$rem;
                     cursor: pointer;
 
-                    &:hover{
+                    &:hover , &.active{
                         background: var(--color_primary);
                         color: var(--color_white);
                         transition: 0.5s;

@@ -170,6 +170,23 @@ export default class extends Controller {
 
 
     var spinner = document.querySelector(".spinner");
+
+
+    var product_category = document.querySelectorAll(".product_category button");
+
+
+    if (product_category) {
+      product_category.forEach(element => {
+          element.addEventListener("click" , () => {
+            product_category.forEach(element => {
+              element.classList.remove("active")
+            });
+            element.classList.add("active")
+          })
+      });
+    }
+
+
     
 
 
