@@ -9,33 +9,33 @@
 			<div class="container_factory_detail_information">
 				<div class="content_factory_detail_information">
 					<h3>Informations sur l'entreprise</h3>
-				<div class="container_item">
-					<div class="item">
-						<strong>Nom de l'entreprise</strong>
-						<span>{{category.name}}</span>
+					<div class="container_item">
+						<div class="item">
+							<strong>Nom de l'entreprise</strong>
+							<span>{{category.name}}</span>
+						</div>
+						<div class="item">
+							<strong>Catégorie</strong>
+							<span>{{category.category.name}}</span>
+						</div>
+						<div class="item">
+							<strong>Sous-Catégorie</strong>
+							<span>{{category.categoryItem.name}}</span>
+						</div>
+						<div class="item">
+							<strong>Adresse</strong>
+							<span>{{category.adresse}}</span>
+						</div>
+						<div class="item factory_description">
+							<strong>Description</strong>
+							<span>{{category.description|nl2br}}</span>
+						</div>
 					</div>
-					<div class="item">
-						<strong>Catégorie</strong>
-						<span>{{category.category.name}}</span>
+					<div class="container_image">
+						<div class="image">
+							<img src="/images/{{category.imageName[0]}}" alt="">
+						</div>
 					</div>
-					<div class="item">
-						<strong>Sous-Catégorie</strong>
-						<span>{{category.categoryItem.name}}</span>
-					</div>
-					<div class="item">
-						<strong>Adresse</strong>
-						<span>{{category.adresse}}</span>
-					</div>
-					<div class="item factory_description">
-						<strong>Description</strong>
-						<span>{{category.description|nl2br}}</span>
-					</div>
-				</div>
-				<div class="container_image">
-					<div class="image">
-						<img src="/images/{{category.imageName[0]}}" alt="">
-					</div>
-				</div>
 				</div>
 			</div>
 

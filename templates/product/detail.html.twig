@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vitrine | Produit | Detail
+{% endblock %}
+
+{% block body %}
+	{% if product %}
+		<div class="container_admin_factory_detail">
+			<div class="container_factory_detail_information">
+				<div class="content_factory_detail_information">
+					<h3>Informations sur le produit</h3>
+					<div class="container_item">
+						<div class="item">
+							<strong>Produit</strong>
+							<span>{{product.name}}</span>
+						</div>
+						<div class="item">
+							<strong>Catégorie</strong>
+							<span>{{product.category.name}}</span>
+						</div>
+						<div class="item">
+							<strong>Devise</strong>
+							<span>{{product.devise}}</span>
+						</div>
+						<div class="item">
+							<strong>Prix</strong>
+							<span>{{product.price}}</span>
+						</div>
+						<div class="item">
+							<strong>Entreprise</strong>
+							<span>{{product.factory.name}}</span>
+						</div>
+					</div>
+					<div class="container_image">
+						<div class="image">
+							<img src="/images/{{product.imageName[0]}}" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container_factory_right_part">
+				<div class="container_new_item container_new_item_detail">
+					<h3>Modifier les informations</h3>
+					<div class="container_form">
+						{{ form_start(form, {'method': 'POST' , 'enctype': 'multipart/form-data'}) }}
+						{{ form_widget(form) }}
+
+						<div {{svelte_component("Edit" , {file: files|json_encode } )}}></div>
+						
+						<div class="input_submit">
+							<button type="submit">Modifier</button>
+						</div>
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

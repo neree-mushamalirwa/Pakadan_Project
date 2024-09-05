@@ -1,6 +1,12 @@
+<div class="overlay_app_mobile"></div>
 <div class="navigation_admin">
 	<div class="top_nav_bar_admin">
 		<div class="left bar_admin">
+			<svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"/>
+			</svg>
+		</div>
+		<div class="left bar_admin_mobile">
 			<svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"/>
 			</svg>
@@ -15,7 +21,7 @@
 			<div class="profile" x-show="open" style="display:none;" @click.outside="open= false">
 				<strong>Ripley Ellen</strong>
 				<div class="links">
-					<a href="">
+					<a href="{{path('app_admin_parameter')}}">
 						<div class="item">
 							<svg width="25px" height"25px" viewbox="0 0 24 24" data-title="AccountOutline" fill="currentColor" stroke="none" data-test-id="icon" class="fill-current shrink-0 text-current w-sz-24 h-sz-24" data-spark-component="icon" aria-hidden="true" focusable="false">
 								<path fill-rule="evenodd" d="m12,4.19c-1.6,0-2.93,1.26-2.93,2.84s1.33,2.84,2.93,2.84,2.93-1.26,2.93-2.84-1.33-2.84-2.93-2.84Zm-5.23,2.84c0-2.77,2.32-5.03,5.23-5.03s5.23,2.27,5.23,5.03-2.32,5.03-5.23,5.03-5.23-2.27-5.23-5.03Zm5.23,8.54c-1.85,0-3.63.71-4.95,1.98-1.01.97-1.68,2.21-1.94,3.55-.12.6-.72.99-1.34.88-.63-.11-1.04-.68-.92-1.28.34-1.76,1.23-3.4,2.56-4.69,1.74-1.68,4.11-2.63,6.59-2.63s4.84.95,6.59,2.63c1.34,1.29,2.22,2.93,2.56,4.69.12.6-.3,1.17-.92,1.28-.63.11-1.23-.28-1.34-.88-.26-1.34-.93-2.58-1.94-3.55-1.31-1.27-3.09-1.98-4.95-1.98Z"></path>
@@ -60,6 +66,19 @@
 
 		<div class="container_sub_item">
 			<div class="items_sub_item">
+				{% set currentHome = "" %}
+				{% if app.request.get("_route") == "app_admin_home" %}
+					{% set currentHome = "currentLink" %}
+				{% endif %}
+
+				<a href="{{path('app_admin_home')}}">
+					<div class="item_link {{currentHome}}">
+						<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
+						</svg>
+						<span>Accueil</span>
+					</div>
+				</a>
 				<div class="item_parent" x-data="{open:false}">
 					<div class="header_item_parent" @click="open= !open">
 						<div class="left">
@@ -422,8 +441,12 @@
 					</div>
 				</div>
 				{% set currentLinkNewsLetter = "" %}
+				{% set currentLinkParam = "" %}
 				{% if app.request.get("_route") == "app_admin_news_letter" %}
 					{% set currentLinkNewsLetter = "currentLink" %}
+				{% endif %}
+				{% if app.request.get("_route") == "app_admin_parameter" %}
+					{% set currentLinkParam = "currentLink" %}
 				{% endif %}
 				<a href="{{path('app_admin_news_letter')}}">
 					<div class="item_link {{currentLinkNewsLetter}}">
@@ -446,31 +469,23 @@
 						<span>Gestion newsletter</span>
 					</div>
 				</a>
-				<a href="{{path('app_admin_news_letter')}}">
-					<div class="item_link">
+				{% set currentLinkRequests = "" %}
+				{% if app.request.get("_route") == "app_admin_requests" %}
+					{% set currentLinkRequests = "currentLink" %}
+				{% endif %}
+				<a href="{{path('app_admin_requests')}}">
+					<div class="item_link {{currentLinkRequests}}">
 						<svg width="20px" height"20px" viewbox="0 0 24 24" data-title="AccountOutline" fill="currentColor" stroke="none" data-test-id="icon" class="fill-current shrink-0 text-current w-sz-24 h-sz-24" data-spark-component="icon" aria-hidden="true" focusable="false">
 							<path fill-rule="evenodd" d="m12,4.19c-1.6,0-2.93,1.26-2.93,2.84s1.33,2.84,2.93,2.84,2.93-1.26,2.93-2.84-1.33-2.84-2.93-2.84Zm-5.23,2.84c0-2.77,2.32-5.03,5.23-5.03s5.23,2.27,5.23,5.03-2.32,5.03-5.23,5.03-5.23-2.27-5.23-5.03Zm5.23,8.54c-1.85,0-3.63.71-4.95,1.98-1.01.97-1.68,2.21-1.94,3.55-.12.6-.72.99-1.34.88-.63-.11-1.04-.68-.92-1.28.34-1.76,1.23-3.4,2.56-4.69,1.74-1.68,4.11-2.63,6.59-2.63s4.84.95,6.59,2.63c1.34,1.29,2.22,2.93,2.56,4.69.12.6-.3,1.17-.92,1.28-.63.11-1.23-.28-1.34-.88-.26-1.34-.93-2.58-1.94-3.55-1.31-1.27-3.09-1.98-4.95-1.98Z"></path>
 						</svg>
-						<span>Gestion utilisateurs</span>
+						<span>Gestion demandes</span>
 					</div>
 				</a>
-				<a href="{{path('app_admin_news_letter')}}">
-					<div class="item_link">
-						<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" version="1.1" id="Layer_1" viewbox="0 0 166.781 166.781" xml:space="preserve">
-							<g>
-								<g>
-									<g>
-										<path d="M163.451,70.046l-32.35-20.847c-0.253-0.161-0.532-0.222-0.804-0.312v-7.19c0-1.92-1.554-3.475-3.475-3.475H113.92     L86.97,21.378c-1.126-0.706-2.558-0.706-3.685,0l-26.95,16.844H39.958c-1.92,0-3.475,1.554-3.475,3.475v7.188     c-0.272,0.09-0.552,0.152-0.804,0.314L3.329,70.046c-0.991,0.641-1.592,1.741-1.592,2.921v90.339c0,1.92,1.554,3.475,3.475,3.475     h156.356c1.92,0,3.475-1.554,3.475-3.475V72.968C165.043,71.787,164.442,70.688,163.451,70.046z M85.128,28.423l15.681,9.799     H69.447L85.128,28.423z M43.433,45.171h79.915v78.178c0,0.01,0.006,0.018,0.006,0.029l-11.754,7.137l-28.284-15.427     c-1.055-0.57-2.338-0.567-3.386,0.034l-25.81,14.749l-10.692-6.492c0-0.01,0.006-0.018,0.006-0.028L43.433,45.171z M8.687,74.861     l27.796-17.91v62.212L8.687,102.285V74.861z M8.687,110.412l38.537,23.397L8.687,155.831V110.412z M15.689,159.833l66.005-37.715     l69.145,37.715H15.689z M158.094,155.874L118.65,134.36l39.444-23.949V155.874z M158.094,102.285l-27.797,16.877V56.951     l27.797,17.911V102.285z"/>
-										<path d="M57.331,79.917h41.695c1.92,0,3.475-1.554,3.475-3.475V55.595c0-1.92-1.554-3.475-3.475-3.475H57.331     c-1.92,0-3.475,1.554-3.475,3.475v20.847C53.856,78.363,55.411,79.917,57.331,79.917z M60.805,59.069h34.746v13.898H60.805     V59.069z"/>
-										<rect x="53.856" y="86.866" width="55.593" height="6.949"/>
-										<rect x="53.856" y="100.765" width="55.593" height="6.949"/>
-										<path d="M147.67,41.697c0.889,0,1.778-0.339,2.457-1.018l12.283-12.283c1.357-1.357,1.357-3.556,0-4.913     c-1.357-1.358-3.556-1.357-4.913,0l-12.283,12.283c-1.357,1.357-1.357,3.556,0,4.913     C145.892,41.358,146.781,41.697,147.67,41.697z"/>
-										<path d="M16.654,40.679c0.679,0.679,1.568,1.018,2.457,1.018c0.889,0,1.778-0.339,2.457-1.018c1.357-1.357,1.357-3.556,0-4.913     L9.284,23.483c-1.357-1.357-3.556-1.357-4.913,0c-1.357,1.357-1.357,3.556,0,4.913L16.654,40.679z"/>
-										<path d="M118.584,24.076c0.421,0.17,0.859,0.247,1.289,0.247c1.378,0,2.684-0.825,3.227-2.185l6.949-17.373     c0.713-1.781-0.156-3.804-1.937-4.516c-1.764-0.709-3.804,0.149-4.516,1.937l-6.949,17.373     C115.934,21.341,116.802,23.364,118.584,24.076z"/>
-										<path d="M47.155,22.139c0.543,1.361,1.849,2.185,3.227,2.185c0.431,0,0.869-0.078,1.289-0.248     c1.781-0.713,2.65-2.735,1.937-4.516L46.659,2.187c-0.713-1.788-2.748-2.647-4.516-1.937c-1.781,0.713-2.65,2.735-1.937,4.516     L47.155,22.139z"/>
-									</g>
-								</g>
-							</g>
+				<a href="{{path('app_admin_parameter')}}">
+					<div class="item_link param {{currentLinkParam}}">
+						<svg width="20px" height"20px" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"/>
+							<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
 						</svg>
 						<span>Paramètres</span>
 					</div>
@@ -598,7 +613,7 @@
 										<span>Catégories</span>
 									</div>
 								</a>
-								<a href="" {% set linkDetailPurchase = "" %} {% if app.request.get("_route") == "app_purchases_detail" %} {% set linkDetailPurchase = "currentLink" %} {% endif %}>
+								<a href="{{path('app_admin_product')}}" {% set linkDetailPurchase = "" %} {% if app.request.get("_route") == "app_admin_product" %} {% set linkDetailPurchase = "currentLink" %} {% endif %}>
 									<div class="item_link {{linkDetailPurchase}}">
 										<svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="15px" height="15px" viewbox="0 0 52 52" data-name="Layer 1">
 											<g>

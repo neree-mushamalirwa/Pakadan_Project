@@ -39,7 +39,7 @@ class ProductType extends AbstractType
                     new Assert\NotBlank()
                 ]
             ])
-            ->add('price', MoneyType::class, [
+            ->add('price', TextType::class, [
                 "attr" => [
                     "class" => "input",
                     "placeholder" => "Saisir le prix du produit",

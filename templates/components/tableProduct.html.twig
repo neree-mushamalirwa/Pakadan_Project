@@ -1,0 +1,206 @@
+<div {{attributes}}>
+	{% if id %}
+		{{component("Overlay")}}
+		{{component("ModalDelete" , {id: id})}}
+	{% endif %}
+
+	<div class="container_admin_factories">
+		<div class="container_table">
+			<div class="header_table">
+				<div class="input">
+					<input type="text" name="" id="" data-model="query" placeholder="Tapez pour rechercher">
+					{% if query %}
+						<svg data-loading="model(query)|show" class="spinner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" version="1.1" id="Capa_1" width="25px" height="25px" viewbox="0 0 466.172 466.172" xml:space="preserve">
+							<g>
+								<path d="M270.738,233.086c0,20.799-16.854,37.652-37.652,37.652c-20.798,0-37.652-16.854-37.652-37.652   c0-20.798,16.854-37.652,37.652-37.652C253.885,195.434,270.738,212.288,270.738,233.086z M358.475,36.337l-17.691-10.16   L265.24,157.064l17.69,10.16L358.475,36.337z M309.107,200.932l130.887-75.544l-10.16-17.69l-130.887,75.543L309.107,200.932z    M315.084,222.926v20.439h151.088v-20.439H315.084z M298.947,282.931l130.887,75.544l10.16-17.691L309.107,265.24L298.947,282.931z    M265.24,309.107l75.543,130.887l17.691-10.16l-75.544-130.887L265.24,309.107z M222.926,466.172h20.439V315.084h-20.439V466.172z    M107.698,429.834l17.69,10.16l75.544-130.887l-17.691-10.16L107.698,429.834z M156.944,265.24L26.177,340.783l10.16,17.691   l130.887-75.544L156.944,265.24z M151.087,222.926H0v20.439h151.087V222.926z M167.224,183.241L36.337,107.698l-10.16,17.69   l130.887,75.544L167.224,183.241z M200.932,156.944L125.388,26.177l-17.69,10.16l75.543,130.887L200.932,156.944z M243.246,0   h-20.44v151.087h20.44V0z"/>
+							</g>
+						</svg>
+					{% else %}
+						<svg data-loading="model(query)|hide" width="16px" height="16px" viewbox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
+							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-293.000000, -23.000000)">
+								<g fill="#4D4D4D">
+									<g transform="translate(293.000000, 22.000000)">
+										<path d="M11.355485,11.4503883 L16.0066609,16.1015642 L15.1015642,17.0066609 L10.4503883,12.355485 C9.34711116,13.2583262 7.93681293,13.8 6.4,13.8 C2.8653776,13.8 0,10.9346224 0,7.4 C0,3.8653776 2.8653776,1 6.4,1 C9.9346224,1 12.8,3.8653776 12.8,7.4 C12.8,8.93681293 12.2583262,10.3471112 11.355485,11.4503883 Z M6.4,12.52 C9.22769792,12.52 11.52,10.2276979 11.52,7.4 C11.52,4.57230208 9.22769792,2.28 6.4,2.28 C3.57230208,2.28 1.28,4.57230208 1.28,7.4 C1.28,10.2276979 3.57230208,12.52 6.4,12.52 Z"></path>
+									</g>
+								</g>
+							</g>
+						</svg>
+					{% endif %}
+				</div>
+				<div class="add_product">
+					<a href="{{path('app_admin_product_new')}}">Ajouter un produit
+					</a>
+				</div>
+			</div>
+			<div class="table">
+				{% set data = this.filteredData %}
+				<table>
+					<thead>
+						<th>N°</th>
+						<th>Produit</th>
+						<th>Catégorie</th>
+						<th>Devise</th>
+						<th>Prix</th>
+						<th>Actions</th>
+					</thead>
+					<tbody>
+						{% if data.getTotalItemCount == 0 %}
+							<tr class="no_data">
+								<td colspan="6">
+									<span>Aucun élément trouvé</span>
+									<div class="content">
+										<svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+										</svg>
+									</div>
+								</td>
+							</tr>
+						{% else %}
+							{% for key,item in data %}
+								<tr>
+									<td>{{key + 1}}</td>
+									<td>{{item.name}}</td>
+									<td>{{item.category.name}}</td>
+									<td>{{item.devise}}</td>
+									<td>{{item.price}}</td>
+									<td>
+										<div class="icone_links" x-data="{open:false}">
+											<div class="icone">
+												<svg @click="open= !open" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" version="1.1" id="Capa_1" width="25px" height="25px" viewbox="0 0 349.899 349.898" xml:space="preserve">
+													<g>
+														<g>
+															<path d="M175.522,12.235c-42.6,0-77.256,34.649-77.256,77.25c0,42.6,34.656,77.255,77.256,77.255    c42.591,0,77.257-34.656,77.257-77.255C252.779,46.895,218.113,12.235,175.522,12.235z"/>
+															<path d="M77.255,337.663c42.599,0,77.255-34.641,77.255-77.251c0-42.594-34.656-77.25-77.255-77.25    C34.653,183.162,0,217.818,0,260.412C0,303.012,34.653,337.663,77.255,337.663z"/>
+															<path d="M272.648,183.151c-42.603,0-77.256,34.65-77.256,77.256c0,42.604,34.653,77.25,77.256,77.25    c42.6,0,77.251-34.646,77.251-77.25C349.909,217.818,315.248,183.151,272.648,183.151z"/>
+														</g>
+													</g>
+												</svg>
+											</div>
+											<div class="links" x-show="open" style="display:none;" @click.outside="open=false">
+												<a href="{{path('app_admin_product_detail' , {id: item.id})}}" class="update">
+													<div class="item">
+														<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" width="10px" height="10px" viewbox="0 0 16 16" version="1.1" id="svg3049">
+
+															<metadata id="metadata3054">
+
+																<rdf:RDF>
+
+																	<cc:Work>
+
+																		<dc:format>image/svg+xml</dc:format>
+
+																		<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+
+																		<dc:title/>
+
+																		<dc:date>2021</dc:date>
+
+																		<dc:creator>
+
+																			<cc:Agent>
+
+																				<dc:title>Timothée Giet</dc:title>
+
+																			</cc:Agent>
+
+																		</dc:creator>
+
+																		<cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/4.0/"/>
+
+																	</cc:Work>
+
+																	<cc:License rdf:about="http://creativecommons.org/licenses/by-sa/4.0/">
+
+																		<cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+
+																		<cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+
+																		<cc:requires rdf:resource="http://creativecommons.org/ns#Notice"/>
+
+																		<cc:requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
+
+																		<cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+
+																		<cc:requires rdf:resource="http://creativecommons.org/ns#ShareAlike"/>
+
+																	</cc:License>
+
+																</rdf:RDF>
+
+															</metadata>
+
+															<g transform="translate(-421.714 -531.79)" id="layer1">
+
+																<path id="rect4094" d="M422.714 532.79v6h6v-6zm1 1h4v4h-4z" style="fill:#373737;fill-opacity:1;stroke:none;stroke-width:.87499952"/>
+
+																<rect transform="scale(1 -1)" style="fill:#373737;fill-opacity:1;stroke:none;stroke-width:.87499952" id="rect4098" width="5.9999957" height="5.9999704" x="422.71429" y="-546.79071"/>
+
+																<rect y="533.79071" x="430.71429" height="1.0000296" width="5.9999957" id="rect4163" style="fill:#373737;fill-opacity:1;stroke:none;stroke-width:.87499952"/>
+
+																<rect y="541.79071" x="430.71429" height="1.0000296" width="3.9999955" id="rect4165" style="fill:#373737;fill-opacity:1;stroke:none;stroke-width:.87499952"/>
+
+																<rect y="544.79071" x="430.71429" height="0.99999994" width="3.9999955" id="rect4167" style="fill:#373737;fill-opacity:1;stroke:none;stroke-width:.87499952"/>
+
+																<rect y="536.79071" x="430.71429" height="1.0000296" width="5.9999957" id="rect4169" style="fill:#373737;fill-opacity:1;stroke:none;stroke-width:.87499952"/>
+
+															</g>
+
+														</svg>
+														<span>Detail</span>
+													</div>
+												</a>
+												<a href="{{path('app_admin_product_edit' , {id: item.id})}}" class="update">
+													<div class="item">
+														<svg xmlns="http://www.w3.org/2000/svg" width="10px" height="10px" viewbox="0 0 24 24" id="Layer_1" data-name="Layer 1">
+															<defs>
+																<style>
+																	.cls-1 {
+																		fill: none;
+																		stroke: #020202;
+																		stroke-miterlimit: 10;
+																		stroke-width: 1.91px;
+																	}
+																</style>
+															</defs><polyline class="cls-1" points="20.59 12 20.59 22.5 1.5 22.5 1.5 3.41 12.96 3.41"/><path class="cls-1" d="M12,15.82l-4.77.95L8.18,12l9.71-9.71A2.69,2.69,0,0,1,19.8,1.5h0a2.7,2.7,0,0,1,2.7,2.7h0a2.69,2.69,0,0,1-.79,1.91Z"/></svg>
+														<span>Modifier</span>
+													</div>
+												</a>
+												<button class="delete" data-action="live#action" data-live-action-param="setDelete" data-live-id-param="{{item.id}}" data-live-key="{{key}}">
+													<div class="item">
+														<svg width="10px" height="10px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+															<path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/>
+														</svg>
+														<span>Supprimer</span>
+														<svg data-loading="action(setDelete)|show" data-key="{{key}}" class="spinner_action" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" version="1.1" id="Capa_1" width="20px" height="20px" viewbox="0 0 466.172 466.172" xml:space="preserve">
+															<g>
+																<path d="M270.738,233.086c0,20.799-16.854,37.652-37.652,37.652c-20.798,0-37.652-16.854-37.652-37.652   c0-20.798,16.854-37.652,37.652-37.652C253.885,195.434,270.738,212.288,270.738,233.086z M358.475,36.337l-17.691-10.16   L265.24,157.064l17.69,10.16L358.475,36.337z M309.107,200.932l130.887-75.544l-10.16-17.69l-130.887,75.543L309.107,200.932z    M315.084,222.926v20.439h151.088v-20.439H315.084z M298.947,282.931l130.887,75.544l10.16-17.691L309.107,265.24L298.947,282.931z    M265.24,309.107l75.543,130.887l17.691-10.16l-75.544-130.887L265.24,309.107z M222.926,466.172h20.439V315.084h-20.439V466.172z    M107.698,429.834l17.69,10.16l75.544-130.887l-17.691-10.16L107.698,429.834z M156.944,265.24L26.177,340.783l10.16,17.691   l130.887-75.544L156.944,265.24z M151.087,222.926H0v20.439h151.087V222.926z M167.224,183.241L36.337,107.698l-10.16,17.69   l130.887,75.544L167.224,183.241z M200.932,156.944L125.388,26.177l-17.69,10.16l75.543,130.887L200.932,156.944z M243.246,0   h-20.44v151.087h20.44V0z"/>
+															</g>
+														</svg>
+													</div>
+												</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+							{% endfor %}
+
+						{% endif %}
+
+					</tbody>
+				</table>
+			</div>
+			<div class="container_pagination">
+				<div class="navigation"></div>
+				<div class="input_select">
+					<select name="" id="" data-model="query_select">
+						{% for item in range(10,100, 10) %}
+							<option value="{{item}}">{{item}}</option>
+						{% endfor %}
+					</select>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>

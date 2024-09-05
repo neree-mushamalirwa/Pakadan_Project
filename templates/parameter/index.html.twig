@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pakadan | Admin | Parameter
+{% endblock %}
+
+{% block body %}
+	{% if user %}
+		<div class="container_admin_factory_detail">
+			<div class="container_factory_right_part">
+				<div class="container_new_item container_new_item_detail">
+					<h3>Modifier les informations de l'utilisateur</h3>
+					<div class="container_form">
+						{{ form_start(form_user, {'method': 'POST' , 'enctype': 'multipart/form-data'}) }}
+						{{ form_widget(form_user) }}
+
+						<div class="input_submit">
+							<button type="submit">Modifier</button>
+						</div>
+						{{ form_end(form_user) }}
+					</div>
+				</div>
+			</div>
+			<div class="container_factory_right_part">
+				<div class="container_new_item container_new_item_detail">
+					<h3>Modifier les informations de l'entreprise</h3>
+					<div class="container_form">
+						{{ form_start(form, {'method': 'POST' , 'enctype': 'multipart/form-data'}) }}
+						{{ form_widget(form) }}
+
+						<div {{svelte_component("Edit" , {file: files|json_encode } )}}></div>
+
+						<div class="input_submit">
+							<button type="submit">Modifier</button>
+						</div>
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container_new_item container_new_item_detail">
+			<h3>Modifier le mot de passe</h3>
+			<div class="container_form">
+				{{ form_start(form_pass, {'method': 'POST' , 'enctype': 'multipart/form-data'}) }}
+				{{ form_widget(form_pass) }}
+
+				<div class="input_submit">
+					<button type="submit">Modifier</button>
+				</div>
+				{{ form_end(form_pass) }}
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

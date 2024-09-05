@@ -137,15 +137,33 @@ export default class extends Controller {
 
 
     var bar_admin = document.querySelector(".bar_admin");
+    var bar_admin_mobile = document.querySelector(".bar_admin_mobile");
+    var overlay_app_mobile = document.querySelector(".overlay_app_mobile");
+
+
     var left_nav_bar_admin = document.querySelector(".left_nav_bar_admin");
     var top_nav_bar_admin = document.querySelector(".top_nav_bar_admin");
     var body = document.querySelector("body");
+
     if (bar_admin) {
       bar_admin.addEventListener("click" , ()=>{
         left_nav_bar_admin.classList.toggle("hide")
         top_nav_bar_admin.classList.toggle("hide")
         body.classList.toggle("hide")
         body.classList.add("add_transition")
+      })
+    }
+
+    if (bar_admin_mobile) {
+      bar_admin_mobile.addEventListener("click" , ()=>{
+        left_nav_bar_admin.classList.toggle("show_bar")
+        overlay_app_mobile.classList.toggle("active")
+      })
+    }
+    if (overlay_app_mobile) {
+      overlay_app_mobile.addEventListener("click" , ()=>{
+        left_nav_bar_admin.classList.toggle("show_bar")
+        overlay_app_mobile.classList.toggle("active")
       })
     }
 
