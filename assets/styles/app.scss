@@ -2329,6 +2329,88 @@ form{
     }
 }
 
+.container_account{
+    width: 80%;
+    margin: auto;
+    .container_create_account{
+        padding: 4*$rem 0rem 0rem;
+        h3{
+            font-size: 3.5*$rem;
+            text-align: center;
+            padding: 2*$rem 0rem;
+            font-weight: 800;
+            color: var(--color_primary);
+        }
+
+        form{
+            width: 100%;
+
+            .input{
+                    width: 100%;
+                    
+                    input{
+                        padding: $rem 5*$rem $rem $rem;
+                        width: 100%;
+                        @include border_radius($rem);
+                        overflow: hidden;
+                        border: 1px solid var(--color_secondary_opacity);
+                        font-size: 1.6*$rem;
+                        outline: none;
+                        margin: $rem 0rem;
+    
+                        &.active{
+                            border: 1px solid var(--color_primary);
+                        }
+    
+                    }
+                   .input_icone{
+                    position: relative;
+                        svg{
+                            position: absolute;
+                            top: 50%;
+                            right: $rem;
+                            @include transform_translate_center(50%, 50%)
+                        }
+                   }
+            }
+            .input_submit{
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+                padding: $rem 0rem 4*$rem;
+                button{
+                    padding: 0.8*$rem;
+                    border: none;
+                    background: var(--color_secondary);
+                    font-size: 1.5*$rem;
+                    @include border_radius($rem);
+                    color: var(--color_white);
+                    cursor: pointer;
+                }
+            }
+        }
+        .create_account{
+            padding: $rem 0rem 4*$rem;
+            a{
+                color: var(--color_primary);
+                font-weight: 600;
+                transition: 0.3s;
+
+                &:hover{
+                    color: var(--color_primary_overed);
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+    
+}
+.container_connect_customer{
+    max-width: 50*$rem;
+    width: 90%;
+    margin: auto;
+}
+
 // Styles for Administration page
 
 .navigation_admin{
