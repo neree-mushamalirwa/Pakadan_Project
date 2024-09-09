@@ -3,7 +3,9 @@
 		<div class="container_navigation_bar">
 			<div class="navigation_bar">
 				<div class="logo">
-					<a href="{{path('app_home')}}"><h3>Pakadan</h3></a>
+					<a href="{{path('app_home')}}">
+						<h3>Pakadan</h3>
+					</a>
 				</div>
 				<a href="" class="publish_service">
 					<div class="post_products">
@@ -42,16 +44,57 @@
 							<span>Favoris</span>
 						</div>
 					</a>
-					<a href="" class="link_annexe login">
-						<div class="item_annexe">
-							<svg width="25px" height"25px" viewbox="0 0 24 24" data-title="AccountOutline" fill="currentColor" stroke="none" data-test-id="icon" class="fill-current shrink-0 text-current w-sz-24 h-sz-24" data-spark-component="icon" aria-hidden="true" focusable="false">
-								<path fill-rule="evenodd" d="m12,4.19c-1.6,0-2.93,1.26-2.93,2.84s1.33,2.84,2.93,2.84,2.93-1.26,2.93-2.84-1.33-2.84-2.93-2.84Zm-5.23,2.84c0-2.77,2.32-5.03,5.23-5.03s5.23,2.27,5.23,5.03-2.32,5.03-5.23,5.03-5.23-2.27-5.23-5.03Zm5.23,8.54c-1.85,0-3.63.71-4.95,1.98-1.01.97-1.68,2.21-1.94,3.55-.12.6-.72.99-1.34.88-.63-.11-1.04-.68-.92-1.28.34-1.76,1.23-3.4,2.56-4.69,1.74-1.68,4.11-2.63,6.59-2.63s4.84.95,6.59,2.63c1.34,1.29,2.22,2.93,2.56,4.69.12.6-.3,1.17-.92,1.28-.63.11-1.23-.28-1.34-.88-.26-1.34-.93-2.58-1.94-3.55-1.31-1.27-3.09-1.98-4.95-1.98Z"></path>
-							</svg>
-							<span class="connect">
-								<span>Se</span>
-								connecter</span>
+					{% if app.user %}
+						<div class="item_annexe item_annexe_user_connect" x-data="{open:false}">
+							<h2 @click="open= !open">
+								{% if app.user %}
+									{% if app.user.noms %}
+										{% if app.user.noms|split(" ")|length > 1 %}
+											{{app.user.noms|split(" ")[0]|split("")[0]}}
+											{{app.user.noms|split(" ")[1]|split("")[0]}}
+										{% else %}
+											{{app.user.noms|split(" ")[0]|split("")[0]}}
+										{% endif %}
+									{% endif %}
+									{% else %}
+
+								{% endif %}
+							</h2>
+							<div class="connect_links" x-show="open" style="display:none;" @click.outside="open=false">
+								<div class="links">
+									<a href="{{path('app_home')}}">
+										<div class="item">
+											<svg width="25px" height"25px" viewbox="0 0 24 24" data-title="AccountOutline" fill="currentColor" stroke="none" data-test-id="icon" class="fill-current shrink-0 text-current w-sz-24 h-sz-24" data-spark-component="icon" aria-hidden="true" focusable="false">
+												<path fill-rule="evenodd" d="m12,4.19c-1.6,0-2.93,1.26-2.93,2.84s1.33,2.84,2.93,2.84,2.93-1.26,2.93-2.84-1.33-2.84-2.93-2.84Zm-5.23,2.84c0-2.77,2.32-5.03,5.23-5.03s5.23,2.27,5.23,5.03-2.32,5.03-5.23,5.03-5.23-2.27-5.23-5.03Zm5.23,8.54c-1.85,0-3.63.71-4.95,1.98-1.01.97-1.68,2.21-1.94,3.55-.12.6-.72.99-1.34.88-.63-.11-1.04-.68-.92-1.28.34-1.76,1.23-3.4,2.56-4.69,1.74-1.68,4.11-2.63,6.59-2.63s4.84.95,6.59,2.63c1.34,1.29,2.22,2.93,2.56,4.69.12.6-.3,1.17-.92,1.28-.63.11-1.23-.28-1.34-.88-.26-1.34-.93-2.58-1.94-3.55-1.31-1.27-3.09-1.98-4.95-1.98Z"></path>
+											</svg>
+											<span>Mon compte</span>
+										</div>
+									</a>
+									<a href="{{path('app_out')}}" data-turbo="false">
+										<div class="item">
+											<svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+												<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"></path>
+											</svg>
+											<span>Se déconnecter</span>
+										</div>
+									</a>
+								</div>
+							</div>
 						</div>
-					</a>
+					{% else %}
+						<a href="{{path('app_login_customer')}}" class="link_annexe login">
+							<div class="item_annexe">
+								<svg width="25px" height"25px" viewbox="0 0 24 24" data-title="AccountOutline" fill="currentColor" stroke="none" data-test-id="icon" class="fill-current shrink-0 text-current w-sz-24 h-sz-24" data-spark-component="icon" aria-hidden="true" focusable="false">
+									<path fill-rule="evenodd" d="m12,4.19c-1.6,0-2.93,1.26-2.93,2.84s1.33,2.84,2.93,2.84,2.93-1.26,2.93-2.84-1.33-2.84-2.93-2.84Zm-5.23,2.84c0-2.77,2.32-5.03,5.23-5.03s5.23,2.27,5.23,5.03-2.32,5.03-5.23,5.03-5.23-2.27-5.23-5.03Zm5.23,8.54c-1.85,0-3.63.71-4.95,1.98-1.01.97-1.68,2.21-1.94,3.55-.12.6-.72.99-1.34.88-.63-.11-1.04-.68-.92-1.28.34-1.76,1.23-3.4,2.56-4.69,1.74-1.68,4.11-2.63,6.59-2.63s4.84.95,6.59,2.63c1.34,1.29,2.22,2.93,2.56,4.69.12.6-.3,1.17-.92,1.28-.63.11-1.23-.28-1.34-.88-.26-1.34-.93-2.58-1.94-3.55-1.31-1.27-3.09-1.98-4.95-1.98Z"></path>
+								</svg>
+								<span class="connect">
+									<span>Se</span>
+									connecter</span>
+							</div>
+						</a>
+					{% endif %}
+
+
 				</div>
 			</div>
 			<div class="sub_navigation_bar">
@@ -64,17 +107,17 @@
 
 						</button>
 						{# {% set table = [
-							{"factory":"Entreprises","url":path('app_category')},
-							{"factory":"Asbl","url":path('app_category')},
-							{"factory":"Sociétés","url":path('app_category')},
-							{"factory":"Boutiques","url":path('app_category')},
-							{"factory":"Magasins","url":path('app_category')},
-							{"factory":"Hôtels","url":path('app_category')},
-							{"factory":"Alimentations","url":path('app_category')},
-							{"factory":"Restaurants","url":path('app_category')},
-							{"factory":"Supermarchés","url":path('app_category')},
-							{"factory":"Autres","url":path('app_category')},
-						] %} #}
+																			{"factory":"Entreprises","url":path('app_category')},
+																			{"factory":"Asbl","url":path('app_category')},
+																			{"factory":"Sociétés","url":path('app_category')},
+																			{"factory":"Boutiques","url":path('app_category')},
+																			{"factory":"Magasins","url":path('app_category')},
+																			{"factory":"Hôtels","url":path('app_category')},
+																			{"factory":"Alimentations","url":path('app_category')},
+																			{"factory":"Restaurants","url":path('app_category')},
+																			{"factory":"Supermarchés","url":path('app_category')},
+																			{"factory":"Autres","url":path('app_category')},
+																		] %} #}
 						<div class="container_bottom_nav">
 							{% for item in categories %}
 								<a href="{{path('app_category' , {id: item.id})}}">
@@ -133,10 +176,11 @@
 			{% for item in categories %}
 
 				{% set items = [] %}
-    
+
 				{% for categoryItem in item.categoryItems %}
 					{% set items = items|merge([{
-						"name":categoryItem.name
+						"name":categoryItem.name,
+						"key":categoryItem.id
 					}]) %}
 				{% endfor %}
 
@@ -149,101 +193,101 @@
 						
 				 %}
 			{% endfor %}
-			<div {{svelte_component("Hello" , {category: table})}}></div>
+			<div {{svelte_component("Hello" , {category: table} )}}></div>
 			{# <div class="container_all_sub_items">
-						
-										<div class="container_sub_items container_sub_items_main">
-											<div class="sub_items">
-												<div class="item_title">
-													<span>Tendances</span>
-												</div>
-												<div class="container_items">
-													<ul>
-														<a href="">
-															<li>Meilleures ventes</li>
-														</a>
-														<a href="">
-															<li>Nouveautés</li>
-														</a>
-														<a href="">
-															<li>Nouveautés</li>
-														</a>
-														<a href="">
-															<li>Nouveautés</li>
-														</a>
-													</ul>
-												</div>
-											</div>
-						
-											<div class="sub_items">
-												<div class="item_title">
-													<span>Tendances & Services</span>
-												</div>
-												<div class="container_items">
-													<ul>
-														<ul>
-														<li class="special_list">
-															<button>
-																<span>Visibilité numérique</span>
-																<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-																	<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
-																</svg>
-															</button>
-						
-														</li>
-														<li class="special_list">
-															<button >
-																<span>Visibilité numérique</span>
-																<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-																	<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
-																</svg>
-															</button>
-						
-														</li>
-														<li class="special_list">
-															<button >
-																<span>Visibilité numérique</span>
-																<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-																	<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
-																</svg>
-															</button>
-														</li>
-													</ul>
-													</ul>
-												</div>
-											</div>
-										</div>
-						
-										<div class="container_sub_items container_sub_items_secondary">
-											<div class="sub_items">
-												<div class="item_title">
-													<svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-														<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/>
-													</svg>
-													<span>Tendances secondary</span>
-												</div>
-												<div class="item_title">
-													<span>Tendances secondary</span>
-												</div>
-												<div class="container_items">
-													<ul>
-														<a href="">
-															<li>Meilleures ventes</li>
-														</a>
-														<a href="">
-															<li>Nouveautés</li>
-														</a>
-														<a href="">
-															<li>Nouveautés</li>
-														</a>
-														<a href="">
-															<li>Nouveautés</li>
-														</a>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div> #}
+												
+																<div class="container_sub_items container_sub_items_main">
+																	<div class="sub_items">
+																		<div class="item_title">
+																			<span>Tendances</span>
+																		</div>
+																		<div class="container_items">
+																			<ul>
+																				<a href="">
+																					<li>Meilleures ventes</li>
+																				</a>
+																				<a href="">
+																					<li>Nouveautés</li>
+																				</a>
+																				<a href="">
+																					<li>Nouveautés</li>
+																				</a>
+																				<a href="">
+																					<li>Nouveautés</li>
+																				</a>
+																			</ul>
+																		</div>
+																	</div>
+												
+																	<div class="sub_items">
+																		<div class="item_title">
+																			<span>Tendances & Services</span>
+																		</div>
+																		<div class="container_items">
+																			<ul>
+																				<ul>
+																				<li class="special_list">
+																					<button>
+																						<span>Visibilité numérique</span>
+																						<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+																							<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+																						</svg>
+																					</button>
+												
+																				</li>
+																				<li class="special_list">
+																					<button >
+																						<span>Visibilité numérique</span>
+																						<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+																							<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+																						</svg>
+																					</button>
+												
+																				</li>
+																				<li class="special_list">
+																					<button >
+																						<span>Visibilité numérique</span>
+																						<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+																							<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+																						</svg>
+																					</button>
+																				</li>
+																			</ul>
+																			</ul>
+																		</div>
+																	</div>
+																</div>
+												
+																<div class="container_sub_items container_sub_items_secondary">
+																	<div class="sub_items">
+																		<div class="item_title">
+																			<svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+																				<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/>
+																			</svg>
+																			<span>Tendances secondary</span>
+																		</div>
+																		<div class="item_title">
+																			<span>Tendances secondary</span>
+																		</div>
+																		<div class="container_items">
+																			<ul>
+																				<a href="">
+																					<li>Meilleures ventes</li>
+																				</a>
+																				<a href="">
+																					<li>Nouveautés</li>
+																				</a>
+																				<a href="">
+																					<li>Nouveautés</li>
+																				</a>
+																				<a href="">
+																					<li>Nouveautés</li>
+																				</a>
+																			</ul>
+																		</div>
+																	</div>
+																</div>
+															</div> #}
 
 		</div>
 	</div>

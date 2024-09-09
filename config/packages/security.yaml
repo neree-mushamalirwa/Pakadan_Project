@@ -24,6 +24,7 @@ security:
                 check_path: "app_connection"
             logout: 
                 path: "app_out"
+                target: "app_home"
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

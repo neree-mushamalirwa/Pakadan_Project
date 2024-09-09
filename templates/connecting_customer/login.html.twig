@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pakadan | Login{% endblock %}
+
+{% block body %}
+ <script>
+    var mode = "dark_mode";
+    if(localStorage.getItem("dark") == mode){
+        document.querySelector("body").classList.add("dark");
+    }
+</script>
+<div class="container_connection">
+        <div class="over_back"></div>
+    <div class="container_form_connection container_form_connection_customer">
+        <h3>Se connecter</h3>
+        {% if error %}
+				<div style="padding:10px; color:rgba(136, 0, 0, 0.938);" >{{ error.messageKey|trans(error.messageData , "security") }}</div>
+			{% endif %}
+        <form action="{{path('app_connection')}}" method="post">
+            <div class="input">
+                <label for="email">Email | Identifiant</label>
+                <div class="input_icone">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px"  height="20px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                    </svg>
+                    <input type="text" name="_username" id="username" placeholder="Saisir l'identifiant">
+                </div>
+            </div>
+            <div class="input">
+                <label for="password">Password</label>
+                <div class="input_icone">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px"  height="20px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                    </svg>
+                    <input type="password" name="_password" id="password" placeholder="Saisir le mot de passe">
+                </div>
+            </div>
+            <label class="remember_me_class">
+                <input type="checkbox" name="_remember_me" checked> Se souvenir de moi
+            </label>
+            <div class="input_submit">
+                <button type="submit">
+                    <span>Connexion</span>
+                </button>
+            </div>
+        </form>
+
+        <div class="create_account">
+            <span>Vous n'avez pas de compte ?</span> <a href="">Créer un compte</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

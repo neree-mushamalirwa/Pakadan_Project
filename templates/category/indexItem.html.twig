@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pakadan | {{categoryItem.name}}
+{% endblock %}
+
+{% block body %}
+	{% if categoryItem is not empty %}
+		<div class="container_categories">
+			<section class="main_section_category">
+				<div class="category">
+					<h1>{{categoryItem.name}}</h1>
+					<div class="description">
+						<p>{{categoryItem.description}}</p>
+					</div>
+					<div class="contact_us">
+						<a href="">Nous contacter</a>
+					</div>
+				</div>
+			</section>
+			{{component("factoriesItemsComponent",{categoryItem: categoryItem})}}
+		</div>
+	{% endif %}
+{% endblock %}

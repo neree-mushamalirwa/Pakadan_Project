@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoryItemRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\FactoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,6 +24,19 @@ class CategoryController extends AbstractController
             'controller_name' => 'CategoryController',
             'category' => $category,
             'categories' => $categories,
+            'factories' => $factories,
+        ]);
+    }
+    #[Route('/category/categoryItem/{id}', name: 'app_category_item')]
+    public function indexItem(int $id , CategoryItemRepository $categoryItemRepository ,FactoryRepository $factoryRepository): Response
+    {
+        $categoryItem = $categoryItemRepository -> findOneBy(["id" => $id]);
+        $factories = $factoryRepository -> findBy(["categoryItem" => $id]);
+
+
+        return $this->render('category/indexItem.html.twig', [
+            'controller_name' => 'CategoryController',
+            'categoryItem' => $categoryItem,
             'factories' => $factories,
         ]);
     }

@@ -47,7 +47,7 @@
             <ul>
                 {#if arrayLinks}
                     {#each arrayLinks as item (item.key)}
-                        <a href={item.key}>
+                        <a href="/category/categoryItem/{item.key}">
                             <li>{item.value}</li>
                         </a>
                     {/each}

@@ -4,17 +4,14 @@
     let goLeft = false;
     export let category;
 
-    let specialList2 = [
-        { title: "Vitrines Portfolio", num: setSpecialInnovations1 },
-        { title: "Vitrines Landing Page", num: setSpecialInnovations2 },
-        { title: "Vitrines spécifiques", num: setSpecialInnovations3 },
-    ];
-
     let list = [];
 
     category.forEach((element) => {
         list.push({ title: element.name, num: () => setCategory(element.name, element.items) });
     });
+    
+    console.log(category)
+
 
     function setCategory(name, items) {
         goLeft = !goLeft;
@@ -22,45 +19,13 @@
         arrayLinks = [];
 
         items.forEach((element) => {
-            arrayLinks.push({ key: "/1", value: element.name });
+            arrayLinks.push({ key: element.key, value: element.name });
         });
 
     }
     let specialListSubItems = [
         { header_title: "Catégories", list: list },
-        { header_title: "Vitrines", list: specialList2 },
     ];
-
-    function setSpecialInnovations1() {
-        goLeft = !goLeft;
-        currentTitle = "Titre Innovation 1";
-        arrayLinks = [];
-        arrayLinks = [
-            { key: "/7", value: "Innovation 1 Titre 1" },
-            { key: "/8", value: "Innovation 2 Titre 1" },
-            { key: "/9", value: "Innovation 3 Titre 1" },
-        ];
-    }
-    function setSpecialInnovations2() {
-        goLeft = !goLeft;
-        currentTitle = "Titre Innovation 2";
-        arrayLinks = [];
-        arrayLinks = [
-            { key: "/7", value: "Innovation 1 Titre 2" },
-            { key: "/8", value: "Innovation 2 Titre 2" },
-            { key: "/9", value: "Innovation 3 Titre 2" },
-        ];
-    }
-    function setSpecialInnovations3() {
-        goLeft = !goLeft;
-        currentTitle = "Titre Innovation 3";
-        arrayLinks = [];
-        arrayLinks = [
-            { key: "/7", value: "Innovation 1 Titre 3" },
-            { key: "/8", value: "Innovation 2 Titre 3" },
-            { key: "/9", value: "Innovation 3 Titre 3" },
-        ];
-    }
 
     function updateGoLeft(params) {
         goLeft = params;
@@ -83,9 +48,6 @@
                         </a>
                         <a href="/">
                             <li>A propos</li>
-                        </a>
-                        <a href="/">
-                            <li>Services</li>
                         </a>
                         <a href="/">
                             <li>Contact</li>

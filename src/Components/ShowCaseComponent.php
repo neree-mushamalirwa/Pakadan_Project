@@ -6,6 +6,8 @@ use App\Entity\Factory;
 use App\Repository\FactoryRepository;
 use App\Repository\ProductRepository;
 use App\Repository\RequestsRepository;
+use App\Repository\ShowCaseImagesRepository;
+use App\Repository\ShowCaseNewsRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
@@ -43,7 +45,9 @@ class ShowCaseComponent{
     public function __construct(
         private FactoryRepository $factoryRepository,
         private ProductRepository $productRepository,
-        private PaginatorInterface $paginator
+        private PaginatorInterface $paginator,
+        private ShowCaseNewsRepository $showCaseNewsRepository,
+        private ShowCaseImagesRepository $showCaseImagesRepository,
     )
     {
         
@@ -90,7 +94,13 @@ class ShowCaseComponent{
         return $data;
     }
     public function sectionImages(){
-        $data = $this -> factory -> getShowCaseImages();
+        $data = $this -> showCaseImagesRepository -> createQueryBuilder("q")
+                                           -> where("q.factory = :factory")
+                                           -> setParameter("factory" , $this -> factory)
+                                           -> orderBy("q.createdAt" , "DESC")
+                                           -> getQuery()
+                                           -> getResult()
+                                           ;
 
         return $this -> paginator -> paginate(
             $data,
@@ -99,7 +109,13 @@ class ShowCaseComponent{
         );
     }
     public function sectionNews(){
-        $data = $this -> factory -> getShowCaseNews();
+        $data = $this -> showCaseNewsRepository -> createQueryBuilder("q")
+                                           -> where("q.factory = :factory")
+                                           -> setParameter("factory" , $this -> factory)
+                                           -> orderBy("q.createdAt" , "DESC")
+                                           -> getQuery()
+                                           -> getResult()
+                                           ;
 
         return $this -> paginator -> paginate(
             $data,

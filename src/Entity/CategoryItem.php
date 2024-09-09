@@ -27,6 +27,9 @@ class CategoryItem
     #[ORM\OneToMany(targetEntity: Factory::class, mappedBy: 'categoryItem')]
     private Collection $factories;
 
+    #[ORM\Column(length: 10000000000000)]
+    private ?string $description = null;
+
     public function __construct()
     {
         $this->factories = new ArrayCollection();
@@ -87,6 +90,18 @@ class CategoryItem
                 $factory->setCategoryItem(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }

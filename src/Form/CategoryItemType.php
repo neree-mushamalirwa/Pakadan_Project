@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\CategoryItem;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -35,6 +36,19 @@ class CategoryItemType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
                 "label" => "Catégorie",
+                "label_attr" => [
+                    "attr" => "label_name"
+                ],
+                "constraints" => [
+                    new Assert\NotBlank()
+                ]
+            ])
+            ->add('description', TextareaType::class , [
+                "attr" => [
+                    "class" => "input",
+                    "placeholder" => "Saisir la description de la sous-atégorie",
+                ],
+                "label" => "Description Sous-catégorie",
                 "label_attr" => [
                     "attr" => "label_name"
                 ],

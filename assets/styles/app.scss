@@ -206,6 +206,62 @@ nav{
                 align-items: center;
                 flex-wrap: nowrap;
                 gap: $rem;
+
+                .item_annexe{
+                    h2{
+                        font-size: 1.8*$rem;
+                        padding: $rem;
+                        @include border_radius(50%);
+                        background: var(--color_smoke_bold);
+                        color: var(--color_primary);
+                        font-weight: 900;
+                        cursor: pointer;
+                    }
+
+                    .connect_links{
+                        .links{
+                            a{
+                                text-decoration: none;
+                                color: var(--color_secondary);
+                                .item{
+                                    display: flex;
+                                    align-items: center;
+                                    gap: $rem;
+                                    padding: $rem;
+                                    flex-wrap: nowrap;
+        
+                                    &:hover{
+                                        background: var(--color_smoke_bold);
+            
+                                        // svg ,line, polyline , path , g , rect , ellipse{
+                                        //     fill: var(--color_white);
+                                        //     stroke: var(--color_white);
+                                        // }
+                                    }
+                                }
+        
+                               
+                            }
+                        }
+                    }
+                }
+                .item_annexe_user_connect{
+                    position: relative;
+                    .connect_links{
+                        position: absolute;
+                        top: 2*$rem;
+                        right: 2*$rem;
+                        background: var(--color_white);
+                        width: 20*$rem;
+                        z-index: 999;
+                        box-shadow: var(--color_box_shadow);
+                        .links{
+                            a{
+                                font-size: 1.3*$rem;
+                            }
+                        }
+                    }
+                }
                 a{
                     text-decoration: none;
                     color: var(--color_black);
@@ -235,6 +291,8 @@ nav{
                         flex-direction: column;
                         align-items: center;
                         cursor: pointer;
+
+                       
 
                         span{
                             font-size: 1.3*$rem;
@@ -3249,6 +3307,34 @@ form{
                     @include border_radius($rem);
                     color: var(--color_white);
                     cursor: pointer;
+                }
+            }
+        }
+    }
+}
+.container_connection{
+    .container_form_connection_customer{
+        position: relative;
+        max-width: 50*$rem;
+        width: 90%;
+        z-index: 999;
+
+        form{
+            .input_submit{
+                padding: $rem 0rem;
+            }
+        }
+        .create_account{
+            padding: $rem 0rem 4*$rem;
+
+            a{
+                color: var(--color_primary);
+                font-weight: 600;
+                transition: 0.3s;
+
+                &:hover{
+                    color: var(--color_primary_overed);
+                    transition: 0.3s;
                 }
             }
         }
