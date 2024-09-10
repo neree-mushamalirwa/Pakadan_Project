@@ -104,6 +104,12 @@ class Factory
     #[ORM\OneToMany(targetEntity: NewsLetter::class, mappedBy: 'factory')]
     private Collection $newsLetters;
 
+    /**
+     * @var Collection<int, ShoppingCart>
+     */
+    #[ORM\OneToMany(targetEntity: ShoppingCart::class, mappedBy: 'factory')]
+    private Collection $shoppingCarts;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -117,6 +123,7 @@ class Factory
         $this->createdAt = new DateTimeImmutable();
         $this->contacts = new ArrayCollection();
         $this->newsLetters = new ArrayCollection();
+        $this->shoppingCarts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -526,6 +533,36 @@ class Factory
             // set the owning side to null (unless already changed)
             if ($newsLetter->getFactory() === $this) {
                 $newsLetter->setFactory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ShoppingCart>
+     */
+    public function getShoppingCarts(): Collection
+    {
+        return $this->shoppingCarts;
+    }
+
+    public function addShoppingCart(ShoppingCart $shoppingCart): static
+    {
+        if (!$this->shoppingCarts->contains($shoppingCart)) {
+            $this->shoppingCarts->add($shoppingCart);
+            $shoppingCart->setFactory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShoppingCart(ShoppingCart $shoppingCart): static
+    {
+        if ($this->shoppingCarts->removeElement($shoppingCart)) {
+            // set the owning side to null (unless already changed)
+            if ($shoppingCart->getFactory() === $this) {
+                $shoppingCart->setFactory(null);
             }
         }
 

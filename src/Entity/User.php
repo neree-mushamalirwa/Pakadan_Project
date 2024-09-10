@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -39,6 +41,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToOne(inversedBy: 'users')]
     private ?Factory $factory = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $adresse = null;
+
+    /**
+     * @var Collection<int, ShoppingCart>
+     */
+    #[ORM\OneToMany(targetEntity: ShoppingCart::class, mappedBy: 'user')]
+    private Collection $shoppingCarts;
+
+    public function __construct()
+    {
+        $this->shoppingCarts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -147,6 +163,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFactory(?Factory $factory): static
     {
         $this->factory = $factory;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): static
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ShoppingCart>
+     */
+    public function getShoppingCarts(): Collection
+    {
+        return $this->shoppingCarts;
+    }
+
+    public function addShoppingCart(ShoppingCart $shoppingCart): static
+    {
+        if (!$this->shoppingCarts->contains($shoppingCart)) {
+            $this->shoppingCarts->add($shoppingCart);
+            $shoppingCart->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShoppingCart(ShoppingCart $shoppingCart): static
+    {
+        if ($this->shoppingCarts->removeElement($shoppingCart)) {
+            // set the owning side to null (unless already changed)
+            if ($shoppingCart->getUser() === $this) {
+                $shoppingCart->setUser(null);
+            }
+        }
 
         return $this;
     }

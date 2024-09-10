@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +33,17 @@ class Product
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?ProductCategory $category = null;
+
+    /**
+     * @var Collection<int, ShoppingCart>
+     */
+    #[ORM\OneToMany(targetEntity: ShoppingCart::class, mappedBy: 'product')]
+    private Collection $shoppingCarts;
+
+    public function __construct()
+    {
+        $this->shoppingCarts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -105,6 +118,36 @@ class Product
     public function setCategory(?ProductCategory $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ShoppingCart>
+     */
+    public function getShoppingCarts(): Collection
+    {
+        return $this->shoppingCarts;
+    }
+
+    public function addShoppingCart(ShoppingCart $shoppingCart): static
+    {
+        if (!$this->shoppingCarts->contains($shoppingCart)) {
+            $this->shoppingCarts->add($shoppingCart);
+            $shoppingCart->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShoppingCart(ShoppingCart $shoppingCart): static
+    {
+        if ($this->shoppingCarts->removeElement($shoppingCart)) {
+            // set the owning side to null (unless already changed)
+            if ($shoppingCart->getProduct() === $this) {
+                $shoppingCart->setProduct(null);
+            }
+        }
 
         return $this;
     }

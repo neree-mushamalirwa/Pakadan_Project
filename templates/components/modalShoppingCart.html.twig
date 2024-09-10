@@ -1,0 +1,65 @@
+<div class="container_modal_shopping_cart">
+	<div class="icone_exit">
+		<button data-action="live#action" data-live-action-param="Exit">
+			<svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+			</svg>
+		</button>
+	</div>
+
+	<div class="modal_shopping_cart">
+		<h2>Ajouter au panier</h2>
+
+		{% set product = productObject %}
+
+		{% if product is not empty %}
+			<div class="container_shopping" x-data="{number: 1}">
+				<form action="{{path('app_shopping_cart')}}" method="post">
+					<div class="container_cart">
+						<div class="left">
+							<div class="image">
+								<img src="/images/{{product.imageName[0]}}" alt="">
+							</div>
+							<div class="description">
+								<strong>{{product.name}}</strong>
+								<button>{{product.devise}}
+									{{product.price|number_format(0, '', ' ')}}</button>
+							</div>
+						</div>
+						<div class="right">
+							<div class="price">
+								{% set price = product.price %}
+								<strong x-text="'{{product.devise}} ' + number * {{price}}"></strong>
+							</div>
+						</div>
+					</div>
+					<div class="first_item">
+						<button type="button" @click="number <= 1 ? number = 1 : number --">
+							<svg width="15px" height="15px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/>
+							</svg>
+						</button>
+						<span x-text="number"></span>
+						{% if factoryId and app.user %}
+							<input type="number" name="quantity" id="" x-bind:value="number" style="display:none;" required>
+							<input type="number" name="factory" id="" value="{{factoryId.id}}" style="display:none;" required>
+							<input type="number" name="product" id="" value="{{product.id}}" style="display:none;" required>
+							<input type="number" name="user" id="" value="{{app.user.id}}" style="display:none;" required>
+						{% endif %}
+						<button type="button" @click="number ++">
+							<svg width="15px" height="15px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+							</svg>
+
+						</button>
+					</div>
+					<div class="add_to_cart">
+						<button type="submit">Ajouter</button>
+					</div>
+				</form>
+
+			</div>
+		{% endif %}
+
+	</div>
+</div>

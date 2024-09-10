@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pakadan | Activate-Account
+{% endblock %}
+
+{% block body %}
+	<div class="container_account">
+		<div class="over_back"></div>
+		<div class="container_create_account">
+			<h3>Activer votre compte</h3>
+			<div class="key_error">
+				<span>{{error}}</span>
+			</div>
+			<form action="{{path('app_account_key')}}" method="post">
+				<div class="input">
+					<label for="accountId">ID Compte</label>
+					<div class="input_icone">
+						<svg width="20px" height"20px" viewbox="0 0 24 24" data-title="AccountOutline" fill="currentColor" stroke="none" data-test-id="icon" class="fill-current shrink-0 text-current w-sz-24 h-sz-24" data-spark-component="icon" aria-hidden="true" focusable="false">
+							<path fill-rule="evenodd" d="m12,4.19c-1.6,0-2.93,1.26-2.93,2.84s1.33,2.84,2.93,2.84,2.93-1.26,2.93-2.84-1.33-2.84-2.93-2.84Zm-5.23,2.84c0-2.77,2.32-5.03,5.23-5.03s5.23,2.27,5.23,5.03-2.32,5.03-5.23,5.03-5.23-2.27-5.23-5.03Zm5.23,8.54c-1.85,0-3.63.71-4.95,1.98-1.01.97-1.68,2.21-1.94,3.55-.12.6-.72.99-1.34.88-.63-.11-1.04-.68-.92-1.28.34-1.76,1.23-3.4,2.56-4.69,1.74-1.68,4.11-2.63,6.59-2.63s4.84.95,6.59,2.63c1.34,1.29,2.22,2.93,2.56,4.69.12.6-.3,1.17-.92,1.28-.63.11-1.23-.28-1.34-.88-.26-1.34-.93-2.58-1.94-3.55-1.31-1.27-3.09-1.98-4.95-1.98Z"></path>
+						</svg>
+						<input type="text" name="accountId" id="username" placeholder="Saisir votre nom complet" required>
+					</div>
+				</div>
+				<div class="input">
+					<label for="noms">Clé d'activation</label>
+					<div class="input_icone">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewbox="0 0 24 24" fill="none">
+							<path d="M12.3212 10.6852L4 19L6 21M7 16L9 18M20 7.5C20 9.98528 17.9853 12 15.5 12C13.0147 12 11 9.98528 11 7.5C11 5.01472 13.0147 3 15.5 3C17.9853 3 20 5.01472 20 7.5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+						<input type="text" name="accountKey" id="username" placeholder="Saisir votre nom complet" required>
+					</div>
+				</div>
+				<div class="input_submit">
+					<button type="submit">
+						<span>Valider
+						</span>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}

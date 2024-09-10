@@ -3,6 +3,7 @@
 namespace App\Components;
 
 use App\Entity\Factory;
+use App\Entity\Product;
 use App\Repository\FactoryRepository;
 use App\Repository\ProductRepository;
 use App\Repository\RequestsRepository;
@@ -25,6 +26,9 @@ class ShowCaseComponent{
     public ?Factory $factory = null;
 
     #[LiveProp(writable:true)]
+    public ?Product $product = null;
+
+    #[LiveProp(writable:true)]
     public ?int $query_select_images = 4;
 
     
@@ -39,6 +43,15 @@ class ShowCaseComponent{
 
     #[LiveProp(writable:true)]
     public ?int $query_category = null;
+
+    #[LiveProp(writable:true)]
+    public ?int $productId = null;
+
+    
+    #[LiveProp(writable:true)]
+    public ?int $quantityCart = 0;
+
+
 
 
 
@@ -80,6 +93,42 @@ class ShowCaseComponent{
 
         return $this -> query_select_products;
     }
+
+
+    // Script about shopping cart
+
+    #[LiveAction()]
+    public function setProducts(#[LiveArg()] int $id){
+        $this -> productId = $id;
+
+        if ($this -> productId) {
+            $this -> product = $this -> productRepository -> findOneBy(["id" => $this -> productId]);
+        }
+
+        return $this;
+    }
+
+    #[LiveAction()]
+    public function Exit(){
+        $this -> productId = null;
+
+    }
+    #[LiveAction()]
+    public function IncrementQuantity(){
+        $this -> quantityCart = $this -> quantityCart  + 1;
+    }
+    #[LiveAction()]
+    public function DecrementQuantity(){
+        $this -> quantityCart = $this -> quantityCart  - 1;
+
+    }
+    #[LiveAction()]
+    public function getProductObject(){
+       return  $this -> productRepository -> findOneBy(["id" => $this -> productId]);
+
+    }
+
+
 
 
 
