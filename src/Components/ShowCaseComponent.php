@@ -3,13 +3,16 @@
 namespace App\Components;
 
 use App\Entity\Factory;
+use App\Entity\Favorite;
 use App\Entity\Product;
 use App\Repository\FactoryRepository;
 use App\Repository\ProductRepository;
 use App\Repository\RequestsRepository;
 use App\Repository\ShowCaseImagesRepository;
 use App\Repository\ShowCaseNewsRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
@@ -18,12 +21,15 @@ use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
 #[AsLiveComponent("showCaseComponent")]
-class ShowCaseComponent{
+class ShowCaseComponent extends AbstractController{
 
     use DefaultActionTrait;
 
     #[LiveProp(writable:true)]
     public ?Factory $factory = null;
+
+    #[LiveProp(writable:true)]
+    public ?int $id = null;
 
     #[LiveProp(writable:true)]
     public ?Product $product = null;
@@ -61,6 +67,7 @@ class ShowCaseComponent{
         private PaginatorInterface $paginator,
         private ShowCaseNewsRepository $showCaseNewsRepository,
         private ShowCaseImagesRepository $showCaseImagesRepository,
+        private EntityManagerInterface $manager,
     )
     {
         
@@ -92,6 +99,22 @@ class ShowCaseComponent{
         $this -> query_select_products = $this -> query_select_products + 4;
 
         return $this -> query_select_products;
+    }
+    #[LiveAction()]
+    public function addFavorite(#[LiveArg()] int $id){
+        if ($id) {
+            $product = $this -> productRepository -> findOneBy(["id" => $id]);
+
+            $favorite = new Favorite();
+            $favorite -> setProduct($product);
+            if ($this -> getUser()) {
+                $favorite -> setUser($this -> getUser());
+            }
+
+            $this -> manager -> persist($favorite);
+
+            $this -> manager -> flush();
+        }
     }
 
 

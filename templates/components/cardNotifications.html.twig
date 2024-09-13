@@ -1,0 +1,56 @@
+<div{{attributes}}>
+	<div class="container_notifications">
+		<div class="title">
+			<h1>Notifications</h1>
+		</div>
+		<div class="container_item_notifications">
+			{% set data = this.getNotifications %}
+
+			{% if data.getTotalItemCount == 0 %}
+				<div class="container_table">
+					<div class="table">
+						<table>
+							<tbody>
+								<tr class="no_data">
+									<td colspan="2">
+										<span>Aucun élément trouvé</span>
+										<div class="content">
+											<svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+												<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+											</svg>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			{% else %}
+				{% for item in data %}
+					<div class="item_notifications">
+						<div class="item_title">
+							<h3>{{item.title}}</h3>
+						</div>
+						<div class="description">
+							<p>{{item.description|nl2br}}</p>
+						</div>
+						<div class="published">
+							<small>{{item.createdAt|diffForHumans }}</small>
+						</div>
+					</div>
+				{% endfor %}
+
+			{% endif %}
+		</div>
+		{% if data.getTotalItemCount > query_select_notifications %}
+			<div class="see_more">
+				<button data-action="live#action" data-live-action-param="incrementNotifications">
+					<span>Voir plus</span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewbox="0 0 16 16" fill="none">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M0 8L3.07945 4.30466C4.29638 2.84434 6.09909 2 8 2C9.90091 2 11.7036 2.84434 12.9206 4.30466L16 8L12.9206 11.6953C11.7036 13.1557 9.90091 14 8 14C6.09909 14 4.29638 13.1557 3.07945 11.6953L0 8ZM8 11C9.65685 11 11 9.65685 11 8C11 6.34315 9.65685 5 8 5C6.34315 5 5 6.34315 5 8C5 9.65685 6.34315 11 8 11Z" fill="#000000"/>
+					</svg>
+				</button>
+			</div>
+		{% endif %}
+	</div>
+</div>

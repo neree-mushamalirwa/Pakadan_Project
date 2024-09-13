@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pakadan | Admin | Notifications | New{% endblock %}
+
+{% block body %}
+    <div class="container_new_item">
+        <h1>Ajouter une notification</h1>
+        <div class="container_form">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            <div class="input_submit">
+                <button>Sauvegarder</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

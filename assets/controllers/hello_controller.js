@@ -87,6 +87,21 @@ export default class extends Controller {
       })
 
     }
+    var fav = document.querySelectorAll(".favorite_btn");
+    var favAll = document.querySelectorAll(".favorite_btn");
+    if (fav) {
+     
+      fav.forEach(element => {
+        element.addEventListener("click", () => {
+          favAll.forEach(el => {
+            el.classList.remove("active");
+        })
+          element.classList.add("active");
+        })
+          
+      })
+
+    }
 
     document.addEventListener('DOMContentLoaded', function() {
       
@@ -201,6 +216,8 @@ export default class extends Controller {
           })
       });
     }
+
+
 
 
     
