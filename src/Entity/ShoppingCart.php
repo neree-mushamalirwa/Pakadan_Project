@@ -38,6 +38,9 @@ class ShoppingCart
     #[ORM\ManyToOne(inversedBy: 'shoppingCarts')]
     private ?User $user = null;
 
+    #[ORM\ManyToOne(inversedBy: 'shoppingCarts')]
+    private ?Shop $shop = null;
+
 
     public function __construct()
     {
@@ -141,6 +144,18 @@ class ShoppingCart
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getShop(): ?Shop
+    {
+        return $this->shop;
+    }
+
+    public function setShop(?Shop $shop): static
+    {
+        $this->shop = $shop;
 
         return $this;
     }

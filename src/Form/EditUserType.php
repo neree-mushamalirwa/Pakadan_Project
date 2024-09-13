@@ -48,8 +48,10 @@ class EditUserType extends AbstractType
             'first_options' => [
                 'attr' => [
                     'class' => 'input',
-                    "placeholder" => "Saisir un mot de passe"
+                    "placeholder" => "Saisir un mot de passe",
+                    'data-model' => "firstOption",
                 ],
+               
                 'label' => "Mot de passe" ,
                 'label_attr' => [
                     'class' => 'label_name'
@@ -61,7 +63,8 @@ class EditUserType extends AbstractType
             'second_options' => [
                 'attr' => [
                     'class' => 'input',
-                    "placeholder" => "confirmer le mot de passe"
+                    "placeholder" => "confirmer le mot de passe",
+                    'data-model' => "secondOption",
                 ],
                 'label' => "Confirmation du mot de passe" ,
                 'label_attr' => [

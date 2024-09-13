@@ -5,22 +5,23 @@
 
 {% block body %}
 	<div class="container_sections_home_page">
-		<section class="pubs_section">
+		<section
+			class="pubs_section">
 			{# <div class="image_pub_section">
-				<img src="/images/shoes3o.jpg" alt="image pub">
-			</div>
-			<div class="description_pub_section">
-				<h2>Chaussures de qualité</h2>
-				<h4>Trouvez votre parfaite paire de chaussures pour hommes</h4>
-				<div class="web_site_link">
-					<div class="name_web_site">
-						<a href="">Joemeri</a>
-					</div>
-					<div class="link_web_site">
-						<a href="">Ouvrir</a>
-					</div>
-				</div>
-			</div> #}
+							<img src="/images/shoes3o.jpg" alt="image pub">
+						</div>
+						<div class="description_pub_section">
+							<h2>Chaussures de qualité</h2>
+							<h4>Trouvez votre parfaite paire de chaussures pour hommes</h4>
+							<div class="web_site_link">
+								<div class="name_web_site">
+									<a href="">Joemeri</a>
+								</div>
+								<div class="link_web_site">
+									<a href="">Ouvrir</a>
+								</div>
+							</div>
+						</div> #}
 			<div class="left_part">
 				<h1>Pakadan</h1>
 				<h3>Une plateforme de reservation d'espace vitrine pour les entreprises et les particuliers</h3>
@@ -29,7 +30,7 @@
 					<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt consectetur perferendis quaerat accusamus rerum. Possimus unde impedit error at ratione ducimus iure hic, asperiores corporis provident quasi accusamus, placeat mollitia.</p>
 				</div>
 				<div class="contact_us">
-					<a href="">Contactez-nous</a>
+					<a href="#contact">Contactez-nous</a>
 				</div>
 			</div>
 			<div class="right_part">
@@ -67,7 +68,7 @@
 					</p>
 				</div>
 				<div class="btn_action">
-					<a href="#">Nous contacter</a>
+					<a href="#contact">Nous contacter</a>
 				</div>
 			</div>
 		</section>
@@ -87,7 +88,7 @@
 					</p>
 				</div>
 				<div class="btn_action">
-					<a href="#">Nous contacter</a>
+					<a href="#contact">Nous contacter</a>
 				</div>
 			</div>
 			<div class="left_part">
@@ -150,7 +151,7 @@
 					</p>
 				</div>
 				<div class="btn_action">
-					<a href="#">Nous contacter</a>
+					<a href="#contact">Nous contacter</a>
 				</div>
 			</div>
 			<div class="left_part">
@@ -431,37 +432,78 @@
 			</div>
 		</section>
 
-        <section class="current_questions">
-            <div class="title">
+		<section class="current_questions">
+			<div class="title">
 				<h2>Questions fréquemment posées</h2>
 				<div class="line"></div>
 			</div>
-            <div class="container_current_questions">
-               {% for item in range(1,5,1) %}
-                 <div class="item_question" x-data="{open:false}">
-                    <div class="header" @click="open = !open" :class="open ? 'active': ''">
-                        <span>Comment vous contacter pour reserver un espace vitrine</span>
-                        <svg :class="open ? 'rotate_open': ''" width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
-                    </div>
-                    <div class="response_content" x-show="open" style="display:none;" :class="open ? 'open_content': ''" @click.outside="open=false">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem officiis rerum odio libero aliquid dolores, est sint commodi hic ut neque magni, ea, velit dignissimos maiores. Consequatur voluptate doloremque recusandae.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem officiis rerum odio libero aliquid dolores, est sint commodi hic ut neque magni, ea, velit dignissimos maiores. Consequatur voluptate doloremque recusandae.</p>
-                    </div>
-                </div>
-               {% endfor %}
-            </div>
-        </section>
-
-	</div>
-		<section class="make_reservation">
-			<div class="rerservation_item">
-				<h2 class="first_title">Faites la reservation d'une reservation de votre choix</h2>
-				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto laudantium facilis magnam officia laborum aliquid fuga nulla magni est dolorum error aperiam, sed, non quasi, veritatis ducimus inventore consequuntur accusamus.</p>
-				<div class="link_reserve">
-					<a href="">Reserver un espace vitrine</a>
-				</div>
+			<div class="container_current_questions">
+				{% for item in range(1,5,1) %}
+					<div class="item_question" x-data="{open:false}">
+						<div class="header" @click="open = !open" :class="open ? 'active': ''">
+							<span>Comment vous contacter pour reserver un espace vitrine</span>
+							<svg :class="open ? 'rotate_open': ''" width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+								<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+							</svg>
+						</div>
+						<div class="response_content" x-show="open" style="display:none;" :class="open ? 'open_content': ''" @click.outside="open=false">
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem officiis rerum odio libero aliquid dolores, est sint commodi hic ut neque magni, ea, velit dignissimos maiores. Consequatur voluptate doloremque recusandae.</p>
+							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem officiis rerum odio libero aliquid dolores, est sint commodi hic ut neque magni, ea, velit dignissimos maiores. Consequatur voluptate doloremque recusandae.</p>
+						</div>
+					</div>
+				{% endfor %}
 			</div>
 		</section>
+
+	</div>
+	<section class="make_reservation">
+		<div class="rerservation_item">
+			<h2 class="first_title">Faites la reservation d'une reservation de votre choix</h2>
+			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto laudantium facilis magnam officia laborum aliquid fuga nulla magni est dolorum error aperiam, sed, non quasi, veritatis ducimus inventore consequuntur accusamus.</p>
+			<div class="link_reserve">
+				<a href="">Reserver un espace vitrine</a>
+			</div>
+		</div>
+	</section>
+	<section class="container_services_section container_services_section_home" id="contact">
+		<div class="title">
+			<h2>Prenez contact
+			</h2>
+			<div class="line"></div>
+		</div>
+
+		<div class="container_contact">
+			<form action="{{path('app_contact_site')}}" method="post">
+				<div class="group_input">
+					<div class="input">
+						<label for="">Noms *</label>
+						<input type="text" name="noms" id="" required>
+					</div>
+				</div>
+				<div class="group_input">
+					<div class="input">
+						<label for="">Email *</label>
+						<input type="email" name="email" id="" required>
+					</div>
+					<div class="input">
+						<label for="">Téléphone *</label>
+						<input type="text" name="telephone" id="" required>
+					</div>
+				</div>
+				<div class="input">
+					<label for="">Sujet du message</label>
+					<input type="text" name="subject" id="" required>
+				</div>
+				<div class="input">
+					<label for="">Votre message</label>
+					<textarea name="message" id="message" required></textarea>
+				</div>
+
+				<div class="input_submit">
+					<button type="submit">Envoyer</button>
+				</div>
+			</form>
+		</div>
+	</section>
+
 {% endblock %}

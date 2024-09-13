@@ -51,9 +51,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: ShoppingCart::class, mappedBy: 'user')]
     private Collection $shoppingCarts;
 
+    /**
+     * @var Collection<int, Shop>
+     */
+    #[ORM\OneToMany(targetEntity: Shop::class, mappedBy: 'user')]
+    private Collection $shops;
+
     public function __construct()
     {
         $this->shoppingCarts = new ArrayCollection();
+        $this->shops = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -203,6 +210,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($shoppingCart->getUser() === $this) {
                 $shoppingCart->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Shop>
+     */
+    public function getShops(): Collection
+    {
+        return $this->shops;
+    }
+
+    public function addShop(Shop $shop): static
+    {
+        if (!$this->shops->contains($shop)) {
+            $this->shops->add($shop);
+            $shop->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShop(Shop $shop): static
+    {
+        if ($this->shops->removeElement($shop)) {
+            // set the owning side to null (unless already changed)
+            if ($shop->getUser() === $this) {
+                $shop->setUser(null);
             }
         }
 

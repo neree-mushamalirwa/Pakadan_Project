@@ -1,64 +1,85 @@
 <div class="container_footer">
 	<div class="container_item_footer">
 		<div class="item_footers">
-            <div class="item_particular">
-                <div class="logo">
-                    <h3>Pakadan</h3>
-                </div>
-                <h5>Pakadan® - Tous droits réservés.</h5>
-                <div class="description">
-                    <p>Une plateforme de reservation d'espace vitrine , pour les entreprises et les particuliers </p>
-                </div>
-                <div class="contact">
-                    <div class="item_contact">
-                        <h5>Téléphone</h5>
-                        <span>+243 973455643</span>
-                    </div>
-                    <div class="item_contact">
-                        <h5>Courriel</h5>
-                        <span>pakadan@gmail.com</span>
-                    </div>
-                </div>
-            </div>
+			<div class="item_particular">
+				<div class="logo">
+					<h3>Pakadan</h3>
+				</div>
+				<h5>Pakadan® - Tous droits réservés.</h5>
+				<div class="description">
+					<p>Une plateforme de reservation d'espace vitrine , pour les entreprises et les particuliers
+					</p>
+				</div>
+				<div class="contact">
+					<div class="item_contact">
+						<h5>Téléphone</h5>
+						<span>+243 973455643</span>
+					</div>
+					<div class="item_contact">
+						<h5>Courriel</h5>
+						<span>pakadan@gmail.com</span>
+					</div>
+				</div>
+			</div>
 
-				<div class="item">
-					<div class="title">
-						<h3>Accès rapide</h3>
-					</div>
-					<div class="content">
-						<a href="">Accueil</a>
-						<a href="">A propos de nous</a>
-						<a href="">Contact</a>
-					</div>
+			<div class="item">
+				<div class="title">
+					<h3>Accès rapide</h3>
 				</div>
+				<div class="content">
+					<a href="">Accueil</a>
+					<a href="">A propos de nous</a>
+					<a href="">Contact</a>
+				</div>
+			</div>
 
-				<div class="item">
-					<div class="title">
-						<h3>Catégories</h3>
-					</div>
-					<div class="content">
-                        {% for item in categories %}
-						    <a href="{{path('app_category' , {id: item.id})}}">{{item.name}}</a>
-                        {% endfor %}
-					</div>
+			<div class="item">
+				<div class="title">
+					<h3>Catégories</h3>
 				</div>
-				<div class="item">
-					<div class="title">
-						<h3>Sous-Catégories</h3>
-					</div>
-					<div class="content">
-                        {% for item in categoriesItems %}
-						    <a href="{{path('app_category_item' , {id: item.id})}}">{{item.name}}</a>
-                        {% endfor %}
-					</div>
+				<div class="content">
+					{% for item in categories %}
+						<a href="{{path('app_category' , {id: item.id})}}">{{item.name}}</a>
+					{% endfor %}
 				</div>
+			</div>
+			<div class="item">
+				<div class="title">
+					<h3>Sous-Catégories</h3>
+				</div>
+				<div class="content">
+					{% for item in categoriesItems %}
+						<a href="{{path('app_category_item' , {id: item.id})}}">{{item.name}}</a>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="item">
+				<div class="title">
+					<h3>Newsletter</h3>
+				</div>
+				<div class="newsletter_form">
+					<form action="{{path('app_news_letter_site')}}" method="post">
+						<div class="input">
+							<label for="">Email *</label>
+							<input type="email" name="email_site" id="" placeholder="Saisir votre adresse email" required>
+						</div>
+						<div class="input_submit">
+							<button type="submit">Envoyer</button>
+						</div>
+					</form>
+				</div>
+			</div>
 
 		</div>
-        {% set date = date() %}
-        <div class="container_copy_right">
-            <div class="copyright">
-                <span>(C) Pakadan {{ date|date("Y") }} | @Copyright | Tous droits réservés | Produced by <a href="mailto:pakadan@gmail.com">@pakadan@</a></span>
-            </div>
-        </div>
+		{% set date = date() %}
+		<div class="container_copy_right">
+			<div class="copyright">
+				<span>(C) Pakadan
+					{{ date|date("Y") }}
+					| @Copyright | Tous droits réservés | Produced by
+					<a href="mailto:pakadan@gmail.com">@pakadan@</a>
+				</span>
+			</div>
+		</div>
 	</div>
 </div>

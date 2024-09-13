@@ -18,7 +18,6 @@ class HomeController extends AbstractController
         if($this -> getUser() && $this -> getUser() -> getRoles()[0] == "ROLE_SUPER_ADMIN"){
             return $this->redirectToRoute("app_admin_home");
         }else if($this -> getUser() && $this -> getUser() -> getRoles()[0] == "ROLE_ADMIN"){
-            dd($this -> getUser());
             return $this->redirectToRoute("app_admin_home");
         }
             return $this->render('home/index.html.twig', [

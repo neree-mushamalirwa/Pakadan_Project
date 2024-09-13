@@ -1,24 +1,135 @@
 <div{{attributes}}>
+	{% if id %}
+		{{component("overlay")}}
+		{{component("modalDelete" , {id: id})}}
+	{% endif %}
+
+	{% set subTotalQuantity = 0 %}
+	{% set subTotalPrice = 0 %}
+	{% set totalQuantity = 0 %}
+	{% set totalPrice = 0 %}
+	'
+	{% set devise = '' %}
+	'
 	<div class="container_shopping_cart">
 		<h1>Mon panier</h1>
+		{% if shop is not empty %}
+			<div class="container_items_shopping_cart">
+				<form action="{{path('app_shopping_cart_update')}}" method="post">
 
-        <div class="container_items_shopping_cart">
-            <div class="items_shopping_cart">
-                <h3>Factory</h3>
-                <div class="container_items">
-                    <div class="item">
-                        <div class="left">
-                        
-                        </div>
-                        <div class="left">
-                        
-                        </div>
-                        <div class="left">
-                        
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+					{% for key,item in shop %}
+						{% if item is not empty %}
+							<div class="items_shopping_cart">
+								<h3>Entreprise :
+									{{key}}</h3>
+								<div class="container_items">
+									{% for card in item %}
+
+										<div class="item" x-data="{number: {{card.quantity}}}" data-live-ignore>
+
+											{% set subTotalQuantity = subTotalQuantity + card.quantity %}
+											{% set subTotalPrice = subTotalPrice + (card.product.price * card.quantity) %}
+
+											<div class="left">
+												<div class="image">
+													<img src="/images/product5.jpg" alt="">
+												</div>
+												<div class="description">
+													<strong>{{card.product.name}}</strong>
+													<div class="buttons">
+														<button type="button">{{card.product.devise}}
+															{{card.product.price}}</button>
+														<button class="deleteCart" data-action="live#action" data-live-action-param="setDelete" data-live-id-param="{{card.id}}">Supprimer</button>
+													</div>
+												</div>
+											</div>
+											<div class="center">
+												<button type="button" @click="number <= 1 ? number = 1 : number --">
+													<svg width="15px" height="15px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+														<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/>
+													</svg>
+												</button>
+
+												<span x-text="number == null ? number = {{card.quantity}} : number"></span>
+												<input type="number" name="quantity[quantity{{card.product.id}}]" id="" x-bind:value="number" style="display:none;" required>
+												<input type="number" name="product[product{{card.product.id}}]" id="" value="{{card.product.id}}" style="display:none;" required>
+
+
+												<button type="button" @click="number ++">
+													<svg width="15px" height="15px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+														<path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+													</svg>
+												</button>
+											</div>
+											<div class="right">
+												<div class="price">
+													{% set price = card.product.price %}
+													<strong x-text="'{{card.product.devise}} ' + number * {{price}}"></strong>
+												</div>
+											</div>
+										</div>
+									{% endfor %}
+									<div class="item_sub_total">
+										<strong>Sous-total</strong>
+										<span>{{subTotalQuantity}}
+											articles</span>
+										<strong>USD
+											{{subTotalPrice}}</strong>
+									</div>
+
+									{% set totalQuantity = totalQuantity + subTotalQuantity %}
+									{% set totalPrice = totalPrice + subTotalPrice %}
+
+								</div>
+							</div>
+						{% endif %}
+
+					{% endfor %}
+					{% set notEmpty = null %}
+
+					{% for item in shop %}
+						{% if item is not empty %}
+							{% set notEmpty = notEmpty + 1 %}
+						{% endif %}
+					{% endfor %}
+
+					{% if notEmpty is not empty %}
+						<div class="container_item_total">
+							<strong>Total</strong>
+							<span>{{totalQuantity}}
+								articles</span>
+							<strong>USD
+								{{totalPrice}}</strong>
+						</div>
+						<div class="shoppingCarValidated">
+							<button type="submit" class="update">Metrre à jour le panier</button>
+							<button type="button" data-action="live#action" data-live-action-param="validateCart">Valider le panier</button>
+						</div>
+					{% else %}
+						<div class="container_table">
+							<div class="table">
+								<table>
+									<tbody>
+										<tr class="no_data">
+											<td colspan="2">
+												<span>Aucun élément trouvé</span>
+												<div class="content">
+													<svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+														<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+													</svg>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					{% endif %}
+
+				</form>
+			</div>
+		{% endif %}
+
+
 	</div>
 </div>

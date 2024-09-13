@@ -32,6 +32,8 @@ $rem: 10px;
     --color_neutral: rgba(240, 246, 252, 0.961);
     --color_delete: rgb(194, 6, 6);
     --color_delete_opacity: rgb(237, 170, 170);
+    --color_success: rgb(26, 221, 8); 
+    --color_warnign: rgb(194, 6, 6);
 }
 
 
@@ -2077,7 +2079,7 @@ nav{
                         }
                     }
                     textarea{
-                        height: 15*$rem;
+                        height: 3*$rem;
                     }
                 }
                 .group_input{
@@ -3192,6 +3194,16 @@ form{
                     
                 }
             }
+            #factory{
+                div:nth-of-type(6){
+                    grid-column: 1/span 2 ;
+                    
+                }
+                div:nth-of-type(7){
+                    grid-column: 1/span 2 ;
+                    
+                }
+            }
             .app{
                 margin-top: 2*$rem;
             }
@@ -3215,6 +3227,12 @@ form{
         }
     }
 }
+.container_new_item_account{
+    width: 100%;
+    margin: 0rem;
+    padding: 2*$rem 0rem 0rem;
+}
+
 .container_new_item_detail{
     width: 100%;
     padding: $rem 0rem 3*$rem;
@@ -3642,10 +3660,286 @@ form{
     }
 }
 
+.container_shopping_cart{
+    padding: 5*$rem 0rem;
+    width: 80%;
+    margin: auto;
+
+    h1{
+        padding: $rem 0rem 2*$rem;
+        color: var(--color_primary);
+        text-align: center;
+        font-weight: 800;
+    }
+    .container_items_shopping_cart{
+        .items_shopping_cart{
+            h3{
+                padding: $rem 0rem;
+                color: var(--color_secondary);
+                
+            }
+            .container_items{
+
+                .item{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: $rem 0rem;
+                    border-bottom: 1px solid var(--color_smoke_bold);
+
+                .left{
+                    display: flex;
+                    gap: $rem;
+
+                    .image{
+                        width: 5*$rem;
+                        height: 5*$rem;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                    .description{
+                        display: flex;
+                        flex-direction: column;
+                        gap: $rem;
+
+                        button{
+                            border: 1px solid var(--color_primary);
+                            font-size: 1.2*$rem;
+                            color: var(--color_primary);
+                            padding: 0.3*$rem;
+                            background: none;
+                            cursor: pointer;
+                            @include border_radius($rem);
+                            transition: 0.3s;
 
 
+                            &:hover{
+                                background: var(--color_primary_overed);
+                                color: var(--color_white);
+                                transition: 0.3s;
+                            }
+
+                        }
+                        .deleteCart{
+                            border: 1px solid var(--color_delete);
+                            font-size: 1.2*$rem;
+                            color: var(--color_delete);
+                            padding: 0.3*$rem;
+                            background: none;
+                            cursor: pointer;
+                            @include border_radius($rem);
+                            transition: 0.3s;
+
+                            &:hover{
+                                background: var(--color_delete);
+                                color: var(--color_white);
+                                transition: 0.3s;
+                            }
+
+                        }
+
+                        .buttons{
+                            display: flex;
+                            gap: $rem;
+                        }
+                    }
+                }
+                .right{
+                    .price{
+                        strong{
+                            color: var(--color_secondary);
+                        }
+                    }
+                }
+                .center{
+                    display: flex;
+                    justify-content: space-between;
+                    padding: $rem 0rem;
+
+                    button , span{
+                        padding: $rem;
+                    }
+                    button{
+                        background: var(--color_smoke_bold);
+                        border: none;
+                        font-size: 1*$rem;
+                        width: 100%;
+                        cursor: pointer;
+
+                    }
+                    span{
+                        font-weight: bold;
+                        background: var(--color_form);
+                        height: 100%;
+                    }
+                }
+                }
+                .item_sub_total{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: $rem 0rem;
+                    border-top: 1px solid var(--color_form_bold);
+                }
+            }
+        }
+    }
+    .container_item_total{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: $rem 0rem;
+    }
+    .shoppingCarValidated{
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        gap: 2*$rem;
+
+        button{
+            text-decoration: none;
+            color: var(--color_primary);
+            @include border_radius(2*$rem);
+            border: 1px solid var(--color_primary);
+            font-weight: 600;
+            padding: 0.8*$rem $rem;
+            margin: $rem 0rem 3*$rem;
+            transition: 0.5s;
+            font-size: 1.2*$rem;
+            cursor: pointer;
+
+            &:hover , &.active{
+                background: var(--color_primary);
+                color: var(--color_white);
+                transition: 0.5s;
+            }
+        }
+        .update{
+            border: 1px solid var(--color_secondary);
+            color: var(--color_secondary);
+            &:hover , &.active{
+                background: var(--color_secondary);
+                color: var(--color_white);
+                transition: 0.5s;
+            }
+        }
+    }
+}
 
 
+.container_user_account{
+    padding: $rem 0rem;
+    width: 85%;
+    margin: auto;
+
+    .title{
+        h1{
+            padding: $rem 0rem 2*$rem;
+            color: var(--color_primary);
+            text-align: center;
+            font-weight: 800;
+        }
+    }
+
+    .container_item_user_account{
+        display: grid;
+        grid-template-columns: repeat(auto-fit , minmax(30*$rem , 1fr));
+        gap: 2*$rem;
+
+        .item_user_account{
+            .content_item_user_account{
+                background: var(--color_form_bold);
+                padding: $rem;
+                @include border_radius($rem);
+                overflow: hidden;
+            }
+                        
+            .header{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: $rem;
+                background: var(--color_secondary_opacity);
+                @include border_radius($rem);
+                overflow: hidden;
+
+            }
+            .body_item{
+                .container_item_purchases{
+                    .input_search{
+                        input{
+                            padding: $rem;
+                            margin: $rem 0rem;
+                            background: var(--color_smoke);
+                            @include border_radius($rem);
+                            border: none;
+                            width: 100%;
+                            font-size: 1.6*$rem;
+
+                            &.active{
+                                border: 1px solid var(--color_primary);
+                            }
+                        }
+                    }
+                    .item_purchase{
+                        .top_item{
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: 0.5*$rem;
+                            cursor: pointer;
+                            margin: 0.5*$rem 0rem;
+                            background: var(--color_smoke);
+                            @include border_radius($rem);
+                            overflow: hidden;
+                        }
+                        .bottom_item{
+                            .container_table{
+                                .table{
+                                    padding: $rem;
+                                }
+                                .totals_purchases{
+                                    .totals{
+                                        padding: 0.5*$rem 2*$rem;
+                                        display: flex;
+                                        justify-content: space-between;
+                                        align-items: center;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.container_services_section_home{
+    width: 80%;
+    margin: auto;
+    padding: 4*$rem 0rem;
+
+    .title{
+        padding: $rem 0rem 2*$rem;
+    }
+}
+
+.success{
+    color: var(--color_success);
+    font-weight: 800;
+}
+.warning{
+    color: var(--color_delete);
+    font-weight: 800;
+}
+
+.container_item_user_account_password{
+    margin: 2*$rem 0rem;
+}
 
 
 
@@ -4267,6 +4561,18 @@ form{
             }
         }
         
+    }
+
+    .container_new_item{
+        .container_form{
+            form{
+                #factory{
+                    div:nth-of-type(7){
+                        grid-column: 1 / span 2;
+                    }
+                }
+            }
+        }
     }
 
     .container_table{

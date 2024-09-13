@@ -1,0 +1,178 @@
+<div{{attributes}}>
+	<div class="container_user_account">
+		<div class="title">
+			<h1>Mon compte</h1>
+		</div>
+		<div class="container_item_user_account">
+			<div class="item_user_account">
+				<div class="content_item_user_account">
+					<div class="header">
+						<h3>Mes achats</h3>
+						<strong>{{this.countShoppings|length}}</strong>
+					</div>
+					<div class="body_item">
+						<div class="container_item_purchases">
+							<div class="input_search">
+								<input type="date" name="" id="" data-model="query_date">
+							</div>
+							{% set data = this.getShoppingCarts %}
+							{% for key,item in data %}
+								<div class="item_purchase" x-data="{open:false}">
+									<div class="top_item" @click="open= !open">
+										{% if query_date %}
+											<span>{{query_date|date("d/m/Y")}}</span>
+										{% else %}
+											<span>{{key|date("d/m/Y")}}</span>
+										{% endif %}
+										<svg :class="open ? 'rotate_open': ''" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+											<path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
+										</svg>
+									</div>
+									<div class="bottom_item" x-show="open" style="display:none;">
+										<div class="container_table">
+											<div class="table">
+												<table>
+													<thead>
+														<th>Produit</th>
+														<th>Qté</th>
+														<th>PU</th>
+														<th>PT</th>
+													</thead>
+													<tbody>
+														{% set countCard = 0 %}
+														{% for cart in item %}
+															<tr>
+																<td>{{cart.product.name}}</td>
+																<td>{{cart.quantity}}</td>
+																<td>{{cart.product.devise}}
+																	{{cart.product.price}}</td>
+																<td>{{cart.product.devise}}
+																	{{cart.quantity * cart.product.price}}</td>
+															</tr>
+															{% set countCard = countCard + cart.quantity * cart.product.price %}
+														{% endfor %}
+													</tbody>
+												</table>
+											</div>
+											<div class="totals_purchases">
+												<div class="totals">
+													<span>Total</span>
+													<strong>USD
+														{{countCard}}</strong>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="item_user_account">
+				<div class="content_item_user_account">
+					<div class="user_informations">
+						<h3>Mes informations</h3>
+					</div>
+					<div class="container_new_item container_new_item_account">
+						{% if app.user %}
+							<div class="container_form">
+
+								{% for message in app.flashes("success") %}
+									{% if message %}
+										<span class="success">{{message}}</span>
+										{% else %}
+									{% endif %}
+								{% endfor %}
+								{% for message in app.flashes("warning") %}
+									{% if message %}
+										<span class="warning">{{message}}</span>
+										{% else %}
+									{% endif %}
+								{% endfor %}
+
+								<form action="{{path('app_user_account')}}" method="post">
+									<div id="edit_user">
+										<div>
+											<label for="noms">Noms</label>
+											<input type="text" name="noms" id="" value="{{app.user.noms}}" placeholder="Saisir le nom complet">
+										</div>
+										<div>
+											<label for="noms">Email</label>
+											<input type="text" name="email" id="" value="{{app.user.email}}" placeholder="Saisir l'identifiant'">
+										</div>
+										<div>
+											<label for="noms">Mot de passe</label>
+											<input type="password" name="password" id="" placeholder="Saisir le mot de passe">
+										</div>
+										<div>
+											<label for="noms">Confirmer mot de passe</label>
+											<input type="password" name="confirmPassword" id="" placeholder="Confirmer le mot de passe">
+										</div>
+										<div>
+											<label for="noms">Téléphone</label>
+											<input type="text" name="telephone" id="" value="{{app.user.telephone}}" placeholder="Saisir le numero de téléphone">
+										</div>
+									</div>
+									<div class="input_submit">
+										<button>Modifier</button>
+									</div>
+								</form>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+
+			
+		</div>
+
+
+		<div class="container_item_user_account container_item_user_account_password">
+			<div class="item_user_account">
+				<div class="content_item_user_account">
+					<div class="user_informations">
+						<h3>Mot de passe</h3>
+					</div>
+					<div class="container_new_item container_new_item_account">
+						{% if app.user %}
+							<div class="container_form">
+
+								{% for message in app.flashes("success_pass") %}
+									{% if message %}
+										<span class="success">{{message}}</span>
+										{% else %}
+									{% endif %}
+								{% endfor %}
+								{% for message in app.flashes("warning_pass") %}
+									{% if message %}
+										<span class="warning">{{message}}</span>
+										{% else %}
+									{% endif %}
+								{% endfor %}
+
+								<form action="{{path('app_user_account')}}" method="post">
+									<div id="edit_user">
+										<div>
+											<label for="noms">Ancien mot de passe</label>
+											<input type="password" name="oldPassword" id="" placeholder="Saisir le mot de passe">
+										</div>
+										<div>
+											<label for="noms">Nouveau mot de passe</label>
+											<input type="password" name="newPassword" id="" placeholder="Confirmer le mot de passe">
+										</div>
+									</div>
+									<div class="input_submit">
+										<button>Modifier</button>
+									</div>
+								</form>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>

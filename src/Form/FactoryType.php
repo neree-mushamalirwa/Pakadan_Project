@@ -8,6 +8,7 @@ use App\Entity\Factory;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -39,6 +40,32 @@ class FactoryType extends AbstractType
                     "placeholder" => "Entrez l'adresse de l'entreprise",
                 ],
                 "label" => "Adresse de l'entreprise",
+                "label_attr" => [
+                    "attr" => "label_name"
+                ],
+                "constraints" => [
+                    new Assert\NotBlank()
+                ]
+            ])
+            ->add('email', EmailType::class , [
+                "attr" => [
+                    "class" => "input",
+                    "placeholder" => "Entrez l'email de l'entreprise",
+                ],
+                "label" => "Email de l'entreprise",
+                "label_attr" => [
+                    "attr" => "label_name"
+                ],
+                "constraints" => [
+                    new Assert\NotBlank()
+                ]
+            ])
+            ->add('telephone', TextType::class , [
+                "attr" => [
+                    "class" => "input",
+                    "placeholder" => "Entrez le numéro de l'entreprise",
+                ],
+                "label" => "Numéro de l'entreprise",
                 "label_attr" => [
                     "attr" => "label_name"
                 ],

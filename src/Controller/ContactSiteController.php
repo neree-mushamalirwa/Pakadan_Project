@@ -12,9 +12,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
-class ContactController extends AbstractController
+class ContactSiteController extends AbstractController
 {
-    #[Route('/contact', name: 'app_contact')]
+    #[Route('/contact/site', name: 'app_contact_site')]
     public function index(MessageBusInterface $bus , Request $request , EntityManagerInterface $manager , FactoryRepository $factoryRepository): Response
     {
         $noms = $request -> get("noms");
@@ -22,7 +22,6 @@ class ContactController extends AbstractController
         $telephone = $request -> get("telephone");
         $subject = $request -> get("subject");
         $message = $request -> get("message");
-        $factoryId = $request -> get("factoryId");
 
         // dd($noms ,$email , $telephone , $subject , $message, $factoryId);
 
@@ -31,18 +30,15 @@ class ContactController extends AbstractController
             isset($email) && 
             isset($telephone) && 
             isset($subject) && 
-            isset($message) && 
-            isset($factoryId)
+            isset($message)
         ) {
-            $factory = $factoryRepository -> findOneBy(["id" => $factoryId]);
-
             $contact = new Contact();
             $contact -> setNoms($noms)
                      -> setEmail($email)
                      -> setTelephone($telephone)
                      -> setSujet($subject)
                      -> setMessage($message)
-                     -> setFactory($factory)
+                     -> setFactory(null)
             ;
             $bus -> dispatch(new MessageContact($contact));
 
@@ -55,17 +51,14 @@ class ContactController extends AbstractController
             $this -> addFlash("success" , "Le message a été envoyé avec succès");
 
            
-                return $this -> redirectToRoute("app_show_case" , [
-                    "id" => $factory -> getId(),
-                    "factory" => $factory -> getName(),
-                ]);
+                return $this -> redirectToRoute("app_home");
 
         }
 
 
         
-        return $this->render('contact/index.html.twig', [
-            'controller_name' => 'ContactController',
+        return $this->render('contact_site/index.html.twig', [
+            'controller_name' => 'ContactSiteController',
         ]);
     }
 }
