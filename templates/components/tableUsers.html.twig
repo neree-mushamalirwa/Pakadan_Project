@@ -1,0 +1,76 @@
+<div{{attributes}}>
+	{% if id %}
+		{{component("overlay")}}
+		{{component("modalDelete" , {id: id})}}
+	{% endif %}
+	<div class="container_notifications">
+		<div class="title">
+			<h1>Utilisateurs</h1>
+		</div>
+		<div class="add_item">
+			<a href="{{path('app_admin_user_new')}}">Ajouter un utilisateur</a>
+		</div>
+		<div class="container_item_notifications">
+			{% set data = this.getDataUsers %}
+			{% if data.getTotalItemCount == 0 %}
+				<div class="container_table">
+					<div class="table">
+						<table>
+							<tbody>
+								<tr class="no_data">
+									<td colspan="2">
+										<span>Aucun élément trouvé</span>
+										<div class="content">
+											<svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+												<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+											</svg>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			{% else %}
+				<div class="container_table">
+					<div class="table">
+						<table>
+							<thead>
+								<th>N°</th>
+								<th>Entreprise</th>
+								<th>Noms</th>
+								<th>Identifiant</th>
+								<th>Téléphone</th>
+								<th>Adresse</th>
+							</thead>
+							<tbody>
+								{% for key,item in data %}
+									<tr>
+										<td>{{key + 1}}</td>
+										<td>{{item.factory.name}}</td>
+										<td>{{item.noms}}</td>
+										<td>{{item.email}}</td>
+										<td>{{item.telephone}}</td>
+										<td>{{item.adresse}}</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+		<div class="container_pagination">
+			<div class="navigation"></div>
+			<div class="input_select">
+				<select name="" id="" data-model="query_select_contact">
+					{% for item in range(10,100, 10) %}
+						<option value="{{item}}">{{item}}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+		</div>
+	</div>
+
+</div>

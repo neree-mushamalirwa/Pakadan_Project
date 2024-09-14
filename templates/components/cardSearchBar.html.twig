@@ -1,0 +1,64 @@
+<div{{attributes}}>
+	<div class="container_search_bar">
+		<div class="content_item_search_bar">
+			<div class="container_exit">
+				<button data-hello-target="Exit" data-action="click -> hello#hideCardSearch">
+					<svg width="40px" height="40px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+					</svg>
+				</button>
+			</div>
+			<div class="header_search">
+				<div class="input">
+					<input type="text" name="" id="searchBar" placeholder="Rechercher sur Pakadan" data-model="query_search">
+					<div class="svg">
+						<svg width="30px" height"30px" viewbox="0 0 24 24" data-title="Search" fill="currentColor" stroke="none" class="fill-current shrink-0 text-current w-sz-16 h-sz-16" data-spark-component="icon" aria-hidden="true" focusable="false">
+							<path fill-rule="evenodd" d="m10.5,3.95c-3.62,0-6.55,2.93-6.55,6.55s2.93,6.55,6.55,6.55,6.55-2.93,6.55-6.55-2.93-6.55-6.55-6.55ZM2,10.5C2,5.81,5.81,2,10.5,2s8.5,3.81,8.5,8.5-3.81,8.5-8.5,8.5S2,15.2,2,10.5Z"></path>
+							<path fill-rule="evenodd" d="m15.13,15.13c.38-.38,1-.38,1.38,0l5.21,5.21c.38.38.38,1,0,1.38-.38.38-1,.38-1.38,0l-5.21-5.21c-.38-.38-.38-1,0-1.38Z"></path>
+						</svg>
+					</div>
+				</div>
+			</div>
+
+			<div class="body_search">
+				<div class="container_item_search">
+					{% set data = this.filteredData %}
+					{% if data is empty %}
+						<div class="container_table">
+							<div class="table">
+								<table>
+									<tbody>
+										<tr class="no_data">
+											<td colspan="2">
+												<span>Aucun élément trouvé</span>
+												<div class="content">
+													<svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+														<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+													</svg>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					{% else %}
+						{% for item in data %}
+							<a href="{{path('app_show_case' , { id: item.id, factory: item.name })}}">
+								<div class="item_search">
+									<div class="left">
+										<span>{{item.name}}</span>
+									</div>
+									<div class="right">
+										<strong>{{item.categoryItem.name}}</strong>
+									</div>
+								</div>
+							</a>
+						{% endfor %}
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

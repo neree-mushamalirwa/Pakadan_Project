@@ -172,7 +172,7 @@
 
 				{% set products = this.sectionProducts %}
 				{% set productsCategories = this.sectionproductsCategories %}
-				{% if products %}
+				{% if products is not empty %}
 
 					<section class="container_services_section" id="produits">
 						<div class="title">
@@ -292,21 +292,23 @@
 					<div class="container_item_footer">
 						<div class="item_particular">
 							<div class="logo">
-								<h3>OFOGAMIR</h3>
+								<h3>{{factory.name}}</h3>
 							</div>
-							<h5>OFOGAMIR® - Tous droits réservés.</h5>
+							<h5>{{factory.name}}® - Tous droits réservés.</h5>
 							<div class="description">
-								<p>Une entreprise spécialisée dans les hydrocarbures
+								{% for item in homePage %}
+									<p>{{item.titre1}}
 								</p>
+								{% endfor %}
 							</div>
 							<div class="contact">
 								<div class="item_contact">
 									<h5>Téléphone</h5>
-									<span>+243 973678209</span>
+									<span>{{factory.telephone}}</span>
 								</div>
 								<div class="item_contact">
 									<h5>Courriel</h5>
-									<span>ofogamir@gmail.com</span>
+									<span>{{factory.email}}</span>
 								</div>
 							</div>
 						</div>

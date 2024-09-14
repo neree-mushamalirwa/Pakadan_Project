@@ -1,3 +1,10 @@
+<div 
+	id="overlaySearchBar" 
+	data-hello-target="overlaySearchBar"
+></div>
+<div data-hello-target="popup" class="hidden">
+    {{ component('cardSearchBar') }}
+</div>
 <nav>
 	<header>
 		<div class="container_navigation_bar">
@@ -7,7 +14,7 @@
 						<h3>Pakadan</h3>
 					</a>
 				</div>
-				<a href="" class="publish_service">
+				<a href="{{path('app_requests')}}" class="publish_service">
 					<div class="post_products">
 						<svg width="15px" height"15px" viewbox="0 0 24 24" data-title="AddSquareOutline" fill="currentColor" stroke="none" class="fill-current shrink-0 text-current w-sz-16 h-sz-16" data-spark-component="icon" aria-hidden="true" focusable="false">
 							<path d="m12,6.84c.56,0,1.01.45,1.01,1.01v3.14h3.14c.56.02.99.5.96,1.05-.02.52-.44.94-.96.96h-3.14v3.14c0,.56-.45,1.01-1.01,1.01-.56,0-1.01-.45-1.01-1.01h0v-3.14h-3.14c-.56,0-1.01-.45-1.01-1.01,0-.56.45-1.01,1.01-1.01h3.14v-3.14c0-.56.45-1.01,1.01-1.01h0Z"></path>
@@ -18,7 +25,7 @@
 				</a>
 				<div class="container_search">
 					<div class="input">
-						<input type="text" name="" id="" placeholder="Rechercher sur Pakadan">
+						<input  data-action="click->hello#showCardSearch"  type="text" name="" id="searchBar" placeholder="Rechercher sur Pakadan">
 						<div class="svg">
 							<svg width="30px" height"30px" viewbox="0 0 24 24" data-title="Search" fill="currentColor" stroke="none" class="fill-current shrink-0 text-current w-sz-16 h-sz-16" data-spark-component="icon" aria-hidden="true" focusable="false">
 								<path fill-rule="evenodd" d="m10.5,3.95c-3.62,0-6.55,2.93-6.55,6.55s2.93,6.55,6.55,6.55,6.55-2.93,6.55-6.55-2.93-6.55-6.55-6.55ZM2,10.5C2,5.81,5.81,2,10.5,2s8.5,3.81,8.5,8.5-3.81,8.5-8.5,8.5S2,15.2,2,10.5Z"></path>
@@ -124,18 +131,7 @@
 							</svg>
 
 						</button>
-						{# {% set table = [
-																																					{"factory":"Entreprises","url":path('app_category')},
-																																					{"factory":"Asbl","url":path('app_category')},
-																																					{"factory":"Sociétés","url":path('app_category')},
-																																					{"factory":"Boutiques","url":path('app_category')},
-																																					{"factory":"Magasins","url":path('app_category')},
-																																					{"factory":"Hôtels","url":path('app_category')},
-																																					{"factory":"Alimentations","url":path('app_category')},
-																																					{"factory":"Restaurants","url":path('app_category')},
-																																					{"factory":"Supermarchés","url":path('app_category')},
-																																					{"factory":"Autres","url":path('app_category')},
-																																				] %} #}
+
 						<div class="container_bottom_nav">
 							{% for item in categories %}
 								<a href="{{path('app_category' , {id: item.id})}}">
@@ -144,6 +140,7 @@
 								</a>
 							{% endfor %}
 						</div>
+
 						<div class="container_social_link">
 							<a href="">
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewbox="0 0 20 20" version="1.1">
@@ -169,6 +166,17 @@
 					</ul>
 				</nav>
 			</div>
+			{% for message in app.flashes("success") %}
+
+				{% if message %}
+					<div class="flashes_messages">
+						<span class="success">{{message}}</span>
+					</div>
+					{% else %}
+				{% endif %}
+			{% endfor %}
+
+
 		</div>
 	</header>
 
@@ -213,99 +221,99 @@
 			{% endfor %}
 			<div {{svelte_component("Hello" , {category: table} )}}></div>
 			{# <div class="container_all_sub_items">
-																					
-																									<div class="container_sub_items container_sub_items_main">
-																										<div class="sub_items">
-																											<div class="item_title">
-																												<span>Tendances</span>
-																											</div>
-																											<div class="container_items">
-																												<ul>
-																													<a href="">
-																														<li>Meilleures ventes</li>
-																													</a>
-																													<a href="">
-																														<li>Nouveautés</li>
-																													</a>
-																													<a href="">
-																														<li>Nouveautés</li>
-																													</a>
-																													<a href="">
-																														<li>Nouveautés</li>
-																													</a>
-																												</ul>
-																											</div>
-																										</div>
-																					
-																										<div class="sub_items">
-																											<div class="item_title">
-																												<span>Tendances & Services</span>
-																											</div>
-																											<div class="container_items">
-																												<ul>
-																													<ul>
-																													<li class="special_list">
-																														<button>
-																															<span>Visibilité numérique</span>
-																															<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-																																<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
-																															</svg>
-																														</button>
-																					
-																													</li>
-																													<li class="special_list">
-																														<button >
-																															<span>Visibilité numérique</span>
-																															<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-																																<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
-																															</svg>
-																														</button>
-																					
-																													</li>
-																													<li class="special_list">
-																														<button >
-																															<span>Visibilité numérique</span>
-																															<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-																																<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
-																															</svg>
-																														</button>
-																													</li>
-																												</ul>
-																												</ul>
-																											</div>
-																										</div>
-																									</div>
-																					
-																									<div class="container_sub_items container_sub_items_secondary">
-																										<div class="sub_items">
-																											<div class="item_title">
-																												<svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-																													<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/>
-																												</svg>
-																												<span>Tendances secondary</span>
-																											</div>
-																											<div class="item_title">
-																												<span>Tendances secondary</span>
-																											</div>
-																											<div class="container_items">
-																												<ul>
-																													<a href="">
-																														<li>Meilleures ventes</li>
-																													</a>
-																													<a href="">
-																														<li>Nouveautés</li>
-																													</a>
-																													<a href="">
-																														<li>Nouveautés</li>
-																													</a>
-																													<a href="">
-																														<li>Nouveautés</li>
-																													</a>
-																												</ul>
-																											</div>
-																										</div>
-																									</div>
-																								</div> #}
+																																	
+																																					<div class="container_sub_items container_sub_items_main">
+																																						<div class="sub_items">
+																																							<div class="item_title">
+																																								<span>Tendances</span>
+																																							</div>
+																																							<div class="container_items">
+																																								<ul>
+																																									<a href="">
+																																										<li>Meilleures ventes</li>
+																																									</a>
+																																									<a href="">
+																																										<li>Nouveautés</li>
+																																									</a>
+																																									<a href="">
+																																										<li>Nouveautés</li>
+																																									</a>
+																																									<a href="">
+																																										<li>Nouveautés</li>
+																																									</a>
+																																								</ul>
+																																							</div>
+																																						</div>
+																																	
+																																						<div class="sub_items">
+																																							<div class="item_title">
+																																								<span>Tendances & Services</span>
+																																							</div>
+																																							<div class="container_items">
+																																								<ul>
+																																									<ul>
+																																									<li class="special_list">
+																																										<button>
+																																											<span>Visibilité numérique</span>
+																																											<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+																																												<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+																																											</svg>
+																																										</button>
+																																	
+																																									</li>
+																																									<li class="special_list">
+																																										<button >
+																																											<span>Visibilité numérique</span>
+																																											<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+																																												<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+																																											</svg>
+																																										</button>
+																																	
+																																									</li>
+																																									<li class="special_list">
+																																										<button >
+																																											<span>Visibilité numérique</span>
+																																											<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+																																												<path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+																																											</svg>
+																																										</button>
+																																									</li>
+																																								</ul>
+																																								</ul>
+																																							</div>
+																																						</div>
+																																					</div>
+																																	
+																																					<div class="container_sub_items container_sub_items_secondary">
+																																						<div class="sub_items">
+																																							<div class="item_title">
+																																								<svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+																																									<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/>
+																																								</svg>
+																																								<span>Tendances secondary</span>
+																																							</div>
+																																							<div class="item_title">
+																																								<span>Tendances secondary</span>
+																																							</div>
+																																							<div class="container_items">
+																																								<ul>
+																																									<a href="">
+																																										<li>Meilleures ventes</li>
+																																									</a>
+																																									<a href="">
+																																										<li>Nouveautés</li>
+																																									</a>
+																																									<a href="">
+																																										<li>Nouveautés</li>
+																																									</a>
+																																									<a href="">
+																																										<li>Nouveautés</li>
+																																									</a>
+																																								</ul>
+																																							</div>
+																																						</div>
+																																					</div>
+																																				</div> #}
 
 		</div>
 	</div>

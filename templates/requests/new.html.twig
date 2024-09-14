@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pakadan | Reservation
+{% endblock %}
+
+{% block body %}
+	<div class="container_new_item">
+		<h2>Demander une reservation d'espace vitrine</h2>
+		{% for message in app.flashes("success") %}
+			{% if message %}
+				<span class="success">{{message}}</span>
+				{% else %}
+			{% endif %}
+		{% endfor %}
+		<div class="container_form">
+			{{ form_start(form) }}
+			{{ form_widget(form) }}
+
+			<div class="input_submit">
+				<button>Envoyer</button>
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pakadan | Admin | Users | New{% endblock %}
+
+{% block body %}
+    <div class="container_new_item">
+        <h1>Ajouter un utilisateur pour la gestion de sa vitrine</h1>
+        <div class="container_form">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            <div class="input_submit">
+                <button>Sauvegarder</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
