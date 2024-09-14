@@ -220,15 +220,15 @@
 				 %}
 			{% endfor %}
 
-			{% set links = null %}
+			{% set links = [] %}
 
 			{% if app.user %}
-				{% set links = [{
-					"Accueil": "/",
-					"Notifications": "/notifications",
-					"Favoris": "/favorite",
-					"Panier": "/shopping/cart",
-				}] %}
+				{% set links = [
+					{key:"Accueil" , value: "/",},
+					{key:"Notifications" , value:"/notifications"},
+					{key:"Favoris" , value:"/favorite"},
+					{key:"Panier" , value:"/shopping/cart"}
+				] %}
 			{% else %}
 				{% set links = [
 						{key:"Accueil" , value: "/",},

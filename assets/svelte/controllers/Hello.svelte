@@ -36,6 +36,7 @@
     }
 
 
+
     import Side from "./Side.svelte";
 </script>
 
@@ -47,6 +48,7 @@
                     <span>Accès rapides</span>
                 </div>
                 <div class="container_items">
+                    
                     <ul>
                        {#each links as item}
                        <a href="{item.value}">
