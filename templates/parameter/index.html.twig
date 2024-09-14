@@ -6,7 +6,11 @@
 {% block body %}
 	{% if user %}
 		<div class="container_admin_factory_detail">
-			<div class="container_factory_right_part">
+		{% set totalWidth = "" %}
+			{% if form is empty %}
+				{% set totalWidth = "totalWidth" %}
+			{% endif %}
+			<div class="container_factory_right_part {{totalWidth}}">
 				<div class="container_new_item container_new_item_detail">
 					<h3>Modifier les informations de l'utilisateur</h3>
 					<div class="container_form">
@@ -20,22 +24,25 @@
 					</div>
 				</div>
 			</div>
-			<div class="container_factory_right_part">
-				<div class="container_new_item container_new_item_detail">
-					<h3>Modifier les informations de l'entreprise</h3>
-					<div class="container_form">
-						{{ form_start(form, {'method': 'POST' , 'enctype': 'multipart/form-data'}) }}
-						{{ form_widget(form) }}
+			{% if form is not empty %}
+				<div class="container_factory_right_part">
+					<div class="container_new_item container_new_item_detail">
+						<h3>Modifier les informations de l'entreprise</h3>
+						<div class="container_form">
+							{{ form_start(form, {'method': 'POST' , 'enctype': 'multipart/form-data'}) }}
+							{{ form_widget(form) }}
 
-						<div {{svelte_component("Edit" , {file: files|json_encode } )}}></div>
+							<div {{svelte_component("Edit" , {file: files|json_encode } )}}></div>
 
-						<div class="input_submit">
-							<button type="submit">Modifier</button>
+							<div class="input_submit">
+								<button type="submit">Modifier</button>
+							</div>
+							{{ form_end(form) }}
 						</div>
-						{{ form_end(form) }}
 					</div>
 				</div>
-			</div>
+			{% endif %}
+
 		</div>
 		<div class="container_new_item container_new_item_detail">
 			<h3>Modifier le mot de passe</h3>

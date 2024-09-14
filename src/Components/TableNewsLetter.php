@@ -35,6 +35,7 @@ class TableNewsLetter{
 
     public function getDataContact(){
         $data = $this -> contactRepository -> createQueryBuilder("q")
+                                            -> where("q.factory IS NULL")
                                            -> orderBy("q.createdAt" , "DESC")
                                            -> getQuery()
                                            -> getResult()
@@ -48,6 +49,7 @@ class TableNewsLetter{
     }
     public function getDataNewsLetter(){
         $data = $this -> newsLetterRepository -> createQueryBuilder("q")
+                                                -> where("q.factory IS NULL")
                                                 -> orderBy("q.createdAt" , "DESC")
                                                 -> getQuery()
                                                 -> getResult()

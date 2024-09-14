@@ -27,3 +27,4 @@ framework:
 
             # Route your messages to the transports
             App\MessageContact\MessageContact: async
+            App\MessageAccount\MessageAccount: async

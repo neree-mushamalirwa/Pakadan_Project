@@ -4,13 +4,17 @@
     let goLeft = false;
     export let category;
 
+    export let links;
+    export let linksCategories;
+
+
+
     let list = [];
 
     category.forEach((element) => {
         list.push({ title: element.name, num: () => setCategory(element.name, element.items) });
     });
     
-    console.log(category)
 
 
     function setCategory(name, items) {
@@ -31,6 +35,7 @@
         goLeft = params;
     }
 
+
     import Side from "./Side.svelte";
 </script>
 
@@ -43,15 +48,17 @@
                 </div>
                 <div class="container_items">
                     <ul>
-                        <a href="/">
-                            <li>Accueil</li>
+                       {#each links as item}
+                       <a href="{item.value}">
+                            <li>{item.key}</li>
                         </a>
-                        <a href="/">
-                            <li>A propos</li>
+                       {/each}
+                       {#each linksCategories as item}
+                       <a href="/category/{item.key}">
+                            <li>{item.value}</li>
                         </a>
-                        <a href="/">
-                            <li>Contact</li>
-                        </a>
+                       {/each}
+                       
                     </ul>
                 </div>
             </div>

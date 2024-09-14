@@ -37,6 +37,9 @@ class Account
     #[ORM\Column(length: 255)]
     private ?string $keyGenerated = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $message = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -134,6 +137,18 @@ class Account
     public function setKeyGenerated(string $keyGenerated): static
     {
         $this->keyGenerated = $keyGenerated;
+
+        return $this;
+    }
+
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
+    public function setMessage(?string $message): static
+    {
+        $this->message = $message;
 
         return $this;
     }

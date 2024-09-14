@@ -79,6 +79,7 @@
 						<span>Accueil</span>
 					</div>
 				</a>
+				{% if is_granted("ROLE_SUPER_ADMIN") %}
 				<div class="item_parent" x-data="{open:false}">
 					<div class="header_item_parent" @click="open= !open">
 						<div class="left">
@@ -505,6 +506,11 @@
 						<span>Gestion notifications</span>
 					</div>
 				</a>
+				{% endif %}
+				{% set currentLinkParam = "" %}
+				{% if app.request.get("_route") == "app_admin_parameter" %}
+					{% set currentLinkParam = "currentLink" %}
+				{% endif %}
 				<a href="{{path('app_admin_parameter')}}">
 					<div class="item_link param {{currentLinkParam}}">
 						<svg width="20px" height"20px" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -514,6 +520,7 @@
 						<span>Paramètres</span>
 					</div>
 				</a>
+				{% if is_granted("ROLE_ADMIN") %}
 				<div class="item_parent" x-data="{open:false}">
 					<div class="header_item_parent" @click="open= !open">
 						<div class="left">
@@ -657,6 +664,7 @@
 
 					</div>
 				</div>
+				{% endif %}
 
 			</div>
 		</div>

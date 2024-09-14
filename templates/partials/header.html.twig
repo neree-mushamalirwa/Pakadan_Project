@@ -219,7 +219,35 @@
 						
 				 %}
 			{% endfor %}
-			<div {{svelte_component("Hello" , {category: table} )}}></div>
+
+			{% set links = null %}
+
+			{% if app.user %}
+				{% set links = [{
+					"Accueil": "/",
+					"Notifications": "/notifications",
+					"Favoris": "/favorite",
+					"Panier": "/shopping/cart",
+				}] %}
+			{% else %}
+				{% set links = [
+						{key:"Accueil" , value: "/",},
+						{key:"Notifications" , value:"/notifications"},
+						{key:"Favoris" , value:"/favorite"}
+				] %}
+			{% endif %}
+
+			{% set linksCategories = [] %}
+
+			{% for item in categories %}
+					{% set linksCategories = linksCategories|merge([{
+						"key":item.id,
+						"value":item.name
+					}]) %}
+			{% endfor %}
+
+			
+			<div {{svelte_component("Hello" , {category: table , links: links , linksCategories: linksCategories} )}}></div>
 			{# <div class="container_all_sub_items">
 																																	
 																																					<div class="container_sub_items container_sub_items_main">
