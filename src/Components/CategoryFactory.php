@@ -72,7 +72,7 @@ class CategoryFactory extends AbstractController{
             $this -> manager -> remove($product);
             $this -> manager -> flush();
 
-            return $this -> redirectToRoute("app_admin_factory");
+            return $this -> redirectToRoute("app_admin_category_factory");
 
         }
     }

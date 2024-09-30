@@ -25,4 +25,12 @@ class HomeController extends AbstractController
                 // 'categories' => $categories,
             ]);
     }
+    #[Route('/notify', name: 'app_notify')]
+    public function notify(CategoryRepository $categoryRepository , Request $request): Response
+    {
+        return $this->render('home/notify.html.twig', [
+            'controller_name' => 'HomeController',
+            // 'categories' => $categories,
+        ]);
+    }
 }
